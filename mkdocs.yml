@@ -1,0 +1,96 @@
+---
+# Project information
+site_name: bridges
+site_description: This repo is a declarative implementation of MAGFest's at event infrastucture in GitOps.
+site_author: MAGFest - TechOps
+site_url: https://magfest.github.io/bridges
+
+# https://squidfunk.github.io/mkdocs-material/setup/adding-a-git-repository/#repository-name
+repo_name: magfest/bridges
+repo_url: https://github.com/magfest/bridges
+
+# https://squidfunk.github.io/mkdocs-material/setup/adding-a-git-repository/#edit-button
+edit_uri: "edit/main/docs/"
+
+theme:
+  name: material
+  # https://squidfunk.github.io/mkdocs-material/setup/changing-the-logo-and-icons/#logo
+  logo: assets/speaker.svg
+  # https://squidfunk.github.io/mkdocs-material/setup/changing-the-logo-and-icons/#favicon
+  favicon: MAGFEST_logo_centered_final.svg
+  # https://squidfunk.github.io/mkdocs-material/setup/changing-the-language/#site-language
+  language: en
+  # https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/#color-palette
+  # palette:
+  #   scheme: preference
+  #   primary: deep purple
+  #   accent: indigo
+  # https://squidfunk.github.io/mkdocs-material/setup/adding-a-git-repository/#repository-icon
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    # https://squidfunk.github.io/mkdocs-material/setup/setting-up-the-header/#automatic-hiding
+    - header.autohide
+    # https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/#anchor-tracking
+    - navigation.tracking
+    # https://squidfunk.github.io/mkdocs-material/setup/setting-up-site-search/#search-highlighting
+    - search.highlight
+    # https://squidfunk.github.io/mkdocs-material/setup/setting-up-site-search/#search-sharing
+    - search.share
+    # https://squidfunk.github.io/mkdocs-material/setup/setting-up-site-search/#search-suggestions
+    - search.suggest
+
+docs_dir: docs/
+
+extra:
+  # https://squidfunk.github.io/mkdocs-material/setup/setting-up-versioning/#versioning
+  version:
+    provider: mike
+  # https://squidfunk.github.io/mkdocs-material/setup/setting-up-the-footer/#social-links
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/magfest
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/MAGFest
+
+# https://squidfunk.github.io/mkdocs-material/setup/setting-up-the-footer/#copyright-notice
+copyright: Copyright &copy; 2021 MAGFest
+
+extra_css:
+  - _static/custom.css
+
+plugins:
+  # https://squidfunk.github.io/mkdocs-material/setup/setting-up-site-search/#built-in-search
+  - search
+  # https://squidfunk.github.io/mkdocs-material/setup/adding-a-git-repository/#revision-date-localized
+  - git-revision-date-localized
+  - minify:
+      minify_html: true
+
+# https://www.mkdocs.org/user-guide/configuration/#markdown_extensions
+markdown_extensions:
+  - admonition
+  - meta
+  - codehilite:
+      guess_lang: false
+  - toc:
+      permalink: true
+  - pymdownx.superfences:
+      highlight_code: true
+  - pymdownx.highlight:
+      linenums: true
+  - pymdownx.tabbed
+  - pymdownx.tilde
+  - pymdownx.progressbar
+  - pymdownx.tasklist
+  - pymdownx.snippets
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+
+nav:
+  - Introduction: index.md
+  - Overview: overview/index.md
+  - Getting Started:
+      - Environment: get-started/environment.md
+

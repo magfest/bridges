@@ -1,0 +1,16 @@
+---
+version: "3"
+
+env:
+  ANSIBLE_CONFIG: "{{.PROJECT_DIR}}/ansible/ansible.cfg"
+
+vars:
+  ANSIBLE_PLAYBOOK_DIR: "{{.ANSIBLE_DIR}}/playbooks"
+  ANSIBLE_INVENTORY_DIR: "{{.ANSIBLE_DIR}}/inventory"
+
+tasks:
+  list:
+    desc: List all machines
+    cmds:
+      - "ansible -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yaml --list-hosts"
+    silent: true

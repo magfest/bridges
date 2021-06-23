@@ -1,0 +1,5 @@
+{
+    "git.enableCommitSigning": true,
+    "git.pruneOnFetch": true,
+    "git.autofetch": "all"
+}

@@ -1,0 +1,36 @@
+---
+name: Build Docs
+
+on:
+  push:
+    paths:
+      - "docs/**"
+      - ".github/workflows/docs.yaml"
+      - "mkdocs.yml"
+    branches:
+      - main
+  workflow_dispatch:
+    paths:
+      - ".github/workflows/docs.yaml"
+      - "docs/**"
+      - "mkdocs.yml"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.head.repo.fork == false
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+      - run: git config --global user.name "${GITHUB_ACTOR}"
+      - run: git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+      - run: pip install git+https://github.com/squidfunk/mkdocs-material.git
+      - run: |
+          pip install \
+            mkdocs-minify-plugin \
+            mkdocs-redirects \
+            mkdocs-git-revision-date-localized-plugin
+      - run: mkdocs gh-deploy --config-file ./mkdocs.yml --force
+      - run: mkdocs --version

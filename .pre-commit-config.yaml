@@ -1,0 +1,19 @@
+---
+repos:
+  - repo: https://github.com/gruntwork-io/pre-commit
+    rev: v0.1.12
+    hooks:
+      - id: terraform-fmt
+      - id: terraform-validate
+      - id: tflint
+        args:
+          - "--module"
+          - "--deep"
+          - "--config=.tflint.hcl"
+      - id: markdown-link-check
+
+  - repo: git://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.50.0
+    hooks:
+      - id: terraform_tfsec
+      - id: terraform_docs

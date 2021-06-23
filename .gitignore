@@ -1,0 +1,15 @@
+# Trash
+.DS_Store
+Thumbs.db
+bin
+# flux
+*.iso
+# Temp
+ignore/
+logs/
+.task/
+# Server folder
+ansible.log
+# SOPS
+.decrypted~*.yaml
+.vault-password
