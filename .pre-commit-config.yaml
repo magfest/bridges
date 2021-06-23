@@ -1,8 +1,47 @@
 ---
+fail_fast: false
 repos:
-  - repo: https://github.com/gruntwork-io/pre-commit
-    rev: v0.1.12
-    hooks:
+  - hooks:
+      - args:
+          - -c
+          - .github/yamllint.config.yaml
+        id: yamllint
+    repo: https://github.com/adrienverge/yamllint
+    rev: v1.26.1
+  - hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: fix-byte-order-marker
+      - id: mixed-line-ending
+      - args:
+          - --maxkb=2048
+        id: check-added-large-files
+      - id: check-merge-conflict
+      - id: check-executables-have-shebangs
+    repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+  - hooks:
+      - id: remove-crlf
+      - id: remove-tabs
+    repo: https://github.com/Lucas-C/pre-commit-hooks
+    rev: v1.1.10
+  - hooks:
+      - additional_dependencies: []
+        args:
+          - --severity=error
+        id: shellcheck
+        language: script
+    repo: https://github.com/jumanjihouse/pre-commit-hooks
+    rev: 2.1.5
+  - hooks:
+      - id: fix-smartquotes
+    repo: https://github.com/sirosen/fix-smartquotes
+    rev: 0.2.0
+  - hooks:
+      - id: forbid-secrets
+    repo: https://github.com/k8s-at-home/sops-pre-commit
+    rev: v2.0.3
+  - hooks:
       - id: terraform-fmt
       - id: terraform-validate
       - id: tflint
@@ -11,9 +50,10 @@ repos:
           - "--deep"
           - "--config=.tflint.hcl"
       - id: markdown-link-check
-
-  - repo: git://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.50.0
-    hooks:
+    repo: https://github.com/gruntwork-io/pre-commit
+    rev: v0.1.12
+  - hooks:
       - id: terraform_tfsec
       - id: terraform_docs
+    repo: git://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.50.0
