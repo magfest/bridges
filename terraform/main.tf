@@ -1,4 +1,6 @@
 terraform {
+  backend "http" {
+  }
   required_providers {
     proxmox = {
       source = "Telmate/proxmox"
