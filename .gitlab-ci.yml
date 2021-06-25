@@ -20,11 +20,15 @@ init:
   stage: prepare
   script:
     - terraform init
+  tags:
+    - shell
 
 validate:
   stage: validate
   script:
     - terraform validate
+  tags:
+    - shell
 
 plan:
   stage: build
@@ -37,6 +41,8 @@ plan:
       - ${TF_ROOT}/plan.cache
     reports:
       terraform: ${TF_ROOT}/plan.json
+  tags:
+    - shell
 
 apply:
   stage: deploy
@@ -49,3 +55,6 @@ apply:
   when: manual
   only:
     - master
+      mn, rtfg
+  tags:
+    - shell
