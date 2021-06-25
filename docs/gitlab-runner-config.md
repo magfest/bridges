@@ -26,9 +26,13 @@ bgpUtQnN+EQ0+U4JW+mRhBUZELB9vNl/v1PhhMhj0PsnyQ==
 * Put that in /usr/local/share/ca-certificates/mitm.magevent.net.crt
 * sudo update-ca-certificates
 
-## Download Terraform
+## Download Packer / Terraform
 
-https://releases.hashicorp.com/terraform/1.0.1/terraform_1.0.1_linux_amd64.zip
+```
+curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+sudo apt-get update && sudo apt-get install packer terraform
+```
 
 ## Install GitLab Runner
 
