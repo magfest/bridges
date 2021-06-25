@@ -1,4 +1,3 @@
-image: registry.gitlab.com/gitlab-org/terraform-images/stable:latest
 variables:
   TF_ROOT: ${CI_PROJECT_DIR}/terraform
   TF_ADDRESS: ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/terraform/state/test-state
@@ -20,18 +19,18 @@ stages:
 init:
   stage: prepare
   script:
-    - gitlab-terraform init
+    - terraform init
 
 validate:
   stage: validate
   script:
-    - gitlab-terraform validate
+    - terraform validate
 
 plan:
   stage: build
   script:
-    - gitlab-terraform plan
-    - gitlab-terraform plan-json
+    - terraform plan
+    - terraform plan-json
   artifacts:
     name: plan
     paths:
@@ -44,7 +43,7 @@ apply:
   environment:
     name: production
   script:
-    - gitlab-terraform apply
+    - terraform apply
   dependencies:
     - plan
   when: manual
