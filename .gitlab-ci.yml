@@ -1,22 +1,52 @@
-build-job:
+image: registry.gitlab.com/gitlab-org/terraform-images/stable:latest
+variables:
+  TF_ROOT: ${CI_PROJECT_DIR}/terraform
+  TF_ADDRESS: ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/terraform/state/test-state
+
+cache:
+  key: test-state
+  paths:
+    - ${TF_ROOT}/.terraform
+    
+before_script:
+  - cd ${TF_ROOT}
+
+stages:
+  - prepare
+  - validate
+  - build
+  - deploy
+
+init:
+  stage: prepare
+  script:
+    - gitlab-terraform init
+
+validate:
+  stage: validate
+  script:
+    - gitlab-terraform validate
+
+plan:
   stage: build
   script:
-    - echo "Hello, $GITLAB_USER_LOGIN!"
+    - gitlab-terraform plan
+    - gitlab-terraform plan-json
+  artifacts:
+    name: plan
+    paths:
+      - ${TF_ROOT}/plan.cache
+    reports:
+      terraform: ${TF_ROOT}/plan.json
 
-test-job1:
-  stage: test
-  script:
-    - echo "This job tests something"
-
-test-job2:
-  stage: test
-  script:
-    - echo "This job tests something, but takes more time than test-job1."
-    - echo "After the echo commands complete, it runs the sleep command for 20 seconds"
-    - echo "which simulates a test that runs 20 seconds longer than test-job1"
-    - sleep 20
-
-deploy-prod:
+apply:
   stage: deploy
+  environment:
+    name: production
   script:
-    - echo "This job deploys something from the $CI_COMMIT_BRANCH branch."
+    - gitlab-terraform apply
+  dependencies:
+    - plan
+  when: manual
+  only:
+    - master
