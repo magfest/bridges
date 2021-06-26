@@ -71,3 +71,18 @@ apply:
   artifacts:
     paths:
       - ${TF_ROOT}/.terraform
+
+destroy:
+  stage: destroy
+  extends: .global
+  environment:
+    name: production
+  dependencies:
+    - plan
+  script:
+    - terraform destroy -auto-approve
+  rules:
+      - when: manual
+  artifacts:
+    paths:
+      - ${TF_ROOT}/.terraform
