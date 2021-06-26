@@ -17,7 +17,6 @@ stages:
   - validate
   - build
   - deploy
-  - destroy
 
 .global:
   tags:
@@ -74,7 +73,7 @@ apply:
       - ${TF_ROOT}/.terraform
 
 destroy:
-  stage: destroy
+  stage: deploy
   extends: .global
   environment:
     name: production
