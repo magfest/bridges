@@ -3,7 +3,6 @@ variables:
   TF_HTTP_ADDRESS: ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/terraform/state/${CI_COMMIT_BRANCH}
   TF_STATE_NAME: ${CI_COMMIT_BRANCH}
   TF_CACHE_KEY: ${CI_COMMIT_BRANCH}
-
 cache:
   key: "${TF_ROOT}"
   paths:
@@ -19,48 +18,53 @@ stages:
   - build
   - deploy
 
-init:
-  stage: prepare
+.global:
   tags:
     - shell
+  except:
+    changes:
+      - docs
+      - .vscode
+      - .github
+      - README.md
+      - LICENSE
+
+init:
+  stage: prepare
+  extends: .global
   script:
     - terraform init
     - terraform validate
 
-
 validate:
+  extends: .global
   stage: validate
-  tags:
-    - shell
   script:
     - terraform validate
 
-
 plan:
   stage: build
+  extends: .global
   artifacts:
     name: plan
     paths:
       - ${TF_ROOT}/plan.cache
     reports:
       terraform: ${TF_ROOT}/plan.json
-  tags:
-    - shell
   script:
     - terraform plan
 
 apply:
   stage: deploy
+  extends: .global
   environment:
     name: production
   dependencies:
     - plan
   when: manual
   only:
-    - master
+    - main
       mn, rtfg
-  tags:
-    - shell
   script:
     - terraform apply
   artifacts:
