@@ -7,10 +7,12 @@ resource "proxmox_lxc" "dhcp" {
   memory      = each.value.memory
   cores       = each.value.cores
   swap        = each.value.swap
+  start       = each.value.start
   network {
     name     = each.value.network_interface
     bridge   = each.value.bridge_id
     ip       = each.value.cidr
+    gw       = each.value.gateway
     firewall = each.value.firewall
     tag      = each.value.vlan_id
   }
