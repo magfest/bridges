@@ -21,13 +21,15 @@ stages:
 .global:
   tags:
     - shell
-  except:
-    changes:
-      - docs
-      - .vscode
-      - .github
+  rules:
+    - changes:
+      - docs/*
+      - .vscode/*
+      - .github/*
       - README.md
       - LICENSE
+      when: never
+    - when: always
 
 init:
   stage: prepare
