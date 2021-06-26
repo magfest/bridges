@@ -48,7 +48,6 @@ plan:
     - shell
   script:
     - terraform plan
-    - terraform plan-json
 
 apply:
   stage: deploy
