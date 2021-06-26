@@ -4,9 +4,10 @@ variables:
   TF_STATE_NAME: ${CI_COMMIT_BRANCH}
   TF_CACHE_KEY: ${CI_COMMIT_BRANCH}
 cache:
-  key: test-state
   paths:
     - ${TF_ROOT}/.terraform
+
+
 
 before_script:
   - cd ${TF_ROOT}
@@ -23,6 +24,10 @@ init:
     - shell
   script:
     - terraform init
+    - terraform validate
+  artifacts:
+    paths:
+      - ${TF_ROOT}/.terraform
 
 validate:
   stage: validate
@@ -30,10 +35,12 @@ validate:
     - shell
   script:
     - terraform validate
+  artifacts:
+    paths:
+      - ${TF_ROOT}/.terraform
 
 plan:
   stage: build
-
   artifacts:
     name: plan
     paths:
@@ -60,3 +67,6 @@ apply:
     - shell
   script:
     - terraform apply
+  artifacts:
+    paths:
+      - ${TF_ROOT}/.terraform
