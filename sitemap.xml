@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://magfest.github.io/bridges/</loc>
+         <lastmod>2021-06-26</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://magfest.github.io/bridges/gitlab-ci/</loc>
+         <lastmod>2021-06-26</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://magfest.github.io/bridges/gitlab-runner-config/</loc>
+         <lastmod>2021-06-26</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://magfest.github.io/bridges/gitlab-terraform/</loc>
+         <lastmod>2021-06-26</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://magfest.github.io/bridges/get-started/environment/</loc>
+         <lastmod>2021-06-26</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://magfest.github.io/bridges/overview/</loc>
+         <lastmod>2021-06-26</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+</urlset>
