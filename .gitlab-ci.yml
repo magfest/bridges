@@ -63,10 +63,6 @@ apply:
     name: production
   dependencies:
     - plan
-  when: manual
-  only:
-    - main
-      mn, rtfg
   script:
     - terraform apply
   artifacts:
