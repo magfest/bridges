@@ -44,11 +44,11 @@ repos:
   - hooks:
       - id: terraform-fmt
       - id: terraform-validate
-      - id: tflint
-        args:
-          - "--module"
-          - "--deep"
-          - "--config=.tflint.hcl"
+      # - id: tflint
+      #   args:
+      #     - "--module"
+      #     - "--deep"
+      #     - "--config=.tflint.hcl"
       - id: markdown-link-check
     repo: https://github.com/gruntwork-io/pre-commit
     rev: v0.1.12

@@ -26,15 +26,6 @@ rule "terraform_unused_required_providers" {
   enabled = true
 }
 
-rule "aws_resource_missing_tags" {
-  enabled = true
-  tags = [
-    "Project",
-    "Environment",
-    "Version",
-  ]
-}
-
 rule "terraform_naming_convention" {
   enabled = true
   format  = "none"
