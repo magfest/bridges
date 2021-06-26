@@ -1,8 +1,8 @@
 variables:
   TF_ROOT: ${CI_PROJECT_DIR}/terraform
-  TF_HTTP_ADDRESS: ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/terraform/state/test-state
-  TF_STATE_NAME: default
-  TF_CACHE_KEY: default
+  TF_HTTP_ADDRESS: ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/terraform/state/${CI_COMMIT_BRANCH}
+  TF_STATE_NAME: ${CI_COMMIT_BRANCH}
+  TF_CACHE_KEY: ${CI_COMMIT_BRANCH}
 cache:
   key: test-state
   paths:
