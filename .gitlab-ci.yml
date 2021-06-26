@@ -67,8 +67,6 @@ create:
     - plan
   script:
     - terraform apply -auto-approve
-  rules:
-      - when: manual
 
   artifacts:
     paths:
