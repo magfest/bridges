@@ -3,11 +3,12 @@ variables:
   TF_HTTP_ADDRESS: ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/terraform/state/${CI_COMMIT_BRANCH}
   TF_STATE_NAME: ${CI_COMMIT_BRANCH}
   TF_CACHE_KEY: ${CI_COMMIT_BRANCH}
+
 cache:
+  key: "${TF_ROOT}"
   paths:
-    - ${TF_ROOT}/.terraform
-
-
+    - ${TF_ROOT}/.terraform/
+    - ${TF_ROOT}/.terraform.lock.hcl
 
 before_script:
   - cd ${TF_ROOT}
@@ -25,9 +26,7 @@ init:
   script:
     - terraform init
     - terraform validate
-  artifacts:
-    paths:
-      - ${TF_ROOT}/.terraform
+
 
 validate:
   stage: validate
@@ -35,9 +34,7 @@ validate:
     - shell
   script:
     - terraform validate
-  artifacts:
-    paths:
-      - ${TF_ROOT}/.terraform
+
 
 plan:
   stage: build
