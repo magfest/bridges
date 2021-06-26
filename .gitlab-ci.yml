@@ -65,6 +65,9 @@ apply:
     - plan
   script:
     - terraform apply
+  rules:
+      - when: manual
+
   artifacts:
     paths:
       - ${TF_ROOT}/.terraform
