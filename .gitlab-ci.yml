@@ -17,8 +17,8 @@ stages:
   - validate-tf
   - build-tf
   - deploy-tf
-  - destroy-tf
   - ansible
+  - destroy-tf
 
 .global:
   tags:
@@ -74,21 +74,6 @@ create:
     paths:
       - ${TF_ROOT}/.terraform
 
-destroy:
-  stage: destroy-tf
-  extends: .global
-  environment:
-    name: production
-  dependencies:
-    - plan
-  script:
-    - terraform destroy -auto-approve
-  rules:
-      - when: manual
-  artifacts:
-    paths:
-      - ${TF_ROOT}/.terraform
-
 # Ansible section here
 run-playbooks:
   stage: ansible
@@ -99,3 +84,18 @@ run-playbooks:
     - create
   script:
     - echo $(/bin/true)
+    
+destroy:
+  stage: destroy-tf
+  extends: .global
+  environment:
+    name: production
+  dependencies:
+    - create
+  script:
+    - terraform destroy -auto-approve
+  rules:
+      - when: manual
+  artifacts:
+    paths:
+      - ${TF_ROOT}/.terraform
