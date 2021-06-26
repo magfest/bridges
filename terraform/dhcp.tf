@@ -22,6 +22,7 @@ resource "proxmox_lxc" "dhcp" {
     storage = "ceph"
     size    = each.value.disk_size
   }
-  unprivileged = each.value.unprivileged
+  unprivileged    = each.value.unprivileged
   ssh_public_keys = var.common.ssh_public_keys
+  pool            = var.common.pool
 }

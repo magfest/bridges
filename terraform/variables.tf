@@ -5,6 +5,7 @@ variable "common" {
     ssh_public_keys = <<-EOT
       ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMhbA0U8HF0qA8ya7icQDMxt4LUz67aHVd+ufKztbqa
     EOT
+    pool            = "pve"
   }
 }
 
@@ -32,7 +33,6 @@ variable "dhcp" {
       ostemplate        = "wowza:vztmpl/ubuntu-20.04-standard_20.04-1_amd64.tar.gz"
       disk_size         = "8G"
       unprivileged      = true
-      # ssh_public_key    = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMhbA0U8HF0qA8ya7icQDMxt4LUz67aHVd+ufKztbqa"
     },
     dhcp2 = {
       hostname          = "dhcp2"
@@ -51,7 +51,6 @@ variable "dhcp" {
       ostemplate        = "wowza:vztmpl/ubuntu-20.04-standard_20.04-1_amd64.tar.gz"
       disk_size         = "8G"
       unprivileged      = true
-      # ssh_public_key    = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMhbA0U8HF0qA8ya7icQDMxt4LUz67aHVd+ufKztbqa"
     }
   }
 }
