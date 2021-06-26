@@ -1,11 +1,15 @@
 variable "common" {
   type = map(string)
   default = {
-    common_password_to_be_removed = "WeShouldChangeThis"
+    # common_password_to_be_removed = "WeShouldChangeThis"
     ssh_public_keys = <<-EOT
       ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMhbA0U8HF0qA8ya7icQDMxt4LUz67aHVd+ufKztbqa
     EOT
   }
+}
+
+variable "root_pass" {
+  type = string
 }
 
 variable "dhcp" {
