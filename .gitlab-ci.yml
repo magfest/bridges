@@ -94,7 +94,10 @@ run-playbooks:
   extends: .global
   environment:
     name: production
-  dependencies:
-    - create
+ needs:
+    - job: create
+      optional: false
+    - job: destroy
+      optional: true
   script:
     - echo $(/bin/true)
