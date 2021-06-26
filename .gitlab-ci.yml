@@ -29,7 +29,7 @@ stages:
       - README.md
       - LICENSE
       when: never
-    - when: always
+    - when: on_success
 
 init:
   stage: prepare
@@ -41,6 +41,7 @@ init:
 validate:
   extends: .global
   stage: validate
+  when: always
   script:
     - terraform validate
 
