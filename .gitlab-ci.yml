@@ -17,6 +17,7 @@ stages:
   - validate
   - build
   - deploy
+  - destroy
 
 .global:
   tags:
