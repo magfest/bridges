@@ -41,7 +41,6 @@ init:
 validate:
   extends: .global
   stage: validate
-  when: always
   script:
     - terraform validate
 
