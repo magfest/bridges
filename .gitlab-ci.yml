@@ -1,12 +1,12 @@
 variables:
   TF_ROOT: ${CI_PROJECT_DIR}/terraform
-  TF_ADDRESS: ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/terraform/state/test-state
+  TF_HTTP_ADDRESS: ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/terraform/state/test-state
 
 cache:
   key: test-state
   paths:
     - ${TF_ROOT}/.terraform
-    
+
 before_script:
   - cd ${TF_ROOT}
 
@@ -18,23 +18,21 @@ stages:
 
 init:
   stage: prepare
-  script:
-    - terraform init
   tags:
     - shell
+  script:
+    - terraform init
 
 validate:
   stage: validate
-  script:
-    - terraform validate
   tags:
     - shell
+  script:
+    - terraform validate
 
 plan:
   stage: build
-  script:
-    - terraform plan
-    - terraform plan-json
+
   artifacts:
     name: plan
     paths:
@@ -43,13 +41,14 @@ plan:
       terraform: ${TF_ROOT}/plan.json
   tags:
     - shell
+  script:
+    - terraform plan
+    - terraform plan-json
 
 apply:
   stage: deploy
   environment:
     name: production
-  script:
-    - terraform apply
   dependencies:
     - plan
   when: manual
@@ -58,3 +57,5 @@ apply:
       mn, rtfg
   tags:
     - shell
+  script:
+    - terraform apply
