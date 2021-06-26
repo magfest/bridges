@@ -13,10 +13,11 @@ before_script:
   - cd ${TF_ROOT}
 
 stages:
-  - prepare
-  - validate
-  - build
-  - deploy
+  - prepare-tf
+  - validate-tf
+  - build-tf
+  - deploy-tf
+  - ansible
 
 .global:
   tags:
@@ -32,7 +33,7 @@ stages:
     - when: on_success
 
 init:
-  stage: prepare
+  stage: prepare-tf
   extends: .global
   script:
     - terraform init
@@ -45,7 +46,7 @@ validate:
     - terraform validate
 
 plan:
-  stage: build
+  stage: build-tf
   extends: .global
   artifacts:
     name: plan
@@ -57,7 +58,7 @@ plan:
     - terraform plan
 
 create:
-  stage: deploy
+  stage: deploy-tf
   extends: .global
   environment:
     name: production
@@ -73,7 +74,7 @@ create:
       - ${TF_ROOT}/.terraform
 
 destroy:
-  stage: deploy
+  stage: deploy-tf
   extends: .global
   environment:
     name: production
@@ -86,3 +87,14 @@ destroy:
   artifacts:
     paths:
       - ${TF_ROOT}/.terraform
+
+# Ansible section here
+run-playbooks:
+  stage: ansible
+  extends: .global
+  environment:
+    name: production
+  dependencies:
+    - create
+  script:
+    - echo $(/bin/true)
