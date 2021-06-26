@@ -94,7 +94,7 @@ run-playbooks:
   extends: .global
   environment:
     name: production
- needs:
+  needs:
     - job: create
       optional: false
     - job: destroy
