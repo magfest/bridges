@@ -17,7 +17,7 @@ resource "proxmox_lxc" "dhcp" {
     tag      = each.value.vlan_id
   }
   ostemplate = each.value.ostemplate
-  # password   = var.common.common_password_to_be_removed
+  password   = var.common.common_password_to_be_removed
   rootfs {
     storage = "ceph"
     size    = each.value.disk_size
