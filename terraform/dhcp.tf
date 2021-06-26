@@ -24,5 +24,4 @@ resource "proxmox_lxc" "dhcp" {
   }
   unprivileged    = each.value.unprivileged
   ssh_public_keys = var.common.ssh_public_keys
-  pool            = var.common.pool
 }
