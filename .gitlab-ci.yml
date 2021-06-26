@@ -56,7 +56,7 @@ plan:
   script:
     - terraform plan
 
-apply:
+create:
   stage: deploy
   extends: .global
   environment:
