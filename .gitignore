@@ -16,3 +16,17 @@ ansible.log
 # Jetbrains
 .idea
 .venv
+# Terraform
+terraform/terraform-plugin-proxmox.log
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
+*.tfvars
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+.terraform*

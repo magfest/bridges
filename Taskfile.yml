@@ -9,5 +9,5 @@ vars:
 
 includes:
   ansible: .taskfiles/ansible.yml
-  docs: .taskfiles/docs.yml
+  # docs: .taskfiles/docs.yml
   terraform: .taskfiles/terraform.yml
