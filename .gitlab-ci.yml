@@ -64,7 +64,7 @@ apply:
   dependencies:
     - plan
   script:
-    - terraform apply
+    - terraform apply -auto-approve
   rules:
       - when: manual
 
