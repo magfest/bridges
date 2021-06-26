@@ -17,6 +17,7 @@ stages:
   - validate-tf
   - build-tf
   - deploy-tf
+  - destroy-tf
   - ansible
 
 .global:
@@ -74,7 +75,7 @@ create:
       - ${TF_ROOT}/.terraform
 
 destroy:
-  stage: deploy-tf
+  stage: destroy-tf
   extends: .global
   environment:
     name: production
@@ -94,10 +95,7 @@ run-playbooks:
   extends: .global
   environment:
     name: production
-  needs:
-    - job: create
-      optional: false
-    - job: destroy
-      optional: true
+  dependencies:
+    - create
   script:
     - echo $(/bin/true)
