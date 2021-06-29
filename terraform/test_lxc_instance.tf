@@ -15,9 +15,9 @@ resource "proxmox_lxc" "basic" {
   network {
     name   = "eth0"
     ip     = "dhcp"
-    bridge   = var.network.magcloud.bridge_id
-    gw       = var.network.magcloud.gateway
-    firewall = var.network.magcloud.firewall
-    tag      = var.network.magcloud.vlan_id
+    bridge   = var.magcloud.bridge_id
+    gw       = var.magcloud.gateway
+    firewall = var.magcloud.firewall
+    tag      = var.magcloud.vlan_id
   }
 }
