@@ -7,6 +7,9 @@ on:
       - "terraform/*"
       - ".github/workflows/terraform-lint.yaml"
   pull_request:
+    paths:
+      - "terraform/*"
+      - ".github/workflows/terraform-lint.yaml"
 
 
 jobs:
