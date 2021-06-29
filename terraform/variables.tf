@@ -8,6 +8,20 @@ variable "common" {
   }
 }
 
+variable "network" {
+    type = map(string)
+    default = {
+      magcloud = {
+        network_interface = "eth0"
+        bridge_id = "vmbr999"
+        cidr = "10.101.22.0/24"
+        gateway = "10.101.22.1"
+        firewall = true
+        vlan_id = "22"
+      }
+    }
+}
+
 variable "root_pass" {
   type = string
 }
@@ -19,16 +33,12 @@ variable "dhcp" {
       hostname          = "dhcp1"
       target_node       = "pve1"
       vmid              = "7007"
-      memory            = "8192"
-      cores             = "4"
+      memory            = "1024"
+      cores             = "1"
       swap              = "512"
       start             = true
       network_interface = "eth0"
-      bridge_id         = "vmbr999"
       cidr              = "10.101.22.253/24"
-      gateway           = "10.101.22.1"
-      vlan_id           = "22"
-      firewall          = true
       ostemplate        = "wowza:vztmpl/ubuntu-20.04-standard_20.04-1_amd64.tar.gz"
       disk_size         = "8G"
       unprivileged      = true
@@ -37,16 +47,12 @@ variable "dhcp" {
       hostname          = "dhcp2"
       target_node       = "pve2"
       vmid              = "7008"
-      memory            = "8192"
-      cores             = "4"
+      memory            = "1024"
+      cores             = "1"
       swap              = "512"
       start             = true
       network_interface = "eth0"
-      bridge_id         = "vmbr999"
       cidr              = "10.101.22.254/24"
-      gateway           = "10.101.22.1"
-      vlan_id           = "22"
-      firewall          = true
       ostemplate        = "wowza:vztmpl/ubuntu-20.04-standard_20.04-1_amd64.tar.gz"
       disk_size         = "8G"
       unprivileged      = true
