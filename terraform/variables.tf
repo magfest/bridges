@@ -22,10 +22,6 @@ variable "network" {
     }
 }
 
-variable "root_pass" {
-  type = string
-}
-
 variable "dhcp" {
   type = map(map(string))
   default = {
