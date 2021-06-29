@@ -57,3 +57,11 @@ repos:
       - id: terraform_docs
     repo: git://github.com/antonbabenko/pre-commit-terraform
     rev: v1.50.0
+
+  - repo: local
+    hooks:
+      - id: check-ansible-vault
+        name: check-ansible-vault
+        entry: scripts/vault-check.sh
+        language: script
+        always_run: true
