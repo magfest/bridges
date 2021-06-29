@@ -33,14 +33,14 @@ jobs:
   terraform:
     env:
       working-directory: terraform
-    name: Terraform
     runs-on: ubuntu-latest
     steps:
+      - name: "Print PWD"
+        run: "pwd"
       - name: Checkout Repository
         uses: actions/checkout@v2
         with:
           fetch-depth: 1
-
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
         with:
