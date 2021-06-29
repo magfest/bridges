@@ -10,11 +10,11 @@ resource "proxmox_lxc" "dhcp" {
   start       = each.value.start
   network {
     name     = each.value.network_interface
+    bridge   = each.value.bridge_id
     ip       = each.value.cidr
-    bridge   = var.network.magcloud.bridge_id
-    gw       = var.network.magcloud.gateway
-    firewall = var.network.magcloud.firewall
-    tag      = var.network.magcloud.vlan_id
+    gw       = each.value.gateway
+    firewall = each.value.firewall
+    tag      = each.value.vlan_id
   }
   ostemplate = each.value.ostemplate
   rootfs {
