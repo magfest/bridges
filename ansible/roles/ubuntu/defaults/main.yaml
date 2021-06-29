@@ -1,0 +1,5 @@
+---
+
+packages:
+  apt_install:
+  - qemu-guest-agent

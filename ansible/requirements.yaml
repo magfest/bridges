@@ -1,0 +1,5 @@
+---
+roles:
+  - src: geerlingguy.pip
+collections:
+  - name: community.general
