@@ -7,21 +7,19 @@ variable "common" {
     EOT
   }
 }
-
 variable "network" {
-    type = map(string)
-    default = {
-      magcloud = {
-        network_interface = "eth0"
-        bridge_id = "vmbr999"
-        cidr = "10.101.22.0/24"
-        gateway = "10.101.22.1"
-        firewall = true
-        vlan_id = "22"
-      }
+  type = map(string)
+  default = {
+    magcloud = {
+      network_interface = "eth0"
+      bridge_id         = "vmbr999"
+      cidr              = "10.101.22.0/24"
+      gateway           = "10.101.22.1"
+      firewall          = true
+      vlan_id           = "22"
     }
+  }
 }
-
 variable "dhcp" {
   type = map(map(string))
   default = {
