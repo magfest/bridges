@@ -17,7 +17,6 @@ resource "proxmox_lxc" "dhcp" {
     tag      = var.network.magcloud.vlan_id
   }
   ostemplate = each.value.ostemplate
-  password   = var.root_pass
   rootfs {
     storage = "ceph"
     size    = each.value.disk_size
