@@ -31,6 +31,8 @@ on:
 
 jobs:
   terraform:
+    env:
+      working-directory: terraform
     name: Terraform
     runs-on: ubuntu-latest
     steps:
