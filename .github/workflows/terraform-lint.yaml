@@ -8,23 +8,47 @@ on:
       - ".github/workflows/terraform-lint.yaml"
   pull_request:
 
+# jobs:
+#   terraform:
+
+#     runs-on: ubuntu-latest
+
+    # steps:
+    # - name: Check out code
+    #   uses: actions/checkout@main
+    # - name: Lint Terraform
+    #   uses: actionshub/terraform-lint@main
+    # - name: Run tfsec with reviewdog output on the PR
+    #   uses: reviewdog/action-tfsec@master
+    #   with:
+    #     github_token: ${{ secrets.github_token }}
+    #     level: info # Get more output from reviewdog
+    #     reporter: github-pr-review # Change reviewdog reporter
+    #     filter_mode: nofilter # Check all files, not just the diff
+    #     fail_on_error: true # Fail action if errors are found
+    #     flags: -tee # Add debug flag to reviewdog
+    #     tfsec_flags: "" # Optional
+
 jobs:
-  lint:
-
+  terraform:
+    name: Terraform
     runs-on: ubuntu-latest
-
     steps:
-    - name: Check out code
-      uses: actions/checkout@main
-    - name: Lint Terraform
-      uses: actionshub/terraform-lint@main
-    - name: Run tfsec with reviewdog output on the PR
-      uses: reviewdog/action-tfsec@master
-      with:
-        github_token: ${{ secrets.github_token }}
-        level: info # Get more output from reviewdog
-        reporter: github-pr-review # Change reviewdog reporter
-        filter_mode: nofilter # Check all files, not just the diff
-        fail_on_error: true # Fail action if errors are found
-        flags: -tee # Add debug flag to reviewdog
-        tfsec_flags: "" # Optional
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: "0.12.29"
+
+      - name: Run `terraform fmt`
+        run: terraform fmt -diff -check -no-color -recursive
+
+      - name: Run `terraform init`
+        run: terraform init
+
+      - name: Run `terraform validate`
+        run: terraform validate -no-color
