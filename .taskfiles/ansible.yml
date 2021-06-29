@@ -14,3 +14,15 @@ tasks:
     cmds:
       - "ansible -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yaml --list-hosts"
     silent: true
+
+  encrypt:
+    desc: Encrypt Ansible Vault
+    cmds:
+      - "ansible-vault encrypt --vault-password-file .vault-password {{.ANSIBLE_INVENTORY_DIR}}/group_vars/all/vault.yaml"
+    silent: true
+
+  decrypt:
+    desc: Decrypt Ansible Vault
+    cmds:
+      - "ansible-vault decrypt --vault-password-file .vault-password {{.ANSIBLE_INVENTORY_DIR}}/group_vars/all/vault.yaml"
+    silent: true
