@@ -10,12 +10,12 @@ terraform {
 
 resource "proxmox_vm_qemu" "qemu-kvm-vm" {
     target_node = var.cluster_name
-    hostname = var.hostname
+    name = var.name
     iso = "synology:iso/ubuntu-20.04.2-live-server-amd64.iso"
     os_type = "ubuntu"
 }
 
-variable "hostname" {
+variable "name" {
   description = "Name of the vm"
   type = string
 }
