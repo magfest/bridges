@@ -1,7 +1,5 @@
 terraform {
   required_version = ">= 0.13.0"
-  backend "http" {
-  }
   required_providers {
     proxmox = {
       source  = "Telmate/proxmox"

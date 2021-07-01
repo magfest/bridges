@@ -1,3 +1,15 @@
+terraform {
+  required_version = ">= 0.13.0"
+  backend "http" {
+  }
+  required_providers {
+    proxmox = {
+      source  = "Telmate/proxmox"
+      version = "2.7.1"
+    }
+  }
+}
+
 provider "proxmox" {
   ## TODO - FIX URL
   pm_api_url      = "https://10.101.21.41:8006/api2/json"
