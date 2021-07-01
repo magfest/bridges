@@ -13,6 +13,34 @@ resource "proxmox_vm_qemu" "qemu-kvm-vm" {
     name = var.name
     iso = "synology:iso/ubuntu-20.04.2-live-server-amd64.iso"
     os_type = "ubuntu"
+    memory = var.memory
+    cores = var.cores
+    agent = 1
+    disk { // This disk will become scsi0
+        type = "scsi"
+        storage = "ceph"
+        size = var.disk_size
+
+        //<arguments ommitted for brevity...>
+    }
+}
+
+variable "disk_size" {
+  description = "The name to use for all the cluster resources"
+  type        = int
+  default     = 16
+}
+
+variable "cores" {
+  description = "The name to use for all the cluster resources"
+  type        = int
+  default     = 2
+}
+
+variable "memory" {
+  description = "The name to use for all the cluster resources"
+  type        = int
+  default     = 1
 }
 
 variable "name" {
