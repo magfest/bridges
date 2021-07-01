@@ -1,3 +1,15 @@
+terraform {
+  required_version = ">= 0.13.0"
+  backend "http" {
+  }
+  required_providers {
+    proxmox = {
+      source  = "Telmate/proxmox"
+      version = "2.7.1"
+    }
+  }
+}
+
 resource "proxmox_lxc" "lxc-container" {
   target_node  = var.cluster_name
   ostemplate   = "wowza:vztmpl/ubuntu-20.04-standard_20.04-1_amd64.tar.gz"
