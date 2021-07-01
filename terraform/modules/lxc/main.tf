@@ -1,6 +1,6 @@
 terraform {
   required_version = ">= 0.13.0"
-  required_providers {
+  required_providers = {
     proxmox = {
       source  = "Telmate/proxmox"
       version = "2.7.1"
@@ -14,12 +14,12 @@ resource "proxmox_lxc" "lxc-container" {
   unprivileged = true
   hostname = var.hostname
 
-  rootfs = {
+  rootfs {
     storage = "ceph"
     size    = var.size
   }
 
-  network = {
+  network {
     name   = "eth0"
     bridge = "vmbr999"
     tag    = "22"
