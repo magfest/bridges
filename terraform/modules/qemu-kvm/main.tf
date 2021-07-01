@@ -27,8 +27,8 @@ resource "proxmox_vm_qemu" "qemu-kvm-vm" {
 
 variable "disk_size" {
   description = "The name to use for all the cluster resources"
-  type        = number
-  default     = 16
+  type        = string
+  default     = "16G"
 }
 
 variable "cores" {
@@ -38,9 +38,9 @@ variable "cores" {
 }
 
 variable "memory" {
-  description = "The name to use for all the cluster resources"
+  description = "Amount of memory in megabytes"
   type        = number
-  default     = 1
+  default     = 4096
 }
 
 variable "name" {
