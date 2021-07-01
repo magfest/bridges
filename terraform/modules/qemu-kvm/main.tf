@@ -1,3 +1,13 @@
+terraform {
+  required_version = ">= 0.13.0"
+  required_providers {
+    proxmox = {
+      source  = "Telmate/proxmox"
+      version = "2.7.1"
+    }
+  }
+}
+
 resource "proxmox_vm_qemu" "qemu-kvm-vm" {
     name = "VM-name"
     target_node = "Node to create the VM on"
