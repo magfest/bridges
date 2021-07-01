@@ -22,3 +22,18 @@ provider "proxmox" {
     _capturelog = ""
   }
 }
+
+module "lxc-container" {
+  source = "./modules/lxc"
+  ip_address = "10.101.22.136/24"
+  hostname = "stackstorm1.magevent.net"
+}
+
+module "lxc-container" {
+  source = "./modules/lxc"
+  cluster_name = "pve2"
+  ip_address = "10.101.22.137/24"
+  hostname = "stackstorm2.magevent.net"
+}
+
+
