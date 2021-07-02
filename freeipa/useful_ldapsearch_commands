@@ -1,0 +1,3 @@
+#Finds all users with display name (so not admin/system users) and prints them each on one line. nice for AWK stuff
+ldapsearch -x -W "(displayname=*)" displayname  |  sed -e '/c/N;y/\n/ /'|sed -e '/c/N;y/\n/ /'| grep ncyber| awk '{print $2" "$9" "$10}' | sed 's/,//' | grep -v displayname
+

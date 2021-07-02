@@ -1,0 +1,40 @@
+#Written by Heather S 5/2021
+#User and Group loader for IPA Server
+#Uses variable files to give IPA an inital set up
+#COULD be used for management but mamangement of single users via GUI is easier than managing a file
+#Would be useful for later bulk adds/modifications if needed!
+
+---
+- name: Add Users and Groups
+  hosts: localhost
+  #yes Localhost is correct, the ansible module can access the server from anywhere with the creds. I've had issues where if you do it on the remote machine it will fail for an unknown reason.
+  tasks:
+  - name: Add users
+    community.general.ipa_user:
+      name: "{{ item.name }}"
+      state: present
+      givenname: "{{ item.fname }}"
+      sn: "{{ item.lname }}"
+      homedirectory: "/home/{{ item.name }}"
+      password: "{{ item.name }}2021" #this is very lazy password example, but you will need to know the passwork to give to the user
+      update_password: on_create
+      userauthtype: otp
+      ipa_host: "{{ freeipa_host }}"
+      ipa_user: "{{ freeipa_user }}"
+      ipa_pass: "{{ freeipa_pass }}"
+      validate_certs: no
+    with_items: "{{ user_list }}"
+
+  - name: Populate Groups
+    community.general.ipa_group:
+      name: "{{ item.group }}"
+      state: present
+      user: "{{ item.users }}"
+      #      group: "{{ item.groups }}" # useful if you need group of groups, but that's fairly niche
+      ipa_host: "{{ freeipa_host }}"
+      ipa_user: "{{ freeipa_user }}"
+      ipa_pass: "{{ freeipa_pass }}"
+      validate_certs: no
+    with_items: "{{ group_list }}"
+
+
