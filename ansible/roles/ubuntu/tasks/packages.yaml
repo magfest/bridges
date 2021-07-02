@@ -10,6 +10,7 @@
       APT::Install-Suggests "false";
       APT::Get::Install-Recommends "false";
       APT::Get::Install-Suggests "false";
+
 - name: Upgrade all system packages
   ansible.builtin.apt:
     upgrade: full
@@ -21,18 +22,36 @@
   retries: 5
   until: apt_upgrade is success
 
-- name: Install common packages
+- name: Install common VM packages
   ansible.builtin.apt:
-    name: "{{ packages.apt_install }}"
+    name: "{{ packages.apt_install_vm }}"
     install_recommends: false
     update_cache: true
     cache_valid_time: 3600
     autoclean: true
     autoremove: true
-  register: apt_install_common
+  register: apt_install_vm
   retries: 5
-  until: apt_install_common is success
+  until: apt_install_vm is success
   when:
-  - packages.apt_install is defined
-  - packages.apt_install is iterable
-  - packages.apt_install | length > 0
+  - packages.apt_install_vm is defined
+  - packages.apt_install_vm is iterable
+  - packages.apt_install_vm | length > 0
+  - ansible_facts['virtualization_type'] == "kvm"
+
+- name: Install common LXC packages
+  ansible.builtin.apt:
+    name: "{{ packages.apt_install_lxc }}"
+    install_recommends: false
+    update_cache: true
+    cache_valid_time: 3600
+    autoclean: true
+    autoremove: true
+  register: apt_install_lxc
+  retries: 5
+  until: apt_install_lxc is success
+  when:
+  - packages.apt_install_lxc is defined
+  - packages.apt_install_lxc is iterable
+  - packages.apt_install_lxc | length > 0
+  - ansible_facts['virtualization_type'] == "lxc"
