@@ -1,0 +1,19 @@
+---
+- name: Install rsyslog package
+  ansible.builtin.apt:
+    name: "{{ packages.rsyslog }}"
+    install_recommends: false
+    update_cache: true
+    cache_valid_time: 3600
+    autoclean: true
+    autoremove: true
+
+- name: Copy rsyslog.conf
+  ansible.builtin.copy:
+    src: files/rsyslog.conf
+    dest: /etc/rsyslog.conf
+    # owner: foo
+    # group: foo
+    mode: '0644'
+  notify:
+    - Restart rsyslog

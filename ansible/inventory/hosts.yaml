@@ -12,6 +12,9 @@ all:
     #   hosts:
     #     dns1:
     #     dns2:
+    # rsyslog:
+    #   hosts:
+    #     rsyslog-1:
 
     ubuntu-lxc:
       hosts:

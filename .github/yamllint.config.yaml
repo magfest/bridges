@@ -2,6 +2,7 @@ ignore: |
   .github/
   ignore/
   ubuntu-autoinstall/
+  ansible/inventory/group_vars/all/vault.yaml
 extends: default
 rules:
   truthy:
