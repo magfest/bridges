@@ -4,7 +4,7 @@
 ansible_host: "{{ dhcp_1_ip }}"
 
 # Ansible user to ssh into servers with
-ansible_user: "{{ ansible_ci_user }}"
+ansible_user: "{{ ansible_ci_lxc_user }}"
 # ansible_ssh_pass: "ubuntu"
 # ansible_ssh_common_args: "-o UserKnownHostsFile=/dev/null"
 # ansible_become_pass: "WeShouldChangeThis"
