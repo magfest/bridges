@@ -1,1 +1,18 @@
 ---
+- name: Create break glass account
+  user:
+    name: "{{ break_glass_user }}"
+    password: "{{ break_glass_pass }}"
+    shell: /bin/bash
+
+- name: Set authorized key, removing all the authorized keys already set
+  ansible.posix.authorized_key:
+    user: magcloud
+    key: "{{ lookup('file', 'public_keys/mag_ansible_id_ed25519.pub') }}"
+    state: present
+    exclusive: true
+
+- name: Give user sudo access
+  lineinfile:
+    path: /etc/sudoers
+    line: "{{ break_glass_user }} ALL=(ALL) NOPASSWD: ALL"

@@ -1,7 +1,7 @@
 ---
 
 # IP address of node
-ansible_host: "{{ dhcp_1_ip }}"
+ansible_host: "{{ ubuntu_lxc_ip }}"
 
 # Ansible user to ssh into servers with
 ansible_user: "{{ ansible_ci_lxc_user }}"

@@ -28,6 +28,9 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
 
+      - uses: terraform-linters/setup-tflint@v1
+        name: Setup TFLint
+
       - name: Run `terraform fmt`
         run: terraform fmt -diff -check -no-color -recursive
 
