@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #Playbook by Heathers S 5/2021
 #IPA Client Enrollment
 #Root is needed to run the ipa-client-install command

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #Change the containers name to whatever is desired
 #This assumes you have stopped the original container and backed up your data before running. COuld add her but probably better to do by hand.
 docker pull freeipa/freeipa-server:centos-8
