@@ -1,5 +1,6 @@
-#This file should be protected via ansible-vault once it contains sensitive info!
+---
+# This file should be protected via ansible-vault once it
+# contains sensitive info!
 ipa_host: 0.0.0.0
 ipa_user: admin
 ipa_pass: password
-
