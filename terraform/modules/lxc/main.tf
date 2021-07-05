@@ -2,8 +2,8 @@ terraform {
   required_version = ">= 0.13.0"
   required_providers {
     proxmox = {
-      source  = "Telmate/proxmox"
-      version = "2.7.1"
+      source  = "registry.magevent.net/Telmate/proxmox"
+      version = ">=2.7.2"
     }
   }
 }
@@ -16,6 +16,7 @@ resource "proxmox_lxc" "lxc-container" {
   cores           = "1"
   swap            = "512"
   start           = true
+  hastate         = "started"
   ssh_public_keys = <<-EOT
       ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMhbA0U8HF0qA8ya7icQDMxt4LUz67aHVd+ufKztbqa
       ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP8kXJdvVCN8q1dKWKnGIsFLHKpeO7/Q9uV1C0Qtf/I8
