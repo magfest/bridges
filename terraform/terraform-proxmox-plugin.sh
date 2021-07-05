@@ -11,7 +11,7 @@
 PLUGIN_ARCH=linux_amd64
 
 # Clone the repo
-git clone git@github.com:yesrod/terraform-provider-proxmox.git
+git clone https://github.com/yesrod/terraform-provider-proxmox.git
 cd terraform-provider-proxmox
 
 # Build the plugin
