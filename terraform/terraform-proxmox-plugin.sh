@@ -30,3 +30,6 @@ mkdir -p "${PLUGIN_TARGET}"
 cp bin/terraform-provider-proxmox "${PLUGIN_TARGET}"
 echo "Installed to ${PLUGIN_TARGET}"
 ls -halt "${PLUGIN_TARGET}"
+
+# Run initial... init
+terraform init
