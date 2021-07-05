@@ -16,8 +16,6 @@ PLUGIN_TARGET="${INITIAL_DIR}/.terraform/providers/registry.magevent.net/telmate
 
 # Cleanup
 go clean -modcache
-rm ${PLUGIN_TARGET}
-rmdir ${PLUGIN_TARGET}
 
 # Clone the repo
 git clone https://github.com/yesrod/terraform-provider-proxmox.git
@@ -30,6 +28,8 @@ make clean
 make build
 
 # Create the directory holding the newly built Terraform plugins
+rm ${PLUGIN_TARGET}
+rmdir ${PLUGIN_TARGET}
 mkdir -p "${PLUGIN_TARGET}"
 cp bin/terraform-provider-proxmox "${PLUGIN_TARGET}"
 echo "Installed to ${PLUGIN_TARGET}"
