@@ -4,8 +4,8 @@ terraform {
   }
   required_providers {
     proxmox = {
-      source  = "Telmate/proxmox"
-      #version = ">=2.7.2"
+      source  = "registry.magevent.net/Telmate/proxmox"
+      version = ">=2.7.2"
     }
   }
 }
