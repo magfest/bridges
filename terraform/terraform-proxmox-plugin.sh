@@ -8,9 +8,11 @@
 #
 # - yesrod
 #
+INITIAL_DIR=$(pwd)
+
 PLUGIN_ARCH="linux_amd64"
 PLUGIN_VERSION="2.7.2"
-PLUGIN_TARGET="./terraform/providers/registry.magevent.net/telmate/proxmox/${PLUGIN_VERSION}/${PLUGIN_ARCH}/"
+PLUGIN_TARGET="${INITIAL_DIR}/.terraform/providers/registry.magevent.net/telmate/proxmox/${PLUGIN_VERSION}/${PLUGIN_ARCH}/"
 
 # Cleanup
 go clean -modcache
