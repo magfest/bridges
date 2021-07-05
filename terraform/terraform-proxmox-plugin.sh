@@ -10,7 +10,7 @@
 #
 PLUGIN_ARCH="linux_amd64"
 PLUGIN_VERSION="2.7.2"
-PLUGIN_TARGET="~/.terraform.d/plugins/registry.magevent.net/yesrod/proxmox/${PLUGIN_VERSION}/${PLUGIN_ARCH}/"
+PLUGIN_TARGET="./terraform.d/plugins/registry.magevent.net/yesrod/proxmox/${PLUGIN_VERSION}/${PLUGIN_ARCH}/"
 
 # Cleanup
 go clean -modcache
