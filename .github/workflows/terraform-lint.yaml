@@ -32,7 +32,7 @@ jobs:
         name: Setup TFLint
 
       - name: Install Proxmox provider
-        run: bash ./terraform-proxmox-plugin.sh
+        run: bash terraform/terraform-proxmox-plugin.sh
 
       - name: Run `terraform fmt`
         run: terraform fmt -diff -check -no-color -recursive
