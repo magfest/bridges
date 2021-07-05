@@ -12,7 +12,7 @@ INITIAL_DIR=$(pwd)
 
 PLUGIN_ARCH="linux_amd64"
 PLUGIN_VERSION="2.7.2"
-PLUGIN_TARGET="${INITIAL_DIR}/.terraform/providers/registry.magevent.net/telmate/proxmox/${PLUGIN_VERSION}/${PLUGIN_ARCH}/"
+PLUGIN_TARGET="${INITIAL_DIR}/.terraform/plugins/registry.magevent.net/telmate/proxmox/${PLUGIN_VERSION}/${PLUGIN_ARCH}"
 
 # Cleanup
 go clean -modcache
@@ -28,9 +28,9 @@ make clean
 make build
 
 # Create the directory holding the newly built Terraform plugins
-rm ${PLUGIN_TARGET}
-rmdir ${PLUGIN_TARGET}
-mkdir -p "${PLUGIN_TARGET}"
-cp bin/terraform-provider-proxmox "${PLUGIN_TARGET}"
-echo "Installed to ${PLUGIN_TARGET}"
-ls -halt "${PLUGIN_TARGET}"
+rm "${PLUGIN_TARGET}"
+rmdir "${PLUGIN_TARGET}/"
+mkdir -p "${PLUGIN_TARGET}/"
+cp bin/terraform-provider-proxmox "${PLUGIN_TARGET}/"
+echo "Installed to ${PLUGIN_TARGET}/"
+ls -halt "${PLUGIN_TARGET}/"
