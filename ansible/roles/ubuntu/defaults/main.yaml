@@ -1,5 +1,9 @@
 ---
 
 packages:
-  apt_install:
+  apt_install_vm:
   - qemu-guest-agent
+  - htop
+
+  apt_install_lxc:
+  - htop
