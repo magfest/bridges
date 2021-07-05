@@ -21,7 +21,7 @@ cd terraform-provider-proxmox
 
 # Build the plugin
 export GO111MODULE=on
-go get github.com/yesrod/proxmox-api-go@latest
+go get github.com/yesrod/proxmox-api-go@642e015
 go install github.com/yesrod/terraform-provider-proxmox/cmd/terraform-provider-proxmox
 make clean
 make build
