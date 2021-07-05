@@ -13,5 +13,6 @@ jobs:
     - uses: actions/setup-python@v2
     - uses: terraform-linters/setup-tflint@v1
     - name: Install Proxmox provider
-      run: bash ./terraform/terraform-proxmox-plugin.sh
+      working-directory: ./terraform
+      run: bash ./terraform-proxmox-plugin.sh
     - uses: pre-commit/action@v2.0.3
