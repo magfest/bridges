@@ -10,7 +10,7 @@
 #
 PLUGIN_ARCH="linux_amd64"
 PLUGIN_VERSION="2.7.2"
-PLUGIN_TARGET="~/.terraform.d/plugins/registry.magevent.net/Telmate/proxmox/${PLUGIN_VERSION}/${PLUGIN_ARCH}/"
+PLUGIN_TARGET="~/.terraform.d/plugins/registry.magevent.net/yesrod/proxmox/${PLUGIN_VERSION}/${PLUGIN_ARCH}/"
 
 # Cleanup
 go clean -modcache
@@ -29,4 +29,5 @@ make build
 # Create the directory holding the newly built Terraform plugins
 mkdir -p "${PLUGIN_TARGET}"
 cp bin/terraform-provider-proxmox "${PLUGIN_TARGET}"
+echo "Installed to ${PLUGIN_TARGET}"
 ls -halt "${PLUGIN_TARGET}"

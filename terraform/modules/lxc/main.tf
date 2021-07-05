@@ -2,7 +2,7 @@ terraform {
   required_version = ">= 0.13.0"
   required_providers {
     proxmox = {
-      source  = "registry.magevent.net/Telmate/proxmox"
+      source  = "registry.magevent.net/yesrod/proxmox"
       version = ">=2.7.2"
     }
   }
