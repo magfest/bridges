@@ -10,10 +10,12 @@
 #
 PLUGIN_ARCH="linux_amd64"
 PLUGIN_VERSION="2.7.2"
-PLUGIN_TARGET="./terraform.d/plugins/registry.magevent.net/yesrod/proxmox/${PLUGIN_VERSION}/${PLUGIN_ARCH}/"
+PLUGIN_TARGET="./terraform/providers/registry.magevent.net/telmate/proxmox/${PLUGIN_VERSION}/${PLUGIN_ARCH}/"
 
 # Cleanup
 go clean -modcache
+rm ${PLUGIN_TARGET}
+rmdir ${PLUGIN_TARGET}
 
 # Clone the repo
 git clone https://github.com/yesrod/terraform-provider-proxmox.git
