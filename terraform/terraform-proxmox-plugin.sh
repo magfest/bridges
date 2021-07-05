@@ -1,9 +1,9 @@
 #!/bin/bash
 #
-# Grab and install my version of the Terraform plugin until the HA State fix 
+# Grab and install my version of the Terraform plugin until the HA State fix
 # for containers is merged upstream and released.
 #
-# We should be able to adapt this to handle the intermediate period between 
+# We should be able to adapt this to handle the intermediate period between
 # merge and release from the upstream repository as well.
 #
 # - yesrod
