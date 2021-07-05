@@ -22,7 +22,3 @@ provider "proxmox" {
     _capturelog = ""
   }
 }
-
-
-
-
