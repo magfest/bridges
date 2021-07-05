@@ -10,6 +10,7 @@
 #
 PLUGIN_ARCH="linux_amd64"
 PLUGIN_VERSION="2.7.2"
+PLUGIN_TARGET="~/.terraform.d/plugins/registry.magevent.net/Telmate/proxmox/${PLUGIN_VERSION}/${PLUGIN_ARCH}/"
 
 # Clone the repo
 git clone https://github.com/yesrod/terraform-provider-proxmox.git
@@ -17,10 +18,12 @@ cd terraform-provider-proxmox
 
 # Build the plugin
 export GO111MODULE=on
+go install github.com/yesrod/proxmox-api-go@latest
 go install github.com/yesrod/terraform-provider-proxmox/cmd/terraform-provider-proxmox
+make clean
 make build
 
 # Create the directory holding the newly built Terraform plugins
-mkdir -p ~/.terraform.d/plugins/registry.magevent.net/Telmate/proxmox/${PLUGIN_VERSION}/${PLUGIN_ARCH}
-cp bin/terraform-provider-proxmox ~/.terraform.d/plugins/registry.magevent.net/Telmate/proxmox/${PLUGIN_VERSION}/${PLUGIN_ARCH}/
-ls -halt ~/.terraform.d/plugins/registry.magevent.net/Telmate/proxmox/${PLUGIN_VERSION}/${PLUGIN_ARCH}/
+mkdir -p "${PLUGIN_TARGET}"
+cp bin/terraform-provider-proxmox "${PLUGIN_TARGET}"
+ls -halt "${PLUGIN_TARGET}"
