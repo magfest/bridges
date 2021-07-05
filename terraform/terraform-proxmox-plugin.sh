@@ -12,6 +12,9 @@ PLUGIN_ARCH="linux_amd64"
 PLUGIN_VERSION="2.7.2"
 PLUGIN_TARGET="~/.terraform.d/plugins/registry.magevent.net/Telmate/proxmox/${PLUGIN_VERSION}/${PLUGIN_ARCH}/"
 
+# Cleanup
+go clean -modcache
+
 # Clone the repo
 git clone https://github.com/yesrod/terraform-provider-proxmox.git
 cd terraform-provider-proxmox
