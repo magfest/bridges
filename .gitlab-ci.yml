@@ -39,7 +39,7 @@ init:
   stage: prepare-tf
   extends: .global
   script:
-    - terraform init -migrate-state
+    - terraform init
     - terraform validate
 
 validate:
