@@ -36,6 +36,7 @@ ls -halt "${PLUGIN_TARGET}/"
 
 # Also the modules
 for module_dir in "${INITIAL_DIR}/modules/*"; do
+  echo "${module_dir}"
   if [ -d "${module_dir}" ]; then
     MODULE_TARGET="${module_dir}/${SUB_DIR}"
     mkdir -p "${MODULE_TARGET}/"
