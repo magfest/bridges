@@ -2,8 +2,8 @@ terraform {
   required_version = ">= 0.13.0"
   required_providers {
     proxmox = {
-      source  = "Telmate/proxmox"
-      version = "2.7.1"
+      source  = "registry.magevent.net/telmate/proxmox"
+      version = ">=2.7.2"
     }
   }
 }
@@ -16,6 +16,7 @@ resource "proxmox_vm_qemu" "qemu-kvm-vm" {
   memory      = var.memory
   cores       = var.cores
   agent       = 1
+  hastate     = "started"
   disk { // This disk will become scsi0
     type    = "scsi"
     storage = "ceph"

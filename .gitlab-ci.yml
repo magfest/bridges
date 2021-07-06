@@ -12,6 +12,7 @@ cache:
 # Test
 before_script:
   - cd ${TF_ROOT}
+  - bash ./terraform-proxmox-plugin.sh
 
 stages:
   - prepare-tf
@@ -38,7 +39,7 @@ init:
   stage: prepare-tf
   extends: .global
   script:
-    - terraform init -migrate-state
+    - terraform init
     - terraform validate
 
 validate:
