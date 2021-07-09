@@ -18,12 +18,11 @@ SUB_DIR="terraform.d/plugins/registry.magevent.net/telmate/proxmox/${PLUGIN_VERS
 go clean -modcache
 
 # Clone the repo
-git clone https://github.com/yesrod/terraform-provider-proxmox.git
+git clone https://github.com/Telmate/terraform-provider-proxmox.git
 cd terraform-provider-proxmox
 
 # Build the plugin
 export GO111MODULE=on
-#go get github.com/yesrod/proxmox-api-go@master
 make clean
 make build
 
