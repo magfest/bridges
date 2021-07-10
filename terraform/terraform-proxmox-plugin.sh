@@ -23,7 +23,6 @@ cd terraform-provider-proxmox
 
 # Build the plugin
 export GO111MODULE=on
-go get github.com/Telmate/proxmox-api-go@master
 make clean
 make build
 
