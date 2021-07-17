@@ -41,12 +41,16 @@ init:
   script:
     - terraform init
     - terraform validate
+  rules:
+    - when: on_success
 
 validate:
   extends: .global
   stage: validate-tf
   script:
     - terraform validate
+  rules:
+    - when: on_success
 
 plan:
   stage: build-tf
@@ -59,6 +63,8 @@ plan:
       terraform: ${TF_ROOT}/plan.json
   script:
     - terraform plan
+  rules:
+    - when: on_success
 
 create:
   stage: deploy-tf
@@ -71,6 +77,8 @@ create:
     - terraform apply -auto-approve
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: on_success
+    - when: never
   artifacts:
     paths:
       - ${TF_ROOT}/.terraform
@@ -87,6 +95,8 @@ run-playbooks:
     - echo $(/bin/true)
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: on_success
+    - when: never
 
 destroy:
   stage: destroy-tf
@@ -99,7 +109,8 @@ destroy:
     - terraform destroy -auto-approve
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
-    - when: manual
+      when: manual
+    - when: never
   artifacts:
     paths:
       - ${TF_ROOT}/.terraform
