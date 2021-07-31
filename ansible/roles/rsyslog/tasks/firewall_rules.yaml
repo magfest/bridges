@@ -1,0 +1,21 @@
+---
+- name: Allow port 514/UDP for syslog
+  community.general.ufw:
+    rule: allow
+    proto: udp
+    port: "514"
+
+- name: Allow port 514/TCP for syslog
+  community.general.ufw:
+    rule: allow
+    proto: tcp
+    port: "514"
+
+- name: Allow SSH traffic through firewall
+  community.general.ufw:
+    rule: allow
+    name: OpenSSH
+
+- name: Allow everything and enable UFW
+  community.general.ufw:
+    state: reloaded
