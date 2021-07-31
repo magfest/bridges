@@ -1,5 +1,4 @@
 ---
-
 packages:
   rsyslog:
     - rsyslog
