@@ -1,6 +1,6 @@
 ---
 roles:
-  - src: geerlingguy.pip
+  - geerlingguy.pip
 collections:
   - community.general
   - ansible.posix

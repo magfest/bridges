@@ -4,7 +4,9 @@ packages:
     - qemu-guest-agent
     - htop
     - rsyslog
+    - net-tools
 
   apt_install_lxc:
     - htop
     - rsyslog
+    - net-tools

@@ -44,3 +44,15 @@ tasks:
     cmds:
       - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yaml --vault-password-file .vault-password {{.ANSIBLE_PLAYBOOK_DIR}}/ubuntu/prepare.yaml"
     silent: true
+
+  force-deps:
+    desc: Reinstall latest dependencies for Ansible Galaxy
+    cmds:
+      - "ansible-galaxy install --force -r ansible/requirements.yaml"
+    silent: true
+
+  rsyslog-server:
+    desc: Install rsyslog server
+    cmds:
+      - "ansible-playbook {{.ANSIBLE_PLAYBOOK_DIR}}/rsyslog/rsyslog.yaml --vault-password-file .vault-password"
+    silent: true
