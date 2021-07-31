@@ -1,0 +1,12 @@
+---
+- name: Copy compress_syslogs.sh
+  ansible.builtin.copy:
+    src: files/compress_syslogs.sh
+    dest: /etc/cron.daily/compress_syslogs.sh
+    mode: "0755"
+
+- name: Create cron entry for compress_syslogs.sh
+  ansible.builtin.cron:
+    name: "Compress syslogs older than 2 days"
+    special_time: daily
+    job: "/etc/cron.daily/compress_syslogs.sh"
