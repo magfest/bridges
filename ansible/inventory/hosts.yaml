@@ -15,7 +15,6 @@ all:
     # rsyslog:
     #   hosts:
     #     rsyslog-1:
-
     ubuntu-lxc:
       hosts:
         ubuntu-lxc:
