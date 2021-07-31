@@ -1,22 +1,23 @@
 ---
-
 - include: locale.yaml
   tags:
-  - locale
+    - locale
 
 - include: packages.yaml
   tags:
-  - packages
-
+    - packages
 
 - include: network.yaml
   tags:
-  - network
+    - network
 
 - include: user.yaml
   tags:
-  - user
+    - user
 
+- include: rsyslog.yaml
+  tags:
+    - rsyslog-clients
 # - name: Show facts available on the system
 #   ansible.builtin.debug:
 #     var: ansible_facts
