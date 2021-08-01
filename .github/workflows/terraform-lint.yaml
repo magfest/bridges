@@ -11,7 +11,6 @@ on:
       - "terraform/*"
       - ".github/workflows/terraform-lint.yaml"
 
-
 jobs:
   terraform:
     runs-on: ubuntu-latest
@@ -19,7 +18,6 @@ jobs:
       run:
         working-directory: ./terraform
     steps:
-
       - name: Checkout Repository
         uses: actions/checkout@v2
         with:
@@ -28,8 +26,14 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
 
+      - uses: terraform-linters/setup-tflint@v1
+        name: Setup TFLint
+
+      - name: Install Proxmox provider
+        run: bash ./terraform-proxmox-plugin.sh
+
       - name: Run `terraform fmt`
-        run: terraform fmt -diff -check -no-color -recursive
+        run: terraform fmt -diff -no-color -recursive
 
       - name: Run `terraform init`
         run: terraform init -backend=false

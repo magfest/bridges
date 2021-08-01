@@ -1,5 +1,10 @@
 ---
-
 packages:
-  apt_install:
-  - qemu-guest-agent
+  apt_install_vm:
+    - qemu-guest-agent
+    - htop
+    - net-tools
+
+  apt_install_lxc:
+    - htop
+    - net-tools

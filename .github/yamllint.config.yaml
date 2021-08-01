@@ -2,10 +2,11 @@ ignore: |
   .github/
   ignore/
   ubuntu-autoinstall/
+  ansible/inventory/group_vars/all/vault.yaml
 extends: default
 rules:
   truthy:
-    allowed-values: ['true', 'false', 'on', 'yes']
+    allowed-values: ['true', 'false', 'no', 'yes']
   comments:
     min-spaces-from-content: 1
   line-length: disable
