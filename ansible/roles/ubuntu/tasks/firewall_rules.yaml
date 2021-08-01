@@ -1,0 +1,9 @@
+---
+- name: Allow SSH traffic through firewall
+  community.general.ufw:
+    rule: allow
+    name: OpenSSH
+
+- name: Reload UFW rules
+  community.general.ufw:
+    state: enabled
