@@ -1,0 +1,6 @@
+---
+- include: rsyslog.yaml
+
+- include: cron.yaml
+
+- include: firewall_rules.yaml
