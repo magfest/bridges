@@ -1,4 +1,8 @@
 ---
+- name: Restart rsyslog
+  ansible.builtin.service:
+    name: rsyslog
+
 - name: Restart timesyncd
   ansible.builtin.service:
     name: systemd-timesyncd
