@@ -11,11 +11,6 @@
     proto: tcp
     port: "514"
 
-- name: Allow SSH traffic through firewall
-  community.general.ufw:
-    rule: allow
-    name: OpenSSH
-
 - name: Allow everything and enable UFW
   community.general.ufw:
     state: reloaded

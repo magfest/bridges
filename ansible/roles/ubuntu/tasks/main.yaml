@@ -1,5 +1,23 @@
 ---
 - include: locale.yaml
+  tags:
+    - locale
+
+- include: packages.yaml
+  tags:
+    - packages
+
+- include: network.yaml
+  tags:
+    - network
+
+- include: user.yaml
+  tags:
+    - user
+
+- include: firewall_rules.yaml
+  tags:
+    - firewall
 
 - include: packages.yaml
 
