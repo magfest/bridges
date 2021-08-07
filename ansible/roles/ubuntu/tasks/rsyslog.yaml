@@ -1,0 +1,8 @@
+---
+- name: Copy remote-rsyslog.conf
+  ansible.builtin.template:
+    src: files/remote-rsyslog.conf.j2
+    dest: /etc/rsyslog.d/remote-server.conf
+    mode: "0640"
+  notify:
+    - Restart rsyslog

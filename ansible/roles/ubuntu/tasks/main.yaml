@@ -15,6 +15,10 @@
   tags:
     - user
 
+- include: rsyslog.yaml
+  tags:
+    - rsyslog-clients
+
 - include: firewall_rules.yaml
   tags:
     - firewall
