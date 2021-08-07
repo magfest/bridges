@@ -18,6 +18,14 @@
 - include: firewall_rules.yaml
   tags:
     - firewall
+
+- include: packages.yaml
+
+- include: network.yaml
+
+- include: user.yaml
+
+- include: timesyncd.yaml
 # - name: Show facts available on the system
 #   ansible.builtin.debug:
 #     var: ansible_facts
