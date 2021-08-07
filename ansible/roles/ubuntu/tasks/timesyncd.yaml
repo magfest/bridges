@@ -1,0 +1,11 @@
+---
+- name: Copy timesyncd.conf
+  ansible.builtin.template:
+    src: files/timesyncd.conf.j2
+    dest: /etc/systemd/timesyncd.conf
+    mode: "0644"
+  # Not set for LXC because pve provides time to containers
+  when:
+    - ansible_facts['virtualization_type'] == "kvm"
+  notify:
+    - Restart timesyncd
