@@ -1,0 +1,6 @@
+---
+- include_tasks: cups.yaml
+
+- include_tasks: firewall_rules.yaml
+
+- include_tasks: users.yaml

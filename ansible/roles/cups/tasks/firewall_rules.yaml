@@ -1,0 +1,16 @@
+---
+- name: Allow port 631 for CUPS
+  community.general.ufw:
+    rule: allow
+    proto: tcp
+    port: "631"
+
+- name: Allow port 80 for CUPS Web
+  community.general.ufw:
+    rule: allow
+    proto: tcp
+    port: "80"
+
+- name: Reload UFW
+  community.general.ufw:
+    state: reloaded

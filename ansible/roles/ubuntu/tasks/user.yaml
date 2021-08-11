@@ -1,6 +1,6 @@
 ---
 - name: Create break glass account
-  user:
+  ansible.builtin.user:
     name: "{{ break_glass_user }}"
     password: "{{ break_glass_pass }}"
     shell: /bin/bash

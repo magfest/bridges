@@ -1,0 +1,6 @@
+---
+- name: Add break glass username to the lpadmin group
+  ansible.builtin.user:
+    name: "{{ break_glass_user }}"
+    groups: lpadmin
+    append: yes

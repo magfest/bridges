@@ -56,3 +56,9 @@ tasks:
     cmds:
       - "ansible-playbook {{.ANSIBLE_PLAYBOOK_DIR}}/rsyslog/rsyslog.yaml --vault-password-file .vault-password"
     silent: true
+
+  cups-server:
+    desc: Install cups server
+    cmds:
+      - "ansible-playbook {{.ANSIBLE_PLAYBOOK_DIR}}/cups/cups.yaml --vault-password-file .vault-password"
+    silent: true

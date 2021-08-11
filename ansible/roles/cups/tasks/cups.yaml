@@ -1,0 +1,17 @@
+---
+- name: Install cups package
+  ansible.builtin.apt:
+    name: "{{ packages.cups }}"
+    install_recommends: false
+    update_cache: true
+    cache_valid_time: 3600
+    autoclean: true
+    autoremove: true
+
+- name: Copy cupsd.conf
+  ansible.builtin.copy:
+    src: files/cupsd.conf
+    dest: /etc/cups/cupsd.conf
+    mode: "0644"
+  notify:
+    - Restart cups

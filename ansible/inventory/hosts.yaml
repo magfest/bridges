@@ -14,3 +14,6 @@ all:
     # rsyslog:
     #   hosts:
     #     rsyslog-1:
+    # cups:
+    #   hosts:
+    #     cups-1:
