@@ -12,7 +12,6 @@ cache:
 # Test
 before_script:
   - cd ${TF_ROOT}
-  - bash ./terraform-proxmox-plugin.sh
 
 stages:
   - prepare-tf

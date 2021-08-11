@@ -29,9 +29,6 @@ jobs:
       - uses: terraform-linters/setup-tflint@v1
         name: Setup TFLint
 
-      - name: Install Proxmox provider
-        run: bash ./terraform-proxmox-plugin.sh
-
       - name: Run `terraform fmt`
         run: terraform fmt -diff -no-color -recursive
 
