@@ -7,7 +7,6 @@ module "stackstorm1" {
 
 module "stackstorm2" {
   source = "./modules/lxc"
-  source       = "./modules/lxc"
   cluster_name = "pve2"
   ip_address   = cidrsubnet(var.subnet, 0, 137)
   hostname     = "stackstorm2.${var.branch}.magevent.net"
