@@ -13,7 +13,7 @@ cache:
 # Test
 before_script:
   - cd ${TF_ROOT}
-  - export TF_VAR_subnet="${python3 helpers/subnet_prefix.py}"
+  - export TF_VAR_subnet="$(python3 helpers/subnet_prefix.py)"
 
 stages:
   - prepare-tf
