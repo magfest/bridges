@@ -56,4 +56,3 @@ variable "size" {
   type        = string
   default = "8G"
 }
-

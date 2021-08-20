@@ -53,4 +53,3 @@ variable "cluster_name" {
   type        = string
   default     = "pve1"
 }
-
