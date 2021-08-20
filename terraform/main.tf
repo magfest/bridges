@@ -32,3 +32,7 @@ variable "subnet" {
   type        = string
   description = "Subnet for the branch in format 192.168.1.0/24"
 }
+
+locals {
+  cidr_suffix = element(split("/", subnet), 2)
+}
