@@ -16,8 +16,8 @@ resource "proxmox_vm_qemu" "qemu-kvm-vm" {
   memory      = var.memory
   cores       = var.cores
   agent       = 1
-  disk {
-    // This disk will become scsi0
+  hastate     = "started"
+  disk { // This disk will become scsi0
     type    = "scsi"
     storage = "ceph"
     size    = var.disk_size
