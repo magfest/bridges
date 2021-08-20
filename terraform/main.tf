@@ -23,6 +23,12 @@ provider "proxmox" {
   }
 }
 
+variable "branch" {
+  type        = string
+  description = "Git branch, which is also used as subdomain name."
+}
 
-
-
+variable "subnet" {
+  type        = string
+  description = "Subnet for the branch in format 192.168.1.0/24"
+}

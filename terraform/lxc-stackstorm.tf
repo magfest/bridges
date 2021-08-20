@@ -1,12 +1,14 @@
 module "stackstorm1" {
-  source = "./modules/lxc"
-  ip_address = "10.101.22.136/24"
-  hostname = "stackstorm1.dev.magevent.net"
+  source       = "./modules/lxc"
+  cluster_name = "pve1"
+  ip_address   = cidrsubnet(var.subnet, 0, 136)
+  hostname     = "stackstorm1.${var.branch}.magevent.net"
 }
 
 module "stackstorm2" {
   source = "./modules/lxc"
+  source       = "./modules/lxc"
   cluster_name = "pve2"
-  ip_address = "10.101.22.137/24"
-  hostname = "stackstorm2.dev.magevent.net"
+  ip_address   = cidrsubnet(var.subnet, 0, 137)
+  hostname     = "stackstorm2.${var.branch}.magevent.net"
 }

@@ -1,12 +1,14 @@
 module "dhcp1" {
-  source = "./modules/lxc"
-  ip_address = "10.101.22.253/24"
-  hostname = "dhcp1.dev.magevent.net"
+  source     = "./modules/lxc"
+  cluster_name = "pve1"
+  ip_address   = cidrsubnet(var.subnet, 0, 253)
+  hostname     = "dhcp1.${var.branch}.magevent.net"
 }
 
 module "dhcp2" {
   source = "./modules/lxc"
+  source       = "./modules/lxc"
   cluster_name = "pve2"
-  ip_address = "10.101.22.254/24"
-  hostname = "dhcp2.dev.magevent.net"
+  ip_address   = cidrsubnet(var.subnet, 0, 254)
+  hostname     = "dhcp2.${var.branch}.magevent.net"
 }
