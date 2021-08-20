@@ -34,5 +34,5 @@ variable "subnet" {
 }
 
 locals {
-  cidr_suffix = element(split("/", var.subnet), 2)
+  cidr_suffix = element(split("/", var.subnet), 1)
 }
