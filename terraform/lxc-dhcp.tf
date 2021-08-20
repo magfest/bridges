@@ -1,12 +1,13 @@
 module "dhcp1" {
-  source     = "./modules/lxc"
-  ip_address = "10.101.23.253/24"
-  hostname   = "dhcp1.dev.magevent.net"
+  source       = "./modules/lxc"
+  cluster_name = "pve1"
+  ip_address   = "${cidrhost(var.subnet, 253)}/${local.cidr_suffix}"
+  hostname     = "dhcp1.${local.domain}"
 }
 
 module "dhcp2" {
   source       = "./modules/lxc"
   cluster_name = "pve2"
-  ip_address   = "10.101.23.254/24"
-  hostname     = "dhcp2.dev.magevent.net"
+  ip_address   = "${cidrhost(var.subnet, 254)}/${local.cidr_suffix}"
+  hostname     = "dhcp2.${local.domain}"
 }

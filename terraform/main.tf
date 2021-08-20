@@ -22,3 +22,18 @@ provider "proxmox" {
     _capturelog = ""
   }
 }
+
+variable "branch" {
+  type        = string
+  description = "Git branch, which is also used as subdomain name."
+}
+
+variable "subnet" {
+  type        = string
+  description = "Subnet for the branch in format 192.168.1.0/24"
+}
+
+locals {
+  cidr_suffix = element(split("/", var.subnet), 1)
+  domain      = "${var.branch}.magevent.net"
+}
