@@ -9,20 +9,21 @@ terraform {
 }
 
 resource "proxmox_vm_qemu" "qemu-kvm-vm" {
-    target_node = var.cluster_name
-    name = var.name
-    iso = "synology:iso/ubuntu-20.04.2-live-server-amd64.iso"
-    os_type = "ubuntu"
-    memory = var.memory
-    cores = var.cores
-    agent = 1
-    disk { // This disk will become scsi0
-        type = "scsi"
-        storage = "ceph"
-        size = var.disk_size
+  target_node = var.cluster_name
+  name        = var.name
+  iso         = "synology:iso/ubuntu-20.04.2-live-server-amd64.iso"
+  os_type     = "ubuntu"
+  memory      = var.memory
+  cores       = var.cores
+  agent       = 1
+  disk {
+    // This disk will become scsi0
+    type    = "scsi"
+    storage = "ceph"
+    size    = var.disk_size
 
-        //<arguments ommitted for brevity...>
-    }
+    //<arguments ommitted for brevity...>
+  }
 }
 
 variable "disk_size" {
@@ -45,7 +46,7 @@ variable "memory" {
 
 variable "name" {
   description = "Name of the vm"
-  type = string
+  type        = string
 }
 
 variable "cluster_name" {
