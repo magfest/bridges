@@ -1,4 +1,4 @@
-module "ntp" {
+module "tftp" {
   source       = "./modules/lxc"
   # This one weird trick. Everyone will hate it.
   cluster_name = "pve2"
