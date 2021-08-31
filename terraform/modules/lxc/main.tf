@@ -13,6 +13,7 @@ resource "proxmox_lxc" "lxc-container" {
   ostemplate      = "wowza:vztmpl/ubuntu-20.04-standard_20.04-1_amd64.tar.gz"
   unprivileged    = true
   hostname        = var.hostname
+  memory          = var.memory
   cores           = "1"
   swap            = "512"
   start           = true
@@ -62,6 +63,12 @@ variable "size" {
   description = "Size of fs in gigabytes"
   type        = string
   default     = "8G"
+}
+
+variable "memory" {
+  description = "Size of memory in megabytes"
+  type        = string
+  default     = "512"
 }
 
 output "ip_address" {
