@@ -78,7 +78,7 @@ create:
   script:
     - terraform apply -auto-approve
   rules:
-    - if: $CI_COMMIT_BRANCH =~ /\b($CI_DEFAULT_BRANCH|$BUILD_BRANCHES)\b/
+    - if: $CI_COMMIT_BRANCH =~ /\b(\$CI_DEFAULT_BRANCH|\$BUILD_BRANCHES)\b/
       when: on_success
     - when: never
   artifacts:
@@ -96,7 +96,7 @@ run-playbooks:
   script:
     - echo $(/bin/true)
   rules:
-    - if: $CI_COMMIT_BRANCH =~ /\b($CI_DEFAULT_BRANCH|$BUILD_BRANCHES)\b/
+    - if: $CI_COMMIT_BRANCH =~ /\b(\$CI_DEFAULT_BRANCH|\$BUILD_BRANCHES)\b/
       when: on_success
     - when: never
 
