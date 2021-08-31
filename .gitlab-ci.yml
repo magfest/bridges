@@ -83,6 +83,7 @@ create:
   artifacts:
     paths:
       - ${TF_ROOT}/.terraform
+      - ${TF_ROOT}/hosts.ini
 
 # Ansible section here
 run-playbooks:

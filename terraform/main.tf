@@ -39,7 +39,7 @@ locals {
 }
 
 resource "local_file" "inventory" {
-    filename = "./host.ini"
+    filename = "./hosts.ini"
     content = <<-EOF
     [dhcp]
     ${module.dhcp[0].ip_address}
