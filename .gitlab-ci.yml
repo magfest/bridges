@@ -5,7 +5,6 @@ variables:
   TF_STATE_NAME: ${CI_COMMIT_BRANCH}
   TF_CACHE_KEY: ${CI_COMMIT_BRANCH}
   TF_VAR_branch: ${CI_COMMIT_BRANCH}
-  DEPLOY_BRANCHES: aaron-dev
 cache:
   key: "${TF_ROOT}"
   paths:
@@ -78,7 +77,9 @@ create:
   script:
     - terraform apply -auto-approve
   rules:
-    - if: $CI_COMMIT_BRANCH =~ /\b(${CI_DEFAULT_BRANCH}|${DEPLOY_BRANCHES})\b/
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: on_success
+    - if: '$CI_COMMIT_BRANCH == aaron-dev'
       when: on_success
     - when: never
   artifacts:
@@ -96,7 +97,9 @@ run-playbooks:
   script:
     - echo $(/bin/true)
   rules:
-    - if: $CI_COMMIT_BRANCH =~ /\b(${CI_DEFAULT_BRANCH}|${DEPLOY_BRANCHES})\b/
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: on_success
+    - if: '$CI_COMMIT_BRANCH == aaron-dev'
       when: on_success
     - when: never
 
@@ -110,7 +113,10 @@ destroy:
   script:
     - terraform destroy -auto-approve
   rules:
-    - if: $CI_COMMIT_BRANCH =~ /\b(${CI_DEFAULT_BRANCH}|${DEPLOY_BRANCHES})\b/
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: manual
+    # Please make this more elegant, halp
+    - if: '$CI_COMMIT_BRANCH == aaron-dev'
       when: manual
     - when: never
   artifacts:
