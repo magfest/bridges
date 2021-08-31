@@ -1,13 +1,10 @@
-module "dhcp1" {
+module "dhcp" {
   source       = "./modules/lxc"
+  count = 2
   cluster_name = "pve1"
-  ip_address   = "${cidrhost(var.subnet, 253)}/${local.cidr_suffix}"
-  hostname     = "dhcp1.${local.domain}"
-}
-
-module "dhcp2" {
-  source       = "./modules/lxc"
-  cluster_name = "pve2"
-  ip_address   = "${cidrhost(var.subnet, 254)}/${local.cidr_suffix}"
-  hostname     = "dhcp2.${local.domain}"
+  ip_address   = "${cidrhost(var.subnet, 252+count.index)}/${local.cidr_suffix}"
+  hostname     = "dhcp${floor(count.index + 1)}.${local.domain}"
+  labels = {
+    ansible-group = "dhcp"
+  }
 }
