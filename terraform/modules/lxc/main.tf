@@ -13,6 +13,7 @@ resource "proxmox_lxc" "lxc-container" {
   ostemplate      = "wowza:vztmpl/ubuntu-20.04-standard_20.04-1_amd64.tar.gz"
   unprivileged    = true
   hostname        = var.hostname
+  memory          = var.memory
   cores           = "1"
   swap            = "512"
   start           = true
@@ -31,8 +32,9 @@ EOT
     name   = "eth0"
     bridge = "vmbr999"
     tag    = "22"
-    ip     = var.ip_address
+    ip     = "${var.ip_address}/${var.cidr_mask}"
   }
+
 }
 
 variable "hostname" {
@@ -52,8 +54,23 @@ variable "ip_address" {
   type        = string
 }
 
+variable "cidr_mask" {
+  description = "CIDR for IP subnet"
+  type        = string
+}
+
 variable "size" {
   description = "Size of fs in gigabytes"
   type        = string
   default     = "8G"
+}
+
+variable "memory" {
+  description = "Size of memory in megabytes"
+  type        = string
+  default     = "512"
+}
+
+output "ip_address" {
+  value = var.ip_address
 }

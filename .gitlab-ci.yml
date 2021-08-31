@@ -77,12 +77,13 @@ create:
   script:
     - terraform apply -auto-approve
   rules:
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH || $CI_COMMIT_BRANCH == "aaron-dev"'
       when: on_success
     - when: never
   artifacts:
     paths:
       - ${TF_ROOT}/.terraform
+      - ${TF_ROOT}/hosts.ini
 
 # Ansible section here
 run-playbooks:
@@ -95,7 +96,7 @@ run-playbooks:
   script:
     - echo $(/bin/true)
   rules:
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH || $CI_COMMIT_BRANCH == "aaron-dev"'
       when: on_success
     - when: never
 
@@ -109,7 +110,7 @@ destroy:
   script:
     - terraform destroy -auto-approve
   rules:
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH || $CI_COMMIT_BRANCH == "aaron-dev"'
       when: manual
     - when: never
   artifacts:
