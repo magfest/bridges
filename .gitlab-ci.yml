@@ -5,7 +5,7 @@ variables:
   TF_STATE_NAME: ${CI_COMMIT_BRANCH}
   TF_CACHE_KEY: ${CI_COMMIT_BRANCH}
   TF_VAR_branch: ${CI_COMMIT_BRANCH}
-  BUILD_BRANCHES: "aaron-dev"
+  BUILD_BRANCHES: aaron-dev
 cache:
   key: "${TF_ROOT}"
   paths:
