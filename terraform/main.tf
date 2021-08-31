@@ -23,10 +23,6 @@ provider "proxmox" {
   }
 }
 
-data "template_file" "init" {
-  template = "${file("./inventory.tmpl")}"
-}
-
 variable "branch" {
   type        = string
   description = "Git branch, which is also used as subdomain name."
