@@ -1,5 +1,5 @@
 module "dhcp1" {
-  source     = "./modules/lxc"
+  source       = "./modules/lxc"
   cluster_name = "pve1"
   ip_address   = "${cidrhost(var.subnet, 253)}/${local.cidr_suffix}"
   hostname     = "dhcp1.${local.domain}"

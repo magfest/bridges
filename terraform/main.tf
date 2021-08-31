@@ -35,5 +35,5 @@ variable "subnet" {
 
 locals {
   cidr_suffix = element(split("/", var.subnet), 1)
-  domain = "${var.branch}.magevent.net"
+  domain      = "${var.branch}.magevent.net"
 }
