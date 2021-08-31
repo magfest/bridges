@@ -5,7 +5,7 @@ variables:
   TF_STATE_NAME: ${CI_COMMIT_BRANCH}
   TF_CACHE_KEY: ${CI_COMMIT_BRANCH}
   TF_VAR_branch: ${CI_COMMIT_BRANCH}
-  DEPLOY_BRANCHES: $CI_DEFAULT_BRANCH|aaron-dev
+  DEPLOY_BRANCHES: ${CI_DEFAULT_BRANCH}|aaron-dev
 cache:
   key: "${TF_ROOT}"
   paths:
@@ -110,7 +110,7 @@ destroy:
   script:
     - terraform destroy -auto-approve
   rules:
-    - if: '$CI_COMMIT_BRANCH =~ /\b($DEPLOY_BRANCHES)\b/'
+    - if: '$CI_COMMIT_BRANCH =~ /\b(${DEPLOY_BRANCHES})\b/'
       when: manual
     - when: never
   artifacts:
