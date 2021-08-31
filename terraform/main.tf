@@ -24,7 +24,7 @@ provider "proxmox" {
 }
 
 data "template_file" "init" {
-  template = "${file("inventory.tpl")}"
+  template = "${file("./inventory.tmpl")}"
 }
 
 variable "branch" {
