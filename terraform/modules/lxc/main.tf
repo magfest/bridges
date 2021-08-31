@@ -34,10 +34,6 @@ EOT
     ip     = var.ip_address
   }
 
-  labels = {
-    ansible-group = "lxc-container"
-  }
-
 }
 
 variable "hostname" {
