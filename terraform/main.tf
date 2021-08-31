@@ -41,3 +41,12 @@ locals {
   cidr_suffix = element(split("/", var.subnet), 1)
   domain      = "${var.branch}.magevent.net"
 }
+
+resource "local_file" "inventory" {
+    filename = "./host.ini"
+    content = <<-EOF
+    [dhcp]
+    ${module.dhcp[0].ip_address}
+    ${module.dhcp[1].ip_address}
+    EOF
+}

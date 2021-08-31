@@ -1,8 +1,0 @@
-resource "local_file" "inventory" {
-    filename = "./host.ini"
-    content     = <<_EOF
-    [dhcp]
-    ${module.lxc-dhcp[0].ip_address}
-    ${module.lxc-dhcp[1].ip_address}
-    EOF
-}

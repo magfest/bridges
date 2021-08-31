@@ -63,3 +63,7 @@ variable "size" {
   type        = string
   default     = "8G"
 }
+
+output "ip_address" {
+  value = var.ip_address
+}
