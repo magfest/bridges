@@ -31,7 +31,7 @@ EOT
     name   = "eth0"
     bridge = "vmbr999"
     tag    = "22"
-    ip     = var.ip_address
+    ip     = "${var.ip_address}/${var.cidr_mask}"
   }
 
 }
@@ -50,6 +50,11 @@ variable "cluster_name" {
 
 variable "ip_address" {
   description = "IP address of host"
+  type        = string
+}
+
+variable "cidr_mask" {
+  description = "CIDR for IP subnet"
   type        = string
 }
 
