@@ -150,7 +150,7 @@ magevent_net_hosts:
   type: "AAAA"
 - name: "streaming"
   ip: "streaming-456449487.us-east-1.elb.amazonaws.com."
-  type: "CNAME"   
+  type: "CNAME"
 - name: "coldbrew"
   ip: "hydrophobic-pheasant-7qpulrttf80t5n3leh0etcff.herokudns.com."
   type: "CNAME"
