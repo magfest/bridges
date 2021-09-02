@@ -1,0 +1,3 @@
+---
+# Base subnet, provided by GitLab CI system
+branch_subnet: "{{ lookup('env', 'TF_VAR_subnet') }}"

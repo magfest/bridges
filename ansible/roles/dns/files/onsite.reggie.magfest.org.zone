@@ -1,0 +1,15 @@
+
+$TTL 3600
+; onsite.reggie.magfest.org
+@ IN SOA dns1.magevent.net. admin.magevent.net. (
+	2018092000  ; Serial
+	28800      ; Refresh
+	1800       ; Retry
+	604800     ; Expire - 1 week
+	86400 )    ; Minimum
+			IN	NS	dns1
+			IN	NS	dns2
+dns1			IN	A	10.101.22.110
+dns2			IN	A	10.101.22.120
+
+@			IN	A	10.101.22.61
