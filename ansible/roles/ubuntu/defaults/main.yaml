@@ -5,8 +5,10 @@ packages:
     - htop
     - rsyslog
     - net-tools
+    - unattended-upgrades
 
   apt_install_lxc:
     - htop
     - rsyslog
     - net-tools
+    - unattended-upgrades
