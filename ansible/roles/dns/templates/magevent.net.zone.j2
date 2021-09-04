@@ -30,3 +30,11 @@ www                       IN        A        10.101.22.24
 ; {{ item.name }}
 {{ item.name }}           IN        {{ item.type }}        {{ item.ip }}
 {% endfor %}
+
+{% if branch == "prod" %}
+{% for item in branch_list %}
+$ORIGIN {{ item.branch }}.magevent.net.
+$TTL 3600
+@		IN  NS  {{ item.branch }}.magevent.net.
+{% endfor %}
+{% endif %}
