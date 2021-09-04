@@ -8,10 +8,10 @@
 - name: Set nisdomainname
   command: "nisdomainname magevent.net"
 
-- name: Install IPA client 
+- name: Install IPA client
   apt:
     name: freeipa-client
-    state: present 
+    state: present
 
 #Will fail gracefully if the client is enrolled/command is idempotent
 #Expected error is  "IPA client is already configured on this system."
