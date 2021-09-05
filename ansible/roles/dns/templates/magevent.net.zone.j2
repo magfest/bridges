@@ -33,8 +33,15 @@ www                       IN        A        10.101.22.24
 
 {% if branch == "prod" %}
 {% for item in branch_list %}
+dns1-{{ item.branch }}     IN  A   {{ item.subnet | split('.')[:-1] | join('.') }}.110
+dns2-{{ item.branch }}     IN  A   {{ item.subnet | split('.')[:-1] | join('.') }}.120
+{% endfor %}
+{% endif %}
+
+{% if branch == "prod" %}
+{% for item in branch_list %}
 $ORIGIN {{ item.branch }}.magevent.net.
 $TTL 3600
-@		IN  NS  {{ item.branch }}.magevent.net.
+@                         IN  NS  dns1-{{ item.branch }}.magevent.net.
 {% endfor %}
 {% endif %}
