@@ -30,6 +30,8 @@
 - include: user.yaml
 
 - include: timesyncd.yaml
+
+- include: freeipa_enroll.yml
 # - name: Show facts available on the system
 #   ansible.builtin.debug:
 #     var: ansible_facts
