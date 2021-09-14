@@ -62,3 +62,9 @@ tasks:
     cmds:
       - "ansible-playbook {{.ANSIBLE_PLAYBOOK_DIR}}/cups/cups.yaml --vault-password-file .vault-password"
     silent: true
+
+  dns-server:
+    desc: Install DNS server
+    cmds:
+      - "ansible-playbook {{.ANSIBLE_PLAYBOOK_DIR}}/dns/dns.yaml --vault-password-file .vault-password"
+    silent: true

@@ -14,6 +14,7 @@ cache:
 before_script:
   - cd ${TF_ROOT}
   - export TF_VAR_subnet="$(python3 helpers/subnet_prefix.py)"
+  - export TF_VAR_subnet_list="$(python3 helpers/subnet_list.py)"
 
 stages:
   - prepare-tf

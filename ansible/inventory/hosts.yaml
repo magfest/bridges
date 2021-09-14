@@ -17,3 +17,7 @@ all:
     # cups:
     #   hosts:
     #     cups-1:
+    # dns:
+    #   hosts:
+    #     dns-1:
+    #     dns-2:

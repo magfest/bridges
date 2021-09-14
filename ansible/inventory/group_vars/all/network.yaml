@@ -1,0 +1,9 @@
+---
+# Branch subnet, provided by GitLab CI system
+branch_subnet: "{{ lookup('env', 'TF_VAR_subnet') }}"
+
+# List of branches, provided by GitLab CI system
+branch_list: "{{ lookup('env', 'TF_VAR_subnet_list') | from_json | dict2items(key_name='branch', value_name='subnet') }}"
+
+# Branch name, provided by GitLab CI system
+branch: "{{ lookup('env', 'CI_COMMIT_BRANCH') }}"
