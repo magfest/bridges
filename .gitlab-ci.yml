@@ -40,6 +40,8 @@ stages:
 init:
   stage: prepare-tf
   extends: .global
+  environment:
+    name: production
   script:
     - terraform init
     - terraform validate
@@ -48,6 +50,8 @@ init:
 
 validate:
   extends: .global
+  environment:
+    name: production
   stage: validate-tf
   script:
     - terraform validate
@@ -57,6 +61,8 @@ validate:
 plan:
   stage: build-tf
   extends: .global
+  environment:
+    name: production
   artifacts:
     name: plan
     paths:
