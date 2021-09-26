@@ -102,7 +102,7 @@ run-playbooks:
     - create
   script:
     - cd ${CI_PROJECT_DIR}/ansible
-    - cp /home/gitlab-runner/.vault-password ${CI_PROJECT_DIR}/ansible
+    - echo ${ANSIBLE_VAULT_PASSWORD} > ${CI_PROJECT_DIR}/ansible/.vault-password
     - ansible-galaxy install -r requirements.yaml
     - ansible-galaxy collection install -r requirements.yaml
     - ansible-playbook -i ./inventory -i ${TF_ROOT}/hosts.ini --vault-password-file ./.vault-password playbook.yaml
