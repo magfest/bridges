@@ -1,7 +1,7 @@
 ---
 - name: Configure DNS servers
   include: "server.yaml"
-  when: ansible_hostname | regex_search("1[12]0$")
+  when: "'dns' in {{ group_names }}"
 
 - name: Populate /etc/hosts
   include: "etc_hosts.yaml"
