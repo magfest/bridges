@@ -29,10 +29,11 @@ EOT
   }
 
   network {
-    name   = "eth0"
-    bridge = "vmbr999"
-    tag    = "22"
-    ip     = "${var.ip_address}/${var.cidr_mask}"
+    name    = "eth0"
+    bridge  = "vmbr999"
+    tag     = "22"
+    ip      = "${var.ip_address}/${var.cidr_mask}"
+    gateway = cidrhost(var.subnet, 1)
   }
 
 }
