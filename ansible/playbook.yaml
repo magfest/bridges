@@ -2,6 +2,7 @@
 - name: Initial Ubuntu setup
   hosts:
   - all
+  remote_user: root
   become: true
   gather_facts: true
   any_errors_fatal: true
@@ -12,6 +13,7 @@
 - name: CUPS setup
   hosts:
     - cups
+  remote_user: root
   become: true
   gather_facts: true
   any_errors_fatal: true
@@ -21,6 +23,7 @@
 - name: rsyslog setup
   hosts:
   - rsyslog
+  remote_user: root
   become: true
   gather_facts: true
   any_errors_fatal: true
