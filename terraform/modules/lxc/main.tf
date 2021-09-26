@@ -33,7 +33,7 @@ EOT
     bridge  = "vmbr999"
     tag     = "22"
     ip      = "${var.ip_address}/${var.cidr_mask}"
-    gw = cidrhost(var.subnet, 1)
+    gw      = "${var.gateway}"
   }
 
 }
@@ -52,6 +52,11 @@ variable "cluster_name" {
 
 variable "ip_address" {
   description = "IP address of host"
+  type        = string
+}
+
+variable "gateway" {
+  description = "IP gateway address of host"
   type        = string
 }
 
