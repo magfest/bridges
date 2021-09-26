@@ -78,7 +78,7 @@ create:
   script:
     - terraform apply -auto-approve
   rules:
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH || $CI_COMMIT_BRANCH == "aaron-dev"'
+    - if: '$TF_VAR_subnet != ""'
       when: on_success
     - when: never
   artifacts:
@@ -97,7 +97,7 @@ run-playbooks:
   script:
     - echo $(/bin/true)
   rules:
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH || $CI_COMMIT_BRANCH == "aaron-dev"'
+    - if: '$TF_VAR_subnet != ""'
       when: on_success
     - when: never
 
@@ -111,7 +111,7 @@ destroy:
   script:
     - terraform destroy -auto-approve
   rules:
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH || $CI_COMMIT_BRANCH == "aaron-dev"'
+    - if: '$TF_VAR_subnet != "" && $CI_COMMIT_BRANCH != "prod"'
       when: manual
     - when: never
   artifacts:
