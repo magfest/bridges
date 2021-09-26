@@ -21,7 +21,7 @@ resource "proxmox_lxc" "lxc-container" {
   ssh_public_keys = <<-EOT
       ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMhbA0U8HF0qA8ya7icQDMxt4LUz67aHVd+ufKztbqa
       ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP8kXJdvVCN8q1dKWKnGIsFLHKpeO7/Q9uV1C0Qtf/I8
-      ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEbTlnLu7fHWxE0+rrV4t/xRLEw0YHE5iaBWUvWvNZfS ubuntu@gitlab-runner-1
+      ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJHiKbjWHf/hfmD5ArZek3BnKaLf56L3dBqovisvlABw cody@cody-mbp-16.dc2.laughinghou.se
 EOT
 
   rootfs {
