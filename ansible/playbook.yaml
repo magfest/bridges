@@ -1,9 +1,28 @@
 ---
-- name: Import initial Ubuntu setup
-  import_playbook: playbooks/ubuntu/prepare.yaml
+- name: Initial Ubuntu setup
+  hosts:
+  - all
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  roles:
+  - ubuntu
+  - dns
 
-- name: Import CUPS setup
-  import_playbook: playbooks/cups/cups.yml
+- name: CUPS setup
+  hosts:
+    - cups
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  roles:
+    - cups
 
-- name: Import rsyslog setup
-  import_playbook: playbooks/rsyslog/rsyslog.yaml
+- name: rsyslog setup
+  hosts:
+  - rsyslog
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  roles:
+  - rsyslog
