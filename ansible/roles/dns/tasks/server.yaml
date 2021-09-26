@@ -10,6 +10,16 @@
   notify:
   - Restart named
 
+- name: Install named config
+  ansible.builtin.copy:
+    src: "named.conf"
+    dest: "/etc/bind/named.conf"
+    mode: 0600
+    owner: root
+    group: root
+  notify:
+  - Restart named
+
 - name: Generate magevent.net zone file
   ansible.builtin.template:
     src: magevent.net.zone.j2
