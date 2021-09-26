@@ -55,5 +55,11 @@ resource "local_file" "inventory" {
 
     [tftp]
     ${module.tftp.ip_address}
+
+    [cups]
+    ${module.cups.ip_address}
+
+    [rsyslog]
+    ${module.rsyslog.ip_address}
     EOF
 }
