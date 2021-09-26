@@ -95,7 +95,9 @@ run-playbooks:
   dependencies:
     - create
   script:
-    - echo $(/bin/true)
+    - cd ${CI_PROJECT_DIR}/ansible
+    - cp /home/gitlab-runner/.vault-password ${CI_PROJECT_DIR}/ansible
+    - ansible-playbook -i ${TF_ROOT}/hosts.ini --vault-password-file ./.vault-password playbook.yaml
   rules:
     - if: '$TF_VAR_subnet != ""'
       when: on_success
