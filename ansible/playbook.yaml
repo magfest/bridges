@@ -1,0 +1,9 @@
+---
+- name: Import initial Ubuntu setup
+  import_playbook: playbooks/ubuntu/prepare.yaml
+
+- name: Import CUPS setup
+  import_playbook: playbooks/cups/cups.yml
+
+- name: Import rsyslog setup
+  import_playbook: playbooks/rsyslog/rsyslog.yaml
