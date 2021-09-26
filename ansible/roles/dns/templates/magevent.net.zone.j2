@@ -30,9 +30,9 @@ _ldap._tcp                IN        SRV        10        10        389       fre
 
 @                         IN        A        10.101.22.24
 www                       IN        A        10.101.22.24
-{% for item in magevent_net_hosts.values() %}
-; {{ item.name }}
-{{ item.name }}           IN        {{ item.type }}        {{ item.ip }}
+{% for item in magevent_net_hosts %}
+; {{ item.value.name }}
+{{ item.value.name }}           IN        {{ item.value.type }}        {{ item.value.ip }}
 {% endfor %}
 
 {% if branch == "prod" %}

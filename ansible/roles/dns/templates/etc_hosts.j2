@@ -8,8 +8,8 @@ ff00::0 ip6-mcastprefix
 ff02::1 ip6-allnodes
 ff02::2 ip6-allrouters
 
-{% for item in magevent_net_hosts.values() %}
-{% if item.type == "A" or item.type == "AAAA" %}
-{{ item.ip }}       {{ item.name }}
+{% for item in magevent_net_hosts %}
+{% if item.value.type == "A" or item.value.type == "AAAA" %}
+{{ item.value.ip }}       {{ item.value.name }}
 {% endif %}
 {% endfor %}
