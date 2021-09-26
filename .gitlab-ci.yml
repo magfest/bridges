@@ -104,6 +104,7 @@ run-playbooks:
     - cd ${CI_PROJECT_DIR}/ansible
     - cp /home/gitlab-runner/.vault-password ${CI_PROJECT_DIR}/ansible
     - ansible-galaxy install -r requirements.yaml
+    - ansible-galaxy collection install -r requirements.yaml
     - ansible-playbook -i ${TF_ROOT}/hosts.ini --vault-password-file ./.vault-password playbook.yaml
   rules:
     - if: '$TF_VAR_subnet != ""'
