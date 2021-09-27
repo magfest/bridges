@@ -17,9 +17,9 @@
     owner: root
     group: bind
   with_items:
-    - "/etc/bind"
-    - "/var/lib/bind"
-    - "/var/cache/bind"
+  - "/etc/bind"
+  - "/var/lib/bind"
+  - "/var/cache/bind"
   notify:
   - Restart named
 
@@ -31,9 +31,9 @@
     owner: root
     group: bind
   with_items:
-    - "named.conf"
-    - "named.conf.options"
-    - "named.conf.local"
+  - "named.conf"
+  - "named.conf.options"
+  - "named.conf.local"
   notify:
   - Restart named
 
