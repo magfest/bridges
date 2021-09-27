@@ -1,0 +1,24 @@
+zone "magevent.net" IN {
+        type master;
+        file "/var/lib/bind/magevent.net.zone";
+        notify no;
+};
+
+zone "win.magevent.net" {
+        type stub;
+        masters {10.101.22.210; 10.101.22.220;};
+        file "/var/lib/bind/win.magevent.net.zone";
+        forwarders { };
+};
+
+zone "onsite.uber.magfest.org" IN {
+        type master;
+        file "/var/lib/bind/onsite.uber.magfest.org.zone";
+        notify no;
+};
+
+zone "onsite.reggie.magfest.org" IN {
+        type master;
+        file "/var/lib/bind/onsite.reggie.magfest.org.zone";
+        notify no;
+};

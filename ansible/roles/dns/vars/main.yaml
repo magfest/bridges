@@ -1,13 +1,14 @@
 ---
+branch_subnet_trimmed: "{{ (branch_subnet.split('.'))[0:3] | join('.') }}"
 magevent_net_hosts:
   # MAGCloud per-branch "dynamic" IP entries
-  - { name: "dhcp1", ip: "{{ branch_subnet }}.4", type: "A" }
-  - { name: "dhcp2", ip: "{{ branch_subnet }}.5", type: "A" }
-  - { name: "ntp1", ip: "{{ branch_subnet }}.6", type: "A" }
-  - { name: "ntp2", ip: "{{ branch_subnet }}.7", type: "A" }
-  - { name: "dns1", ip: "{{ branch_subnet }}.110", type: "A" }
-  - { name: "dns2", ip: "{{ branch_subnet }}.120", type: "A" }
-  - { name: "syslog", ip: "{{ branch_subnet }}.130", type: "A" }
+  - { name: "dhcp1", ip: "{{ branch_subnet_trimmed }}.4", type: "A" }
+  - { name: "dhcp2", ip: "{{ branch_subnet_trimmed }}.5", type: "A" }
+  - { name: "ntp1", ip: "{{ branch_subnet_trimmed }}.6", type: "A" }
+  - { name: "ntp2", ip: "{{ branch_subnet_trimmed }}.7", type: "A" }
+  - { name: "dns1", ip: "{{ branch_subnet_trimmed }}.110", type: "A" }
+  - { name: "dns2", ip: "{{ branch_subnet_trimmed }}.120", type: "A" }
+  - { name: "syslog", ip: "{{ branch_subnet_trimmed }}.130", type: "A" }
   # MAGCloud static/not-in-Terraform-yet entries
   - { name: "salt", ip: "10.101.22.8", type: "A" }
   - { name: "foreman", ip: "10.101.22.8", type: "A" }

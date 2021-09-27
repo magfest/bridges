@@ -10,13 +10,30 @@
   notify:
   - Restart named
 
+- name: Correct named directory permissions
+  ansible.builtin.file:
+    path: "{{ item }}"
+    mode: 02775
+    owner: root
+    group: bind
+  with_items:
+    - "/etc/bind"
+    - "/var/lib/bind"
+    - "/var/cache/bind"
+  notify:
+  - Restart named
+
 - name: Install named config
   ansible.builtin.copy:
-    src: "named.conf"
-    dest: "/etc/bind/named.conf"
+    src: "{{ item }}"
+    dest: "/etc/bind/{{ item }}"
     mode: 0660
     owner: root
     group: bind
+  with_items:
+    - "named.conf"
+    - "named.conf.options"
+    - "named.conf.local"
   notify:
   - Restart named
 
