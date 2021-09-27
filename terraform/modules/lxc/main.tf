@@ -30,11 +30,11 @@ EOT
   }
 
   network {
-    name    = "eth0"
-    bridge  = "vmbr999"
-    tag     = "22"
-    ip      = "${var.ip_address}/${var.cidr_mask}"
-    gw      = "${var.gateway}"
+    name   = "eth0"
+    bridge = "vmbr999"
+    tag    = "22"
+    ip     = "${var.ip_address}/${var.cidr_mask}"
+    gw     = var.gateway
   }
 
 }

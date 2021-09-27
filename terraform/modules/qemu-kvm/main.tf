@@ -55,6 +55,16 @@ variable "cluster_name" {
   default     = "pve1"
 }
 
+variable "hostname" {
+  description = "Hostname of the container"
+  type        = string
+}
+
+variable "ip_address" {
+  description = "IP address of host"
+  type        = string
+}
+
 output "ip_address" {
   value = var.ip_address
 }
