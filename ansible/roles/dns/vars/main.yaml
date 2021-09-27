@@ -1,6 +1,6 @@
 ---
 magevent_net_hosts:
-  #MAGCloud per-branch "dynamic" IP entries
+  # MAGCloud per-branch "dynamic" IP entries
   - { name: "dhcp1", ip: "{{ branch_subnet }}.4", type: "A" }
   - { name: "dhcp2", ip: "{{ branch_subnet }}.5", type: "A" }
   - { name: "ntp1", ip: "{{ branch_subnet }}.6", type: "A" }

@@ -12,13 +12,13 @@
 
 - name: CUPS setup
   hosts:
-    - cups
+  - cups
   remote_user: root
   become: true
   gather_facts: true
   any_errors_fatal: true
   roles:
-    - cups
+  - cups
 
 - name: rsyslog setup
   hosts:
