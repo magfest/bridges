@@ -21,6 +21,6 @@ options {
         dnssec-validation auto;
         listen-on { any; };
         listen-on-v6 { any; };
-        forwarders { 8.8.8.8; 8.8.4.4; };
+        forwarders { 1.1.1.1; 8.8.8.8; 8.8.4.4; 1.0.0.1; };
         allow-recursion { any; };
 };
