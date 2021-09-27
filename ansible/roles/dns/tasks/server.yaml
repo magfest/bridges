@@ -14,9 +14,9 @@
   ansible.builtin.copy:
     src: "named.conf"
     dest: "/etc/bind/named.conf"
-    mode: 0600
+    mode: 0660
     owner: root
-    group: root
+    group: bind
   notify:
   - Restart named
 
@@ -24,9 +24,9 @@
   ansible.builtin.template:
     src: magevent.net.zone.j2
     dest: /var/lib/bind/magevent.net.zone
-    mode: 0600
+    mode: 0660
     owner: root
-    group: root
+    group: bind
   notify:
   - Restart named
 
@@ -34,9 +34,9 @@
   ansible.builtin.copy:
     src: "{{ item }}"
     dest: "/var/lib/bind/{{ item }}"
-    mode: 0600
+    mode: 0660
     owner: root
-    group: root
+    group: bind
   with_items:
   - "onsite.reggie.magfest.org.zone"
   - "onsite.uber.magfest.org.zone"
