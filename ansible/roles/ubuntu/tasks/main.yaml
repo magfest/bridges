@@ -27,6 +27,8 @@
 
 - include: network.yaml
 
+- include: "etc_hosts.yaml"
+
 - include: user.yaml
 
 - include: timesyncd.yaml

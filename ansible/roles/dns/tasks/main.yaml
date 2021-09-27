@@ -1,7 +1,3 @@
 ---
 - name: Configure DNS servers
   include: "server.yaml"
-  when: "'dns' in group_names"
-
-- name: Populate /etc/hosts
-  include: "etc_hosts.yaml"
