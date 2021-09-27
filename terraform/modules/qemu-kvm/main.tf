@@ -54,3 +54,11 @@ variable "cluster_name" {
   type        = string
   default     = "pve1"
 }
+
+output "ip_address" {
+  value = var.ip_address
+}
+
+output "hostname" {
+  value = var.hostname
+}

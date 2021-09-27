@@ -81,3 +81,7 @@ variable "memory" {
 output "ip_address" {
   value = var.ip_address
 }
+
+output "hostname" {
+  value = var.hostname
+}
