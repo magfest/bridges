@@ -37,8 +37,8 @@ www                       IN        A        10.101.22.24
 
 {% if branch == "prod" %}
 {% for item in branch_list %}
-dns1-{{ item.branch }}     IN  A   {{ (item.subnet | split('.'))[0:3] | join('.') }}.110
-dns2-{{ item.branch }}     IN  A   {{ (item.subnet | split('.'))[0:3] | join('.') }}.120
+dns1-{{ item.branch }}     IN  A   {{ (item.subnet.split('.'))[0:3] | join('.') }}.110
+dns2-{{ item.branch }}     IN  A   {{ (item.subnet.split('.'))[0:3] | join('.') }}.120
 {% endfor %}
 {% endif %}
 

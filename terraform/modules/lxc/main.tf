@@ -21,6 +21,7 @@ resource "proxmox_lxc" "lxc-container" {
   ssh_public_keys = <<-EOT
       ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMhbA0U8HF0qA8ya7icQDMxt4LUz67aHVd+ufKztbqa
       ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP8kXJdvVCN8q1dKWKnGIsFLHKpeO7/Q9uV1C0Qtf/I8
+      ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJHiKbjWHf/hfmD5ArZek3BnKaLf56L3dBqovisvlABw
 EOT
 
   rootfs {
@@ -33,6 +34,7 @@ EOT
     bridge = "vmbr999"
     tag    = "22"
     ip     = "${var.ip_address}/${var.cidr_mask}"
+    gw     = var.gateway
   }
 
 }
@@ -51,6 +53,11 @@ variable "cluster_name" {
 
 variable "ip_address" {
   description = "IP address of host"
+  type        = string
+}
+
+variable "gateway" {
+  description = "IP gateway address of host"
   type        = string
 }
 
@@ -73,4 +80,8 @@ variable "memory" {
 
 output "ip_address" {
   value = var.ip_address
+}
+
+output "hostname" {
+  value = var.hostname
 }

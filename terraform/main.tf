@@ -42,18 +42,24 @@ resource "local_file" "inventory" {
   filename = "./hosts.ini"
   content  = <<-EOF
     [dhcp]
-    ${module.dhcp[0].ip_address}
-    ${module.dhcp[1].ip_address}
+    ${module.dhcp[0].hostname} ansible_host=${module.dhcp[0].ip_address}
+    ${module.dhcp[1].hostname} ansible_host=${module.dhcp[1].ip_address}
 
     [dns]
-    ${module.dns[0].ip_address}
-    ${module.dns[1].ip_address}
+    ${module.dns[0].hostname} ansible_host=${module.dns[0].ip_address}
+    ${module.dns[1].hostname} ansible_host=${module.dns[1].ip_address}
 
     [ntp]
-    ${module.ntp[0].ip_address}
-    ${module.ntp[1].ip_address}
+    ${module.ntp[0].hostname} ansible_host=${module.ntp[0].ip_address}
+    ${module.ntp[1].hostname} ansible_host=${module.ntp[1].ip_address}
 
     [tftp]
-    ${module.tftp.ip_address}
+    ${module.tftp.hostname} ansible_host=${module.tftp.ip_address}
+
+    [cups]
+    ${module.cups.hostname} ansible_host=${module.cups.ip_address}
+
+    [rsyslog]
+    ${module.rsyslog.hostname} ansible_host=${module.rsyslog.ip_address}
     EOF
 }

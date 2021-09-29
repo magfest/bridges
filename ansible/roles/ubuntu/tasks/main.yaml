@@ -27,11 +27,13 @@
 
 - include: network.yaml
 
+- include: "etc_hosts.yaml"
+
 - include: user.yaml
 
 - include: timesyncd.yaml
 
-- include: freeipa_enroll.yml
+- include: freeipa_enroll.yaml
 # - name: Show facts available on the system
 #   ansible.builtin.debug:
 #     var: ansible_facts
