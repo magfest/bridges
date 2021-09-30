@@ -1,3 +1,6 @@
 ---
 - name: Configure NTP servers
   include: "server.yaml"
+
+- name: Configure NTP firewall rules
+  include: "firewall_rules.yaml"
