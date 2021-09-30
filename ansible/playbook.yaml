@@ -38,3 +38,13 @@
   any_errors_fatal: true
   roles:
   - dns
+
+- name: NTP setup
+  hosts:
+  - ntp
+  remote_user: root
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  roles:
+  - ntp
