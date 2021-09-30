@@ -14,4 +14,4 @@
     dest: /etc/chrony/chrony.conf
     mode: "0644"
   notify:
-    - Restart chrony
+    - Restart chronyd
