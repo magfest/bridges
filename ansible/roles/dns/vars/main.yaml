@@ -1,0 +1,2 @@
+---
+zone_prefix: "{{ branch + '.' if branch != 'prod' else '' }}"

@@ -1,0 +1,24 @@
+zone "{{ zone_prefix }}magevent.net" IN {
+        type master;
+        file "/var/lib/bind/{{ zone_prefix }}magevent.net.zone";
+        notify no;
+};
+
+zone "win.{{ zone_prefix }}magevent.net" {
+        type stub;
+        masters {10.101.22.210; 10.101.22.220;};
+        file "/var/lib/bind/win.{{ zone_prefix }}magevent.net.zone";
+        forwarders { };
+};
+
+zone "onsite.uber.{{ zone_prefix }}magfest.org" IN {
+        type master;
+        file "/var/lib/bind/onsite.uber.{{ zone_prefix }}magfest.org.zone";
+        notify no;
+};
+
+zone "onsite.reggie.{{ zone_prefix }}magfest.org" IN {
+        type master;
+        file "/var/lib/bind/onsite.reggie.{{ zone_prefix }}magfest.org.zone";
+        notify no;
+};
