@@ -9,7 +9,7 @@
     autoremove: true
 
 - name: Copy chrony.conf
-  ansible.builtin.file:
+  ansible.builtin.copy:
     src: chrony.conf
     dest: /etc/chrony/chrony.conf
     mode: "0644"
