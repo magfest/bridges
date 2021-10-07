@@ -48,3 +48,13 @@
   any_errors_fatal: true
   roles:
   - ntp
+
+- name: SMTP setup
+  hosts:
+  - smtp
+  remote_user: root
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  roles:
+  - smtp
