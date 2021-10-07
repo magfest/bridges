@@ -6,18 +6,20 @@ magevent_net_hosts:
   - { name: "dhcp2", ip: "{{ branch_subnet_trimmed }}.5", type: "A" }
   - { name: "ntp1", ip: "{{ branch_subnet_trimmed }}.6", type: "A" }
   - { name: "ntp2", ip: "{{ branch_subnet_trimmed }}.7", type: "A" }
+  - { name: "tftp", ip: "{{ branch_subnet_trimmed }}.9", type: "A" }
+  - { name: "cups", ip: "{{ branch_subnet_trimmed }}.13", type: "A" }
+  - { name: "smtp", ip: "{{ branch_subnet_trimmed }}.23", type: "A" }
   - { name: "dns1", ip: "{{ branch_subnet_trimmed }}.110", type: "A" }
   - { name: "dns2", ip: "{{ branch_subnet_trimmed }}.120", type: "A" }
+  - { name: "graylog", ip: "{{ branch_subnet_trimmed }}.129", type: "A" }
   - { name: "syslog", ip: "{{ branch_subnet_trimmed }}.130", type: "A" }
   - { name: "zabbix-new", ip: "{{ branch_subnet_trimmed }}.201", type: "A" }
   # MAGCloud static/not-in-Terraform-yet entries
   - { name: "salt", ip: "10.101.22.8", type: "A" }
   - { name: "foreman", ip: "10.101.22.8", type: "A" }
-  - { name: "tftp", ip: "10.101.22.9", type: "A" }
   - { name: "freeradius", ip: "10.101.22.10", type: "A" }
   - { name: "freeipa", ip: "10.101.22.11", type: "A" }
   - { name: "asterisk", ip: "10.101.22.12", type: "A" }
-  - { name: "cups", ip: "10.101.22.13", type: "A" }
   - { name: "repo", ip: "10.101.22.14", type: "A" }
   - { name: "assman", ip: "10.101.22.15", type: "A" }
   - { name: "smokeping", ip: "10.101.22.16", type: "A" }
