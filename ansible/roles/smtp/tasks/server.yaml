@@ -16,7 +16,7 @@
     owner: root
     group: postfix
   notify:
-    - Restart postfix
+    - Restart Postfix
 
 - name: Install Postfix password file
   ansible.builtin.template:
@@ -26,9 +26,9 @@
     owner: root
     group: postfix
   notify:
-    - Restart postfix
+    - Restart Postfix
 
 - name: Activate Postfix password map
   command: /usr/sbin/postmap /etc/postfix/sasl_passwd
   notify:
-    - Restart postfix
+    - Restart Postfix
