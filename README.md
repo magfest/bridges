@@ -1,9 +1,8 @@
-<div align-"center">
-# Bridges 🌉
-</div>
-
 <div align="center">
   <img src="docs/assets/clu2.jpg?raw=true" align="center" height="144px"/>
+
+# Bridges 🌉
+
 </div>
 
 <br/>
