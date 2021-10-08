@@ -37,7 +37,7 @@ Bridges is built upon a couple different technologies all contained in this mono
 - [Ansible](https://github.com/magfest/bridges/tree/main/ansible)
 - [GitHub](https://github.com/)
 
-## :ferris_wheel:&nbsp; Want to help
+## :ferris_wheel:&nbsp; Want to help? Don't know how?
 
 Easiest way to get involved is to fork this repo and make a pull request or click this [handy dandy link](https://github.dev/magfest/bridges/) to get started.
 
