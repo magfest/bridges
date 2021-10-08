@@ -9,6 +9,26 @@
   roles:
   - ubuntu
 
+- name: DNS server setup
+  hosts:
+  - dns
+  remote_user: root
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  roles:
+  - dns
+
+- name: FreeIPA client enrollment
+  hosts:
+  - all
+  remote_user: root
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  roles:
+  - freeipa_enroll
+
 - name: CUPS setup
   hosts:
   - cups
@@ -28,16 +48,6 @@
   any_errors_fatal: true
   roles:
   - rsyslog
-
-- name: DNS setup
-  hosts:
-  - dns
-  remote_user: root
-  become: true
-  gather_facts: true
-  any_errors_fatal: true
-  roles:
-  - dns
 
 - name: NTP setup
   hosts:
