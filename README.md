@@ -24,12 +24,21 @@ Bridges is our attempt at converting our at-event infrastructre into code. Histr
 
 <div align="center">
 
-[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcbiAgICBBW1lvdSBtYWtlIHNvbWUgYXdlc29tZSBjb2RlXSAtLT58Q3JlYXRlIHB1bGwgUmVxdWVzdHwgQihXZSBtZXJnZSB0aGUgcHVsbCByZXF1ZXN0KVxuICAgIEIgLS0-IEN7R2l0aHViIHJ1bnMgY29kZSBjaGVja3N9XG4gICAgQyAtLT58RGVwbG95bWVudHwgRFtEZXZdXG4gICAgRCAtLT58TG9va3MgZ29vZD8gUHVzaCB0byBQcm9kIXwgRVtpUGhvbmVdXG4gICIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2UsImF1dG9TeW5jIjp0cnVlLCJ1cGRhdGVEaWFncmFtIjpmYWxzZX0)](https://mermaid.live/edit#eyJjb2RlIjoiZ3JhcGggVERcbiAgICBBW1lvdSBtYWtlIHNvbWUgYXdlc29tZSBjb2RlXSAtLT58Q3JlYXRlIHB1bGwgUmVxdWVzdHwgQihXZSBtZXJnZSB0aGUgcHVsbCByZXF1ZXN0KVxuICAgIEIgLS0-IEN7R2l0aHViIHJ1bnMgY29kZSBjaGVja3N9XG4gICAgQyAtLT58RGVwbG95bWVudHwgRFtEZXZdXG4gICAgRCAtLT58TG9va3MgZ29vZD8gUHVzaCB0byBQcm9kIXwgRVtpUGhvbmVdXG4gICIsIm1lcm1haWQiOiJ7XG4gIFwidGhlbWVcIjogXCJkZWZhdWx0XCJcbn0iLCJ1cGRhdGVFZGl0b3IiOmZhbHNlLCJhdXRvU3luYyI6dHJ1ZSwidXBkYXRlRGlhZ3JhbSI6ZmFsc2V9)
+[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcbiAgICBBW1lvdSBtYWtlIHNvbWUgYXdlc29tZSBjb2RlXSAtLT58Q3JlYXRlIHB1bGwgUmVxdWVzdHwgQihXZSBtZXJnZSB0aGUgcHVsbCByZXF1ZXN0KVxuICAgIEIgLS0-IEN7R2l0aHViIHJ1bnMgY29kZSBjaGVja3N9XG4gICAgQyAtLT58RGVwbG95bWVudHwgRFtEZXZdXG4gICAgRCAtLT58TG9va3MgZ29vZD8gUHVzaCB0byBQcm9kIXwgRVtQcm9maXQhXSBcbiIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2UsImF1dG9TeW5jIjp0cnVlLCJ1cGRhdGVEaWFncmFtIjpmYWxzZX0)](https://mermaid.live/edit#eyJjb2RlIjoiZ3JhcGggVERcbiAgICBBW1lvdSBtYWtlIHNvbWUgYXdlc29tZSBjb2RlXSAtLT58Q3JlYXRlIHB1bGwgUmVxdWVzdHwgQihXZSBtZXJnZSB0aGUgcHVsbCByZXF1ZXN0KVxuICAgIEIgLS0-IEN7R2l0aHViIHJ1bnMgY29kZSBjaGVja3N9XG4gICAgQyAtLT58RGVwbG95bWVudHwgRFtEZXZdXG4gICAgRCAtLT58TG9va3MgZ29vZD8gUHVzaCB0byBQcm9kIXwgRVtQcm9maXQhXSBcbiIsIm1lcm1haWQiOiJ7XG4gIFwidGhlbWVcIjogXCJkZWZhdWx0XCJcbn0iLCJ1cGRhdGVFZGl0b3IiOmZhbHNlLCJhdXRvU3luYyI6dHJ1ZSwidXBkYXRlRGlhZ3JhbSI6ZmFsc2V9)
 
 </div>
+
+Seems simple right? Well, it's not. We have a few different components that we need in place prior to _magic_ happening.
+
+Bridges is built upon a couple different technologies all contained in this monorepo.
+
+- [Proxmox](https://www.proxmox.com/)
+- [Terraform](https://github.com/magfest/bridges/tree/main/terraform)
+- [Ansible](https://github.com/magfest/bridges/tree/main/ansible)
+- [GitHub](https://github.com/)
 
 ## :ferris_wheel:&nbsp; Want to help
 
 Easiest way to get involved is to fork this repo and make a pull request or click this [handy dandy link](https://github.dev/magfest/bridges/) to get started.
 
-Using the link will open a browser tab with a form where you can submit make changes and submit a pull request! See a typo, fix it. Could we do something better (answer is yes) tell us with your pull request!
+Using the link will open a browser tab with a form where you can submit make changes and submit a pull request! See a typo, fix it. Could we do something better (answer is probably yes) tell us with your pull request!
