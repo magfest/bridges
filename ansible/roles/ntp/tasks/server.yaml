@@ -1,0 +1,17 @@
+---
+- name: Install NTP server package
+  ansible.builtin.apt:
+    name: "{{ packages.ntp }}"
+    install_recommends: false
+    update_cache: true
+    cache_valid_time: 3600
+    autoclean: true
+    autoremove: true
+
+- name: Copy chrony.conf
+  ansible.builtin.copy:
+    src: chrony.conf
+    dest: /etc/chrony/chrony.conf
+    mode: "0644"
+  notify:
+    - Restart chronyd

@@ -29,6 +29,9 @@
 
 - include: "etc_hosts.yaml"
 
+- include: mail.yaml
+  when: "'smtp' not in group_names"
+
 - include: user.yaml
 
 - include: timesyncd.yaml

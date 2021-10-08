@@ -1,0 +1,10 @@
+---
+- name: Allow port 25 for SMTP
+  community.general.ufw:
+    rule: allow
+    proto: tcp
+    port: "25"
+
+- name: Reload UFW
+  community.general.ufw:
+    state: reloaded

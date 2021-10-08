@@ -7,3 +7,7 @@
   ansible.builtin.service:
     name: systemd-timesyncd
     state: restarted
+
+- name: Restart postfix
+  ansible.builtin.service:
+    name: postfix

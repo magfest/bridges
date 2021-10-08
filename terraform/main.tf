@@ -61,5 +61,8 @@ resource "local_file" "inventory" {
 
     [rsyslog]
     ${module.rsyslog.hostname} ansible_host=${module.rsyslog.ip_address}
+
+    [smtp]
+    ${module.smtp.hostname} ansible_host=${module.smtp.ip_address}
     EOF
 }
