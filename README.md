@@ -19,3 +19,9 @@
 ## :book:&nbsp; Overview
 
 Bridges is our attempt at converting our at-event infrastructre into code. Histroically VMs, LXC containers, and hosts were all built and treated like pets. Feeding, care, and cleaning were done by humans. We wanted to make it easier for people to get started with our infrastructure and make it easier to maintain or recover from a disaster.
+
+## :ferris_wheel:&nbsp; Want to help
+
+Easiest way to get involved is to fork this repo and make a pull request or click this [handy dandy link](https://github.dev/magfest/bridges/) to get started.
+
+Using the link will open a browser tab with a form where you can submit make changes and submit a pull request! See a typo, fix it. Could we do something better (answer is yes) tell us with your pull request!
