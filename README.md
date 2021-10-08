@@ -20,6 +20,10 @@
 
 Bridges is our attempt at converting our at-event infrastructre into code. Histroically VMs, LXC containers, and hosts were all built and treated like pets. Feeding, care, and cleaning were done by humans. We wanted to make it easier for people to get started with our infrastructure and make it easier to maintain or recover from a disaster.
 
+## :telescope:&nbsp; How does it work?
+
+[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcbiAgICBBW1lvdSBtYWtlIHNvbWUgYXdlc29tZSBjb2RlXSAtLT58Q3JlYXRlIHB1bGwgUmVxdWVzdHwgQihXZSBtZXJnZSB0aGUgcHVsbCByZXF1ZXN0KVxuICAgIEIgLS0-IEN7R2l0aHViIHJ1bnMgY29kZSBjaGVja3N9XG4gICAgQyAtLT58RGVwbG95bWVudHwgRFtEZXZdXG4gICAgRCAtLT58TG9va3MgZ29vZD8gUHVzaCB0byBQcm9kIXwgRVtpUGhvbmVdXG4gICIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2UsImF1dG9TeW5jIjp0cnVlLCJ1cGRhdGVEaWFncmFtIjpmYWxzZX0)](https://mermaid.live/edit#eyJjb2RlIjoiZ3JhcGggVERcbiAgICBBW1lvdSBtYWtlIHNvbWUgYXdlc29tZSBjb2RlXSAtLT58Q3JlYXRlIHB1bGwgUmVxdWVzdHwgQihXZSBtZXJnZSB0aGUgcHVsbCByZXF1ZXN0KVxuICAgIEIgLS0-IEN7R2l0aHViIHJ1bnMgY29kZSBjaGVja3N9XG4gICAgQyAtLT58RGVwbG95bWVudHwgRFtEZXZdXG4gICAgRCAtLT58TG9va3MgZ29vZD8gUHVzaCB0byBQcm9kIXwgRVtpUGhvbmVdXG4gICIsIm1lcm1haWQiOiJ7XG4gIFwidGhlbWVcIjogXCJkZWZhdWx0XCJcbn0iLCJ1cGRhdGVFZGl0b3IiOmZhbHNlLCJhdXRvU3luYyI6dHJ1ZSwidXBkYXRlRGlhZ3JhbSI6ZmFsc2V9)
+
 ## :ferris_wheel:&nbsp; Want to help
 
 Easiest way to get involved is to fork this repo and make a pull request or click this [handy dandy link](https://github.dev/magfest/bridges/) to get started.
