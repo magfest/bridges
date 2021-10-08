@@ -4,5 +4,5 @@
     path: /etc/postfix/main.cf
     regexp: '^relayhost = .*$'
     line: 'relayhost = smtp.{{ ansible_domain }}'
-  notify: 
+  notify:
     - Restart postfix
