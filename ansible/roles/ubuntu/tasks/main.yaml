@@ -29,6 +29,8 @@
 
 - include: "etc_hosts.yaml"
 
+- include: mail.yaml
+
 - include: user.yaml
 
 - include: timesyncd.yaml

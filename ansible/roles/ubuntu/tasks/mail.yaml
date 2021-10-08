@@ -1,0 +1,8 @@
+---
+- name: Set SMTP relayhost
+  ansible.builtin.lineinfile:
+    path: /etc/postfix/main.cf
+    regexp: '^relayhost = .*$'
+    line: 'relayhost = smtp.{{ ansible_domain }}'
+  notify: 
+    - Restart postfix
