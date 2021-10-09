@@ -1,0 +1,70 @@
+---
+- name: Initial Ubuntu setup
+  hosts:
+  - all
+  remote_user: root
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  roles:
+  - ubuntu
+
+- name: DNS server setup
+  hosts:
+  - dns
+  remote_user: root
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  roles:
+  - dns
+
+- name: FreeIPA client enrollment
+  hosts:
+  - all
+  remote_user: root
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  roles:
+  - freeipa_enroll
+
+- name: CUPS setup
+  hosts:
+  - cups
+  remote_user: root
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  roles:
+  - cups
+
+- name: rsyslog setup
+  hosts:
+  - rsyslog
+  remote_user: root
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  roles:
+  - rsyslog
+
+- name: NTP setup
+  hosts:
+  - ntp
+  remote_user: root
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  roles:
+  - ntp
+
+- name: SMTP setup
+  hosts:
+  - smtp
+  remote_user: root
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  roles:
+  - smtp

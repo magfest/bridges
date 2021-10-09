@@ -1,0 +1,10 @@
+---
+- name: Allow port 123 for NTP
+  community.general.ufw:
+    rule: allow
+    proto: udp
+    port: "123"
+
+- name: Reload UFW
+  community.general.ufw:
+    state: reloaded

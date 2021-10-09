@@ -1,23 +1,23 @@
 ---
 all:
   children:
-    # Control Plane group, do not change the 'control-plane' name
-    # hosts should match the filenames in 'host_vars'
-    # dhcp:
-    #   hosts:
-    #     dhcp1:
-    #     dhcp2:
-    # dns:
-    #   hosts:
-    #     dns1:
-    #     dns2:
-    # rsyslog:
-    #   hosts:
-    #     rsyslog-1:
-    # cups:
-    #   hosts:
-    #     cups-1:
-    # dns:
-    #   hosts:
-    #     dns-1:
-    #     dns-2:
+  # Control Plane group, do not change the 'control-plane' name
+  # hosts should match the filenames in 'host_vars'
+  # dhcp:
+  #   hosts:
+  #     dhcp1:
+  #     dhcp2:
+  # dns:
+  #   hosts:
+  #     dns1:
+  #     dns2:
+  # rsyslog:
+  #   hosts:
+  #     rsyslog-1:
+  # cups:
+  #   hosts:
+  #     cups-1:
+  # dns:
+  #   hosts:
+  #     dns-1:
+  #     dns-2:

@@ -32,3 +32,5 @@ terraform.rc
 .terraform*
 # ansible
 geerlingguy.pip
+# VSCode
+.vscode/

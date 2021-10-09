@@ -1,7 +1,6 @@
 ---
 - name: Configure DNS servers
   include: "server.yaml"
-  when: ansible_hostname | regex_search("^dns[0-9]+\.")
 
-- name: Populate /etc/hosts
-  include: "etc_hosts.yaml"
+- name: Configure DNS firewall rules
+  include: "firewall_rules.yaml"

@@ -1,0 +1,6 @@
+---
+- name: Configure SMTP servers
+  include: "server.yaml"
+
+- name: Configure SMTP firewall rules
+  include: "firewall_rules.yaml"

@@ -27,11 +27,15 @@
 
 - include: network.yaml
 
+- include: "etc_hosts.yaml"
+
+- include: mail.yaml
+  when: "'smtp' not in group_names"
+
 - include: user.yaml
 
 - include: timesyncd.yaml
 
-- include: freeipa_enroll.yml
 # - name: Show facts available on the system
 #   ansible.builtin.debug:
 #     var: ansible_facts
