@@ -1,8 +1,24 @@
+{% if branch == "prod" %}
+zone "magevent.net" IN {
+        type master;
+        file "/var/lib/bind/magevent.net.zone";
+        notify no;
+};
+
+{% for item in branch_list %}
+zone "{{ item.branch }}.magevent.net" IN {
+        type slave;
+        file "/var/lib/bind/{{ item.branch }}.magevent.net.zone";
+        masters { {{ (item.subnet.split('.'))[0:3] | join('.') }}.110; {{ (item.subnet.split('.'))[0:3] | join('.') }}.120; };
+};
+{% endfor %}
+{% else %}
 zone "{{ zone_prefix }}magevent.net" IN {
         type master;
         file "/var/lib/bind/{{ zone_prefix }}magevent.net.zone";
-        notify no;
+        allow-transfer {10.101.22.110; 10.101.22.120;};
 };
+{% endif %}
 
 zone "win.{{ zone_prefix }}magevent.net" {
         type stub;

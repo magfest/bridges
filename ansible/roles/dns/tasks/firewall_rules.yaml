@@ -1,8 +1,14 @@
 ---
-- name: Allow port 53 for DNS
+- name: Allow port 53 UDP for DNS
   community.general.ufw:
     rule: allow
     proto: udp
+    port: "53"
+
+- name: Allow port 53 TCP for DNS
+  community.general.ufw:
+    rule: allow
+    proto: tcp
     port: "53"
 
 - name: Reload UFW

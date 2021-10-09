@@ -64,8 +64,8 @@
     owner: root
     group: bind
   with_items:
-  - "onsite.reggie.magfest.org.zone"
-  - "onsite.uber.magfest.org.zone"
-  - "win.magevent.net.zone"
+  - "onsite.reggie.{{ zone_prefix }}magfest.org.zone"
+  - "onsite.uber.{{ zone_prefix }}magfest.org.zone"
+  - "win.{{ zone_prefix }}magevent.net.zone"
   notify:
   - Restart named
