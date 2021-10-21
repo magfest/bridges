@@ -13,6 +13,7 @@ magevent_net_hosts:
   - { name: "dns2", ip: "{{ branch_subnet_trimmed }}.120", type: "A" }
   - { name: "graylog", ip: "{{ branch_subnet_trimmed }}.129", type: "A" }
   - { name: "syslog", ip: "{{ branch_subnet_trimmed }}.130", type: "A" }
+  - { name: "librenms", ip: "{{ branch_subnet_trimmed }}.151", type: "A" }
   - { name: "zabbix-new", ip: "{{ branch_subnet_trimmed }}.201", type: "A" }
   # MAGCloud static/not-in-Terraform-yet entries
   - { name: "salt", ip: "10.101.22.8", type: "A" }
@@ -43,7 +44,6 @@ magevent_net_hosts:
   - { name: "gitlab", ip: "10.101.22.134", type: "A" }
   - { name: "gitlab-runner-1", ip: "10.101.22.135", type: "A" }
   - { name: "stackstorm", ip: "10.101.22.136", type: "A" }
-  - { name: "librenms", ip: "10.101.22.151", type: "A" }
   - { name: "zabbix", ip: "10.101.22.200", type: "A" }
   # MAGCloud management IPs
   - { name: "oa1", ip: "10.101.21.11", type: "A" }
