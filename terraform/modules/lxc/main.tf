@@ -79,7 +79,7 @@ variable "nets" {
 }
 
 output "ip_address" {
-  value = "${lookup(var.objects[0], "ip")}"
+  value = "${lookup(nets[0], "ip")}"
 }
 
 output "hostname" {
