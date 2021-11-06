@@ -30,13 +30,15 @@ EOT
   }
 
   # I don't know if this will work...
-  network {
+  dynamic "nets" {
     for_each = nets
-    name     = "eth${each.key}"
-    bridge   = "vmbr999"
-    tag      = each.tag
-    ip       = "${each.ip}/${each.cidr}"
-    gw       = each.key == 0 ? var.gateway : null
+    network {
+      name     = "eth${each.key}"
+      bridge   = "vmbr999"
+      tag      = each.tag
+      ip       = "${each.ip}/${each.cidr}"
+      gw       = each.key == 0 ? var.gateway : null
+    }
   }
 
 }
