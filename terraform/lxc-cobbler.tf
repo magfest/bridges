@@ -8,6 +8,7 @@ module "cobbler" {
   extra_nets   = [
     {
       ip = "10.101.69.1"
+      cidr = "24"
       tag = "69"
     }
   ]

@@ -40,10 +40,10 @@ EOT
   # I don't know if this will work...
   network {
     for_each = extra_nets
-    name = "eth${extra_nets.key}"
-    bridge = "vmbr999"
-    tag = extra_nets.tag
-    ip = extra_nets.ip
+    name     = "eth${extra_nets.key}"
+    bridge   = "vmbr999"
+    tag      = extra_nets.tag
+    ip       = "${extra_nets.ip}/${extra_nets.cidr}"
   }
 
 }
@@ -90,14 +90,10 @@ variable "extra_nets" {
   type = list(object({
     tag = string
     ip = string
+    cidr = string
   }))
-  description = "A list of objects containing VLAN tags and IPs for additional network interfaces"
-  default = [
-    {
-      ip = ""
-      tag = ""
-    }
-  ]
+  description = "Additional network interface data"
+  default = null
 }
 
 output "ip_address" {
