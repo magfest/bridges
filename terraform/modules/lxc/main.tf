@@ -40,7 +40,7 @@ EOT
   # I don't know if this will work...
   network {
     count = length(var.additional_interfaces)
-    name = var.additional_interfaces[count.index]
+    name = "eth${count.index}"
     bridge = "vmbr999"
     tag = var.additional_tags[count.index]
     ip = var.additional_ips[count.index]
@@ -85,12 +85,6 @@ variable "memory" {
   description = "Size of memory in megabytes"
   type        = string
   default     = "512"
-}
-
-variable "additional_interfaces" {
-  description = "Additional network interfaces"
-  type        = list(string)
-  default     = []
 }
 
 variable "additional_ips" {
