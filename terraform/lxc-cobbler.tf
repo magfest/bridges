@@ -9,7 +9,7 @@ module "cobbler" {
       ip       = cidrhost(var.subnet, 69)
       cidr     = local.cidr_suffix
       tag      = "22"
-    }
+    },
     {
       ip       = "10.101.69.1"
       cidr     = "24"
