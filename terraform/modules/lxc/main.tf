@@ -39,7 +39,7 @@ EOT
 
   # I don't know if this will work...
   network {
-    count = length(var.additional_interfaces)
+    count = length(var.additional_tags)
     name = "eth${count.index}"
     bridge = "vmbr999"
     tag = var.additional_tags[count.index]
