@@ -63,5 +63,8 @@ resource "local_file" "inventory" {
 
     [smtp]
     ${module.smtp.hostname} ansible_host=${module.smtp.ip_address}
+
+    [cobbler]
+    ${module.cobbler.hostname} ansible_host=${module.cobbler.ip_address}
     EOF
 }

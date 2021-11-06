@@ -37,6 +37,15 @@ EOT
     gw     = var.gateway
   }
 
+  # I don't know if this will work...
+  network {
+    count = length(var.additional_interfaces)
+    name = var.additional_interfaces[count.index]
+    bridge = "vmbr999"
+    tag = var.additional_tags[count.index]
+    ip = var.additional_ips[count.index]
+  }
+
 }
 
 variable "hostname" {
@@ -76,6 +85,24 @@ variable "memory" {
   description = "Size of memory in megabytes"
   type        = string
   default     = "512"
+}
+
+variable "additional_interfaces" {
+  description = "Additional network interfaces"
+  type        = list(string)
+  default     = []
+}
+
+variable "additional_ips" {
+  description = "Additional IP addresses"
+  type        = list(string)
+  default     = []
+}
+
+variable "additional_tags" {
+  description = "Additional VLAN tags"
+  type        = list(string)
+  default     = []
 }
 
 output "ip_address" {
