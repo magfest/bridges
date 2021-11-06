@@ -39,11 +39,11 @@ EOT
 
   # I don't know if this will work...
   network {
-    count = length(var.additional_tags)
-    name = "eth${count.index}"
+    for_each = extra_nets
+    name = "eth${extra_nets.key}"
     bridge = "vmbr999"
-    tag = var.additional_tags[count.index]
-    ip = var.additional_ips[count.index]
+    tag = extra_nets.tag
+    ip = extra_nets.ip
   }
 
 }
@@ -87,16 +87,12 @@ variable "memory" {
   default     = "512"
 }
 
-variable "additional_ips" {
-  description = "Additional IP addresses"
-  type        = list(string)
-  default     = []
-}
-
-variable "additional_tags" {
-  description = "Additional VLAN tags"
-  type        = list(string)
-  default     = []
+variable "extra_nets" {
+  type = list(object({
+    tag = string
+    ip = string
+  }))
+  description = "A list of objects containing VLAN tags and IPs for additional network interfaces"
 }
 
 output "ip_address" {

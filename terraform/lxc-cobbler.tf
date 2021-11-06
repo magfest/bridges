@@ -5,6 +5,10 @@ module "cobbler" {
   gateway      = cidrhost(var.subnet, 1)
   cidr_mask    = local.cidr_suffix
   hostname     = "cobbler.${local.domain}"
-  additional_ips = ["10.101.69.1"]
-  additional_tags = ["69"]
+  extra_nets   = [
+    {
+      ip = "10.101.69.1"
+      tag = "69"
+    }
+  ]
 }
