@@ -33,11 +33,11 @@ EOT
   dynamic "network" {
     for_each = var.nets
     content {
-      name     = "eth${each.key}"
+      name     = "eth${network.key}"
       bridge   = "vmbr999"
-      tag      = each.tag
-      ip       = "${each.ip}/${each.cidr}"
-      gw       = each.key == 0 ? var.gateway : null
+      tag      = network.tag
+      ip       = "${network.ip}/${network.cidr}"
+      gw       = network.key == 0 ? var.gateway : null
     }
   }
 
