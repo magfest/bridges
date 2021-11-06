@@ -53,7 +53,6 @@ variable "hostname" {
   type        = string
 }
 
-
 variable "cluster_name" {
   description = "The name to use for all the cluster resources"
   type        = string
@@ -93,7 +92,12 @@ variable "extra_nets" {
     ip = string
   }))
   description = "A list of objects containing VLAN tags and IPs for additional network interfaces"
-  default = [{}]
+  default = [
+    {
+      ip = ""
+      tag = ""
+    }
+  ]
 }
 
 output "ip_address" {
