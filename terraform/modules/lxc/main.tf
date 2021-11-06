@@ -93,6 +93,7 @@ variable "extra_nets" {
     ip = string
   }))
   description = "A list of objects containing VLAN tags and IPs for additional network interfaces"
+  default = [{}]
 }
 
 output "ip_address" {
