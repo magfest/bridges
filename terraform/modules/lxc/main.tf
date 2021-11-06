@@ -30,9 +30,9 @@ EOT
   }
 
   # I don't know if this will work...
-  dynamic "nets" {
+  dynamic "network" {
     for_each = var.nets
-    network {
+    content {
       name     = "eth${each.key}"
       bridge   = "vmbr999"
       tag      = each.tag
