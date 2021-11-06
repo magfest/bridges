@@ -29,21 +29,14 @@ EOT
     size    = var.size
   }
 
-  network {
-    name   = "eth0"
-    bridge = "vmbr999"
-    tag    = "22"
-    ip     = "${var.ip_address}/${var.cidr_mask}"
-    gw     = var.gateway
-  }
-
   # I don't know if this will work...
   network {
-    for_each = extra_nets
-    name     = "eth${extra_nets.key}"
+    for_each = nets
+    name     = "eth${nets.key}"
     bridge   = "vmbr999"
-    tag      = extra_nets.tag
-    ip       = "${extra_nets.ip}/${extra_nets.cidr}"
+    tag      = nets.tag
+    ip       = "${nets.ip}/${nets.cidr}"
+    gw       = nets.key == 0 ? var.gateway : null
   }
 
 }
@@ -59,18 +52,8 @@ variable "cluster_name" {
   default     = "pve1"
 }
 
-variable "ip_address" {
-  description = "IP address of host"
-  type        = string
-}
-
 variable "gateway" {
   description = "IP gateway address of host"
-  type        = string
-}
-
-variable "cidr_mask" {
-  description = "CIDR for IP subnet"
   type        = string
 }
 
@@ -86,18 +69,17 @@ variable "memory" {
   default     = "512"
 }
 
-variable "extra_nets" {
+variable "nets" {
   type = list(object({
     tag = string
     ip = string
     cidr = string
   }))
   description = "Additional network interface data"
-  default = null
 }
 
 output "ip_address" {
-  value = var.ip_address
+  value = nets[0].ip
 }
 
 output "hostname" {
