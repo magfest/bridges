@@ -31,7 +31,7 @@ EOT
 
   # I don't know if this will work...
   dynamic "nets" {
-    for_each = nets
+    for_each = var.nets
     network {
       name     = "eth${each.key}"
       bridge   = "vmbr999"
