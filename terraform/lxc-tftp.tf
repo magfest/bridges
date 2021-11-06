@@ -9,5 +9,5 @@ module "tftp" {
       cidr     = local.cidr_suffix
       tag      = "22"
     }
-  }
+  ]
 }

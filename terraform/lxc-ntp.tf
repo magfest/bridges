@@ -11,5 +11,5 @@ module "ntp" {
       cidr     = local.cidr_suffix
       tag      = "22"
     }
-  }
+  ]
 }

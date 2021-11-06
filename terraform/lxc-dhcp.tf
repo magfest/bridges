@@ -10,5 +10,5 @@ module "dhcp" {
       cidr     = local.cidr_suffix
       tag      = "22"
     }
-  }
+  ]
 }

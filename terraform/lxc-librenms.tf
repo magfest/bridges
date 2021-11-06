@@ -9,5 +9,5 @@ module "librenms" {
       cidr     = local.cidr_suffix
       tag      = "22"
     }
-  }
+  ]
 }
