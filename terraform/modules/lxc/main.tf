@@ -32,11 +32,11 @@ EOT
   # I don't know if this will work...
   network {
     for_each = nets
-    name     = "eth${nets.key}"
+    name     = "eth${each.key}"
     bridge   = "vmbr999"
-    tag      = nets.tag
-    ip       = "${nets.ip}/${nets.cidr}"
-    gw       = nets.key == 0 ? var.gateway : null
+    tag      = each.tag
+    ip       = "${each.ip}/${each.cidr}"
+    gw       = each.key == 0 ? var.gateway : null
   }
 
 }
