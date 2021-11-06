@@ -36,7 +36,7 @@ EOT
       name     = "eth${network.key}"
       bridge   = "vmbr999"
       tag      = network.value["tag"]
-      ip       = "${network.value["ip"]}/${network.value.["cidr"]}"
+      ip       = "${network.value["ip"]}/${network.value["cidr"]}"
       gw       = network.key == 0 ? var.gateway : null
     }
   }
