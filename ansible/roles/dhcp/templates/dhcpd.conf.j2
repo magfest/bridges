@@ -23,7 +23,7 @@ shared-network {{ zone.name }} {
 {% endif -%}
 {% endfor %}
 {% if 'next_server' in zone %}
-		next_server {{ zone.next_server }};
+		next-server {{ zone.next_server }};
 {% endif %}
 {% if 'filename' in zone %}
 		filename "{{ zone.filename }}";
@@ -55,7 +55,7 @@ shared-network {{ iteration.name_prefix }}{{ n|string }} {
 {% endif %}
 {% endfor %}
 {% if 'next_server' in iteration %}
-		next_server {{ iteration.next_server }};
+		next-server {{ iteration.next_server }};
 {% endif %}
 {% if 'filename' in iteration %}
 		filename "{{ iteration.filename }}";
