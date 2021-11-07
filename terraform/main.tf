@@ -43,7 +43,6 @@ resource "local_file" "inventory" {
   content  = <<-EOF
     [dhcp]
     ${module.dhcp[0].hostname} ansible_host=${module.dhcp[0].ip_address}
-    ${module.dhcp[1].hostname} ansible_host=${module.dhcp[1].ip_address}
 
     [dns]
     ${module.dns[0].hostname} ansible_host=${module.dns[0].ip_address}
