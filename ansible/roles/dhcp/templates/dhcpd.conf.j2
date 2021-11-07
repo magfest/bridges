@@ -36,7 +36,7 @@ shared-network {{ zone.name }} {
 {% endfor -%}
 
 {% for iteration in dhcp_iterations %}
-{% for n in range(iteration.iterate_range[0], iteration.iterate_range[1])
+{% for n in range(iteration.iterate_range[0], iteration.iterate_range[1]) %}
 shared-network {{ iteration.name_prefix + str(n) }} {
     not authoritative;
 	subnet {{ iteration.subnet_prefix + str(n) + iteration.subnet_suffix }} netmask {{ zone.netmask }} {
