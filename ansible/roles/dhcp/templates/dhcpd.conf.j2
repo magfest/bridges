@@ -23,10 +23,10 @@ shared-network {{ zone.name }} {
 		{%- endif -%}
 		{%- endfor %}
 
-		{%- if 'next-server' in zone -%}next-server {{ zone.next-server }};{% endif %}
+		{%- if 'next-server' in zone -%}next_server {{ zone.next_server }};{% endif %}
 		{%- if 'filename' in zone -%}filename "{{ zone.filename }}";{% endif %}
-		default-lease-time {{ zone.default-lease-time }};
-		max-lease-time {{ zone.max-lease-time }};
+		default-lease-time {{ zone.default_lease_time }};
+		max-lease-time {{ zone.max_lease_time }};
 		{%- if 'range' in zone -%}
 		range {{ zone.range[0] }} {{ zone.range[1] }};
 		{%- endif -%}
@@ -52,10 +52,10 @@ shared-network {{ iteration.name_prefix + str(n) }} {
 		{%- endif -%}
 		{%- endfor %}
 
-		{%- if 'next-server' in iteration -%}next-server {{ iteration.next-server }};{% endif %}
+		{%- if 'next-server' in iteration -%}next_server {{ iteration.next_server }};{% endif %}
 		{%- if 'filename' in iteration -%}filename "{{ iteration.filename }}";{% endif %}
-		default-lease-time {{ iteration.default-lease-time }};
-		max-lease-time {{ iteration.max-lease-time }};
+		default-lease-time {{ iteration.default_lease_time }};
+		max-lease-time {{ iteration.max_lease_time }};
 		{%- if 'range' in iteration -%}
 		range {{ iteration.range[0] }} {{ iteration.range[1] }};
 		{%- endif -%}
