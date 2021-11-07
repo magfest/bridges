@@ -4,6 +4,9 @@ dhcp_zones:
     subnet: "10.101.12.0",
     filename: "lpxelinux.0",
     netmask: "255.255.255.0",
+    default_lease_time: 3600,
+    max_lease_time: 3600,
+    next_server: "10.101.22.9",
     options: {
       routers: ["10.101.12.1"],
       tftp_server_name: "tftp.magevent.net",
@@ -16,6 +19,9 @@ dhcp_zones:
     subnet: "10.101.88.0",
     filename: "lpxelinux.0",
     netmask: "255.255.248.0",
+    default_lease_time: 3600,
+    max_lease_time: 3600,
+    next_server: "10.101.22.9",
     options: {
       routers: ["10.101.88.1"],
       tftp_server_name: "tftp.magevent.net",
@@ -28,6 +34,9 @@ dhcp_zones:
     subnet: "10.101.11.0",
     filename: "lpxelinux.0",
     netmask: "255.255.255.0",
+    default_lease_time: 3600,
+    max_lease_time: 3600,
+    next_server: "10.101.22.9",
     options: {
       routers: ["10.101.11.1"],
       tftp_server_name: "tftp.magevent.net",
@@ -40,6 +49,9 @@ dhcp_zones:
     subnet: "10.101.10.0",
     filename: "lpxelinux.0",
     netmask: "255.255.255.0",
+    default_lease_time: 3600,
+    max_lease_time: 3600,
+    next_server: "10.101.22.9",
     options: {
       routers: ["10.101.10.1"],
       tftp_server_name: "tftp.magevent.net",
@@ -53,6 +65,9 @@ dhcp_zones:
 - { name: "LWAPS-MAG-CSW-1",
     subnet: "10.101.20.0",
     netmask: "255.255.255.0",
+    default_lease_time: 3600,
+    max_lease_time: 3600,
+    next_server: "10.101.22.9",
     options: {
       routers: ["10.101.20.1"],
       tftp_server_name: "tftp.magevent.net",
@@ -64,6 +79,9 @@ dhcp_zones:
 - { name: "Arcade",
     subnet: "10.48.0.0",
     netmask: "255.255.0.0",
+    default_lease_time: 3600,
+    max_lease_time: 3600,
+    next_server: "10.101.22.9",
     options: {
       routers: ["10.48.0.1"],
       tftp_server_name: "tftp.magevent.net",
@@ -79,6 +97,9 @@ dhcp_iterations:
     subnet_suffix: ".10.0",
     filename: "lpxelinux.0",
     netmask: "255.255.255.0",
+    default_lease_time: 3600,
+    max_lease_time: 3600,
+    next_server: "10.101.22.9",
     options: {
       routers_suffix: ".10.1",
       tftp_server_name: "tftp.magevent.net",
