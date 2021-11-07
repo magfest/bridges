@@ -14,7 +14,7 @@ dhcp_zones:
       domain_name_servers: ["10.101.22.110", "10.101.22.120"]
     },
     range: ["10.101.21.6", "10.101.21.250"]
-  }
+}
 - { name: "MAGCloudInstances",
     subnet: "10.101.22.0",
     filename: "lpxelinux.0",
@@ -29,7 +29,7 @@ dhcp_zones:
       domain_name_servers: ["10.101.22.110", "10.101.22.120"]
     },
     range: ["10.101.22.210", "10.101.22.250"]
-  }
+}
 - { name: "MAGFest-Techops-WiFi",
     subnet: "10.101.12.0",
     filename: "lpxelinux.0",
@@ -44,7 +44,7 @@ dhcp_zones:
       domain_name_servers: ["10.101.22.110", "10.101.22.120"]
     },
     range: ["10.101.12.6", "10.101.12.250"]
-  }
+}
 - { name: "MAGFest-WiFi",
     subnet: "10.101.88.0",
     filename: "lpxelinux.0",
@@ -59,7 +59,7 @@ dhcp_zones:
       domain_name_servers: ["10.101.22.110", "10.101.22.120"]
     },
     range: ["10.101.88.6", "10.101.95.250"]
-  }
+}
 - { name: "MAGFest-Critical-WiFi",
     subnet: "10.101.11.0",
     filename: "lpxelinux.0",
@@ -74,7 +74,7 @@ dhcp_zones:
       domain_name_servers: ["10.101.22.110", "10.101.22.120"]
     },
     range: ["10.101.11.6", "10.101.11.250"]
-  }
+}
 - { name: "Clients-MAG-CSW-1",
     subnet: "10.101.10.0",
     filename: "lpxelinux.0",
@@ -91,7 +91,7 @@ dhcp_zones:
       option_67: "lpxelinux.0"
     },
     range: ["10.101.10.6", "10.101.10.250"]
-  }
+}
 - { name: "LWAPS-MAG-CSW-1",
     subnet: "10.101.20.0",
     netmask: "255.255.255.0",
@@ -105,7 +105,7 @@ dhcp_zones:
       domain_name_servers: ["10.101.22.110", "10.101.22.120"]
     },
     range: ["10.101.20.6", "10.101.20.250"],
-  }
+}
 - { name: "Arcade",
     subnet: "10.48.0.0",
     netmask: "255.255.0.0",
@@ -117,9 +117,9 @@ dhcp_zones:
       tftp_server_name: "tftp.magevent.net",
       domain_name: "magevent.net",
       domain_name_servers: ["10.101.22.110", "10.101.22.120"]
-    }, 
+    },
     range: ["10.48.1.0", "10.48.1.50"]
-  }
+}
 dhcp_iterations:
 - { iterate_range: [102, 254],
     name_prefix: "Clients-MAG-CSW-",
@@ -139,4 +139,4 @@ dhcp_iterations:
       option_67: "lpxelinux.0"
     },
     range_suffix: [".10.6", ".10.250"]
-  }
+}

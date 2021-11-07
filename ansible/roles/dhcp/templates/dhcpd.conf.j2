@@ -12,28 +12,28 @@ option data-vlan-id code 192 = unsigned integer 16;
 {% for zone in dhcp_zones -%}
 shared-network {{ zone.name }} {
     not authoritative;
-	subnet {{ zone.subnet }} netmask {{ zone.netmask }} {
+    subnet {{ zone.subnet }} netmask {{ zone.netmask }} {
 {% for option in zone.options|dict2items %}
 {% if option.value is string %}
-		option {{ option.key|replace("_", "-") }} "{{ option.value }}";
+        option {{ option.key|replace("_", "-") }} "{{ option.value }}";
 {% elif option.value is iterable %}
-		option {{ option.key|replace("_", "-") }} {{ ', '.join(option.value) }};
+        option {{ option.key|replace("_", "-") }} {{ ', '.join(option.value) }};
 {% elif option.value|ipaddr %}
-		option {{ option.key|replace("_", "-") }} {{ option.value }};
+        option {{ option.key|replace("_", "-") }} {{ option.value }};
 {% endif -%}
 {% endfor %}
 {% if 'next_server' in zone %}
-		next-server {{ zone.next_server }};
+        next-server {{ zone.next_server }};
 {% endif %}
 {% if 'filename' in zone %}
-		filename "{{ zone.filename }}";
+        filename "{{ zone.filename }}";
 {% endif %}
-		default-lease-time {{ zone.default_lease_time }};
-		max-lease-time {{ zone.max_lease_time }};
+        default-lease-time {{ zone.default_lease_time }};
+        max-lease-time {{ zone.max_lease_time }};
 {% if 'range' in zone %}
-		range {{ zone.range[0] }} {{ zone.range[1] }};
+        range {{ zone.range[0] }} {{ zone.range[1] }};
 {% endif %}
-	}
+    }
 }
 
 {% endfor -%}
@@ -42,30 +42,30 @@ shared-network {{ zone.name }} {
 {% for n in range(iteration.iterate_range[0], iteration.iterate_range[1]) -%}
 shared-network {{ iteration.name_prefix }}{{ n|string }} {
     not authoritative;
-	subnet {{ iteration.subnet_prefix }}{{ n|string }}{{ iteration.subnet_suffix }} netmask {{ iteration.netmask }} {
+    subnet {{ iteration.subnet_prefix }}{{ n|string }}{{ iteration.subnet_suffix }} netmask {{ iteration.netmask }} {
 {% for option in iteration.options|dict2items %}
 {% if option.key == "routers_suffix" %}
-		option routers {{ iteration.subnet_prefix }}{{ n|string }}{{ option.value }};
+        option routers {{ iteration.subnet_prefix }}{{ n|string }}{{ option.value }};
 {% elif option.value is string %}
-		option {{ option.key|replace("_", "-") }} "{{ option.value }}";
+        option {{ option.key|replace("_", "-") }} "{{ option.value }}";
 {% elif option.value is iterable %}
-		option {{ option.key|replace("_", "-") }} {{ ', '.join(option.value) }};
+        option {{ option.key|replace("_", "-") }} {{ ', '.join(option.value) }};
 {% elif option.value|ipaddr %}
-		option {{ option.key|replace("_", "-") }} {{ option.value }};
+        option {{ option.key|replace("_", "-") }} {{ option.value }};
 {% endif %}
 {% endfor %}
 {% if 'next_server' in iteration %}
-		next-server {{ iteration.next_server }};
+        next-server {{ iteration.next_server }};
 {% endif %}
 {% if 'filename' in iteration %}
-		filename "{{ iteration.filename }}";
+        filename "{{ iteration.filename }}";
 {% endif %}
-		default-lease-time {{ iteration.default_lease_time }};
-		max-lease-time {{ iteration.max_lease_time }};
+        default-lease-time {{ iteration.default_lease_time }};
+        max-lease-time {{ iteration.max_lease_time }};
 {% if 'range' in iteration %}
-		range {{ iteration.range[0] }} {{ iteration.range[1] }};
+        range {{ iteration.range[0] }} {{ iteration.range[1] }};
 {% endif %}
-	}
+    }
 }
 
 {% endfor -%}
