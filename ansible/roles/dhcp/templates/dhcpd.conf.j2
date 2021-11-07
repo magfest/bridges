@@ -15,7 +15,7 @@ shared-network {{ zone.name }} {
 	subnet {{ zone.subnet }} netmask {{ zone.netmask }} {
 		{% for option in zone.options|dict2items %}
 		{% if option.value is string %}
-		option {{ opt }} "{{ val }}";
+		option {{ option.key }} "{{ option.value }}";
 		{% elif option.value|ipaddr %}
 		option {{ option.key }} {{ option.value }};
 		{% elif option.value is iterable %}
@@ -44,7 +44,7 @@ shared-network {{ iteration.name_prefix }}{{ n|string }} {
 		{% if option.key == "routers_suffix" %}
 		option routers {{ iteration.subnet_prefix }}{{ n|string }}{{ option.value }}
 		{% elif option.value is string %}
-		option {{ opt }} "{{ val }}";
+		option {{ option.key }} "{{ option.value }}";
 		{% elif option.value|ipaddr %}
 		option {{ option.key }} {{ option.value }};
 		{% elif option.value is iterable %}
