@@ -1,0 +1,66 @@
+authoritative;  
+allow unknown-clients;  
+
+option boot-server code 66 = string;
+option option-66 code 66 = text;
+option option-67 code 67 = text;
+option vlan-flag code 190 = unsigned integer 8;
+option voice-vlan-id code 191 = unsigned integer 16;
+option data-vlan-id code 192 = unsigned integer 16;
+
+
+{% for zone in dhcp_zones %}
+shared-network {{ zone.name }} {
+    not authoritative;
+	subnet {{ zone.subnet }} netmask {{ zone.netmask }} {
+		{% for option in zone.options %}
+		{% if option.value is iterable -%}
+		option {{ option.key }} {{ ', '.join(option.value) }};
+		{% elif ansible.netcommon.ipaddr(option.value) -%}
+		option {{ option.key }} {{ option.value }};
+		{% elif option.value is string -%}
+		option {{ opt }} "{{ val }}";
+		{%- endif -%}
+		{%- endfor %}
+
+		{%- if 'next-server' in zone -%}next-server {{ zone.next-server }};{% endif %}
+		{%- if 'filename' in zone -%}filename "{{ zone.filename }}";{% endif %}
+		default-lease-time {{ zone.default-lease-time }};
+		max-lease-time {{ zone.max-lease-time }};
+		{%- if 'range' in zone -%}
+		range {{ zone.range[0] }} {{ zone.range[1] }};
+		{%- endif -%}
+	}
+}
+
+{% endfor -%}
+
+{% for iteration in dhcp_iterations %}
+{% for n in range(iteration.iterate_range[0], iteration.iterate_range[1])
+shared-network {{ iteration.name_prefix + str(n) }} {
+    not authoritative;
+	subnet {{ iteration.subnet_prefix + str(n) + iteration.subnet_suffix }} netmask {{ zone.netmask }} {
+		{% for option in iteration.options %}
+		{% if option.key == "routers_suffix" %}
+		option routers {{ iteration.subnet_prefix + str(n) + iteration.routers_suffix }}
+		{% elif option.value is iterable -%}
+		option {{ option.key }} {{ ', '.join(option.value) }};
+		{% elif ansible.netcommon.ipaddr(option.value) -%}
+		option {{ option.key }} {{ option.value }};
+		{% elif option.value is string -%}
+		option {{ opt }} "{{ val }}";
+		{%- endif -%}
+		{%- endfor %}
+
+		{%- if 'next-server' in iteration -%}next-server {{ iteration.next-server }};{% endif %}
+		{%- if 'filename' in iteration -%}filename "{{ iteration.filename }}";{% endif %}
+		default-lease-time {{ iteration.default-lease-time }};
+		max-lease-time {{ iteration.max-lease-time }};
+		{%- if 'range' in iteration -%}
+		range {{ iteration.range[0] }} {{ iteration.range[1] }};
+		{%- endif -%}
+	}
+}
+
+{% endfor -%}
+{% endfor -%}
