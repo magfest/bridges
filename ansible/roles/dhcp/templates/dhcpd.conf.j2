@@ -13,7 +13,7 @@ option data-vlan-id code 192 = unsigned integer 16;
 shared-network {{ zone.name }} {
     not authoritative;
 	subnet {{ zone.subnet }} netmask {{ zone.netmask }} {
-		{% for option in zone.options %}
+		{% for option in zone.options|dict2items %}
 		{% if option.value is iterable -%}
 		option {{ option.key }} {{ ', '.join(option.value) }};
 		{% elif ansible.netcommon.ipaddr(option.value) -%}
@@ -40,7 +40,7 @@ shared-network {{ zone.name }} {
 shared-network {{ iteration.name_prefix + str(n) }} {
     not authoritative;
 	subnet {{ iteration.subnet_prefix + str(n) + iteration.subnet_suffix }} netmask {{ zone.netmask }} {
-		{% for option in iteration.options %}
+		{% for option in iteration.options|dict2items %}
 		{% if option.key == "routers_suffix" %}
 		option routers {{ iteration.subnet_prefix + str(n) + iteration.routers_suffix }}
 		{% elif option.value is iterable -%}
