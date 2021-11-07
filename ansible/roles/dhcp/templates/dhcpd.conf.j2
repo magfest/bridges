@@ -16,7 +16,7 @@ shared-network {{ zone.name }} {
 		{% for option in zone.options|dict2items %}
 		{% if option.value is string %}
 		option {{ opt }} "{{ val }}";
-		{% elif option.value|ansible.netcommon.ipaddr %}
+		{% elif option.value|ipaddr %}
 		option {{ option.key }} {{ option.value }};
 		{% elif option.value is iterable %}
 		option {{ option.key }} {{ ', '.join(option.value) }};
@@ -45,7 +45,7 @@ shared-network {{ iteration.name_prefix }}{{ n|string }} {
 		option routers {{ iteration.subnet_prefix }}{{ n|string }}{{ option.value }}
 		{% elif option.value is string %}
 		option {{ opt }} "{{ val }}";
-		{% elif option.value|ansible.netcommon.ipaddr %}
+		{% elif option.value|ipaddr %}
 		option {{ option.key }} {{ option.value }};
 		{% elif option.value is iterable %}
 		option {{ option.key }} {{ ', '.join(option.value) }};
