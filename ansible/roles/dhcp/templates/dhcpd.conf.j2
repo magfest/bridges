@@ -16,15 +16,19 @@ shared-network {{ zone.name }} {
 		{% for option in zone.options|dict2items %}
 		{% if option.value is string %}
 		option {{ option.key }} "{{ option.value }}";
-		{% elif option.value|ipaddr %}
-		option {{ option.key }} {{ option.value }};
 		{% elif option.value is iterable %}
 		option {{ option.key }} {{ ', '.join(option.value) }};
+		{% elif option.value|ipaddr %}
+		option {{ option.key }} {{ option.value }};
 		{%- endif -%}
-		{%- endfor %}
+		{%- endfor -%}
 
-		{%- if 'next-server' in zone -%}next_server {{ zone.next_server }};{% endif %}
-		{%- if 'filename' in zone -%}filename "{{ zone.filename }}";{% endif %}
+		{%- if 'next_server' in zone -%}
+		next_server {{ zone.next_server }};
+		{% endif -%}
+		{%- if 'filename' in zone -%}
+		filename "{{ zone.filename }}";
+		{% endif -%}
 		default-lease-time {{ zone.default_lease_time }};
 		max-lease-time {{ zone.max_lease_time }};
 		{%- if 'range' in zone -%}
@@ -45,18 +49,22 @@ shared-network {{ iteration.name_prefix }}{{ n|string }} {
 		option routers {{ iteration.subnet_prefix }}{{ n|string }}{{ option.value }}
 		{% elif option.value is string %}
 		option {{ option.key }} "{{ option.value }}";
-		{% elif option.value|ipaddr %}
-		option {{ option.key }} {{ option.value }};
 		{% elif option.value is iterable %}
 		option {{ option.key }} {{ ', '.join(option.value) }};
+		{% elif option.value|ipaddr %}
+		option {{ option.key }} {{ option.value }};
 		{%- endif -%}
 		{%- endfor %}
 
-		{%- if 'next-server' in iteration -%}next_server {{ iteration.next_server }};{% endif %}
-		{%- if 'filename' in iteration -%}filename "{{ iteration.filename }}";{% endif %}
+		{%- if 'next_server' in iteration -%}
+		next_server {{ iteration.next_server }};
+		{% endif -%}
+		{%- if 'filename' in iteration -%}
+		filename "{{ iteration.filename }}";
+		{%- endif -%}
 		default-lease-time {{ iteration.default_lease_time }};
 		max-lease-time {{ iteration.max_lease_time }};
-		{%- if 'range' in iteration %}
+		{%- if 'range' in iteration -%}
 		range {{ iteration.range[0] }} {{ iteration.range[1] }};
 		{%- endif -%}
 	}
