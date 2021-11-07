@@ -17,7 +17,7 @@
     regexp: '^INTERFACESv4=.*$'
     line: 'INTERFACESv4="eth0"'
   notify:
-    - Restart dhcpd
+  - Restart dhcpd
 
 - name: Generate dhcpd.conf config file
   ansible.builtin.template:
