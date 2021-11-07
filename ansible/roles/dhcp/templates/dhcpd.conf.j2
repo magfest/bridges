@@ -9,26 +9,26 @@ option voice-vlan-id code 191 = unsigned integer 16;
 option data-vlan-id code 192 = unsigned integer 16;
 
 
-{% for zone in dhcp_zones %}
+{%- for zone in dhcp_zones -%}
 shared-network {{ zone.name }} {
     not authoritative;
 	subnet {{ zone.subnet }} netmask {{ zone.netmask }} {
-		{% for option in zone.options|dict2items %}
-		{% if option.value is string %}
+		{%- for option in zone.options|dict2items -%}
+		{%- if option.value is string -%}
 		option {{ option.key }} "{{ option.value }}";
-		{% elif option.value is iterable %}
+		{%- elif option.value is iterable -%}
 		option {{ option.key }} {{ ', '.join(option.value) }};
-		{% elif option.value|ipaddr %}
+		{%- elif option.value|ipaddr -%}
 		option {{ option.key }} {{ option.value }};
 		{%- endif -%}
 		{%- endfor -%}
 
 		{%- if 'next_server' in zone -%}
 		next_server {{ zone.next_server }};
-		{% endif -%}
+		{%- endif -%}
 		{%- if 'filename' in zone -%}
 		filename "{{ zone.filename }}";
-		{% endif -%}
+		{%- endif -%}
 		default-lease-time {{ zone.default_lease_time }};
 		max-lease-time {{ zone.max_lease_time }};
 		{%- if 'range' in zone -%}
@@ -37,28 +37,28 @@ shared-network {{ zone.name }} {
 	}
 }
 
-{% endfor -%}
+{%- endfor -%}
 
-{% for iteration in dhcp_iterations %}
-{% for n in range(iteration.iterate_range[0], iteration.iterate_range[1]) %}
+{%- for iteration in dhcp_iterations -%}
+{%- for n in range(iteration.iterate_range[0], iteration.iterate_range[1]) -%}
 shared-network {{ iteration.name_prefix }}{{ n|string }} {
     not authoritative;
 	subnet {{ iteration.subnet_prefix }}{{ n|string }}{{ iteration.subnet_suffix }} netmask {{ iteration.netmask }} {
-		{% for option in iteration.options|dict2items %}
-		{% if option.key == "routers_suffix" %}
+		{%- for option in iteration.options|dict2items -%}
+		{%- if option.key == "routers_suffix" -%}
 		option routers {{ iteration.subnet_prefix }}{{ n|string }}{{ option.value }}
-		{% elif option.value is string %}
+		{%- elif option.value is string -%}
 		option {{ option.key }} "{{ option.value }}";
-		{% elif option.value is iterable %}
+		{%- elif option.value is iterable -%}
 		option {{ option.key }} {{ ', '.join(option.value) }};
-		{% elif option.value|ipaddr %}
+		{%- elif option.value|ipaddr -%}
 		option {{ option.key }} {{ option.value }};
 		{%- endif -%}
-		{%- endfor %}
+		{%- endfor -%}
 
 		{%- if 'next_server' in iteration -%}
 		next_server {{ iteration.next_server }};
-		{% endif -%}
+		{%- endif -%}
 		{%- if 'filename' in iteration -%}
 		filename "{{ iteration.filename }}";
 		{%- endif -%}
@@ -70,5 +70,5 @@ shared-network {{ iteration.name_prefix }}{{ n|string }} {
 	}
 }
 
-{% endfor -%}
-{% endfor -%}
+{%- endfor -%}
+{%- endfor -%}
