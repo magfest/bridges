@@ -10,6 +10,15 @@
   notify:
   - Restart dhcpd
 
+# INTERFACESv4=""
+- name: Set listener interface as eth0
+  ansible.builtin.lineinfile:
+    path: /etc/default/isc-dhcp-server
+    regexp: '^INTERFACESv4=.*$'
+    line: 'INTERFACESv4="eth0"'
+  notify:
+    - Restart dhcpd
+
 - name: Generate dhcpd.conf config file
   ansible.builtin.template:
     src: dhcpd.conf.j2
