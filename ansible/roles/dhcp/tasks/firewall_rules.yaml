@@ -1,0 +1,16 @@
+---
+- name: Allow port 68 UDP for DHCP
+  community.general.ufw:
+    rule: allow
+    proto: udp
+    port: "68"
+
+- name: Allow port 68 TCP for DHCP
+  community.general.ufw:
+    rule: allow
+    proto: tcp
+    port: "68"
+
+- name: Reload UFW
+  community.general.ufw:
+    state: reloaded
