@@ -1,5 +1,65 @@
 ---
 dhcp_zones:
+- { name: "MAGCloudMGMT",
+    subnet: "10.101.21.0",
+    filename: "lpxelinux.0",
+    netmask: "255.255.255.0",
+    default_lease_time: 3600,
+    max_lease_time: 3600,
+    next_server: "10.101.22.9",
+    options: {
+      routers: ["10.101.21.1"],
+      tftp_server_name: "tftp.magevent.net",
+      domain_name: "magevent.net",
+      domain_name_servers: ["10.101.22.110", "10.101.22.120"]
+    },
+    range: ["10.101.21.6", "10.101.21.250"]
+  }
+- { name: "MAGCloudInstances",
+    subnet: "10.101.22.0",
+    filename: "lpxelinux.0",
+    netmask: "255.255.255.0",
+    default_lease_time: 3600,
+    max_lease_time: 3600,
+    next_server: "10.101.22.9",
+    options: {
+      routers: ["10.101.22.1"],
+      tftp_server_name: "tftp.magevent.net",
+      domain_name: "magevent.net",
+      domain_name_servers: ["10.101.22.110", "10.101.22.120"]
+    },
+    range: ["10.101.22.210", "10.101.22.250"]
+  }
+- { name: "MAGCloudMain",
+    subnet: "10.101.23.0",
+    filename: "lpxelinux.0",
+    netmask: "255.255.255.0",
+    default_lease_time: 3600,
+    max_lease_time: 3600,
+    next_server: "10.101.23.9",
+    options: {
+      routers: ["10.101.22.1"],
+      tftp_server_name: "tftp.magevent.net",
+      domain_name: "magevent.net",
+      domain_name_servers: ["10.101.23.110", "10.101.23.120"]
+    },
+    range: ["10.101.23.210", "10.101.23.250"]
+  }
+- { name: "MAGCloudDev",
+    subnet: "10.101.24.0",
+    filename: "lpxelinux.0",
+    netmask: "255.255.255.0",
+    default_lease_time: 3600,
+    max_lease_time: 3600,
+    next_server: "10.101.24.9",
+    options: {
+      routers: ["10.101.24.1"],
+      tftp_server_name: "tftp.magevent.net",
+      domain_name: "magevent.net",
+      domain_name_servers: ["10.101.24.110", "10.101.24.120"]
+    },
+    range: ["10.101.24.210", "10.101.24.250"]
+  }
 - { name: "MAGFest-Techops-WiFi",
     subnet: "10.101.12.0",
     filename: "lpxelinux.0",
