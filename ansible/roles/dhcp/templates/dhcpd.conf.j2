@@ -14,12 +14,12 @@ shared-network {{ zone.name }} {
     not authoritative;
 	subnet {{ zone.subnet }} netmask {{ zone.netmask }} {
 		{% for option in zone.options|dict2items %}
-		{% if option.value is iterable -%}
-		option {{ option.key }} {{ ', '.join(option.value) }};
-		{% elif ansible.netcommon.ipaddr(option.value) -%}
-		option {{ option.key }} {{ option.value }};
-		{% elif option.value is string -%}
+		{% if option.value is string %}
 		option {{ opt }} "{{ val }}";
+		{% elif ansible.netcommon.ipaddr(option.value) %}
+		option {{ option.key }} {{ option.value }};
+		{% elif option.value is iterable %}
+		option {{ option.key }} {{ ', '.join(option.value) }};
 		{%- endif -%}
 		{%- endfor %}
 
@@ -43,12 +43,12 @@ shared-network {{ iteration.name_prefix }}{{ n|string }} {
 		{% for option in iteration.options|dict2items %}
 		{% if option.key == "routers_suffix" %}
 		option routers {{ iteration.subnet_prefix }}{{ n|string }}{{ option.value }}
-		{% elif option.value is iterable -%}
-		option {{ option.key }} {{ ', '.join(option.value) }};
-		{% elif ansible.netcommon.ipaddr(option.value) -%}
-		option {{ option.key }} {{ option.value }};
-		{% elif option.value is string -%}
+		{% elif option.value is string %}
 		option {{ opt }} "{{ val }}";
+		{% elif ansible.netcommon.ipaddr(option.value) %}
+		option {{ option.key }} {{ option.value }};
+		{% elif option.value is iterable %}
+		option {{ option.key }} {{ ', '.join(option.value) }};
 		{%- endif -%}
 		{%- endfor %}
 
@@ -56,7 +56,7 @@ shared-network {{ iteration.name_prefix }}{{ n|string }} {
 		{%- if 'filename' in iteration -%}filename "{{ iteration.filename }}";{% endif %}
 		default-lease-time {{ iteration.default_lease_time }};
 		max-lease-time {{ iteration.max_lease_time }};
-		{%- if 'range' in iteration -%}
+		{%- if 'range' in iteration %}
 		range {{ iteration.range[0] }} {{ iteration.range[1] }};
 		{%- endif -%}
 	}

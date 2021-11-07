@@ -2,6 +2,6 @@
 
 - name: Restart dhcpd
   ansible.builtin.service:
-    name: dhcpd
+    name: isc-dhcp-server
     state: restarted
     enabled: yes
