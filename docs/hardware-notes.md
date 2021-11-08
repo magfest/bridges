@@ -1,5 +1,8 @@
 # Hardware / IPMI / iDRAC Notes
 
+## Reboot IPMI from Linux:
+`ipmitool mc reset cold`
+
 ## Get iDRAC IP from Linux:
 `ipmitool mc getsysinfo delloem_url`
 
