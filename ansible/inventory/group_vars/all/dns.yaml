@@ -59,6 +59,7 @@ magevent_net_hosts:
   - { name: "pve-vampire", ip: "10.101.21.44", type: "A" }
   - { name: "synology", ip: "10.101.21.156", type: "A" }
   # IPMI
+  - { name: "dell-omsa", ip: "192.168.100.110", type: "A" }
   - { name: "quorum-ipmi", ip: "192.168.100.111", type: "A" }
   - { name: "pve1-ipmi", ip: "192.168.100.112", type: "A" }
   - { name: "pve2-ipmi", ip: "192.168.100.113", type: "A" }
