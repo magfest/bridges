@@ -44,18 +44,35 @@ magevent_net_hosts:
   - { name: "gitlab", ip: "10.101.22.134", type: "A" }
   - { name: "gitlab-runner-1", ip: "10.101.22.135", type: "A" }
   - { name: "stackstorm", ip: "10.101.22.136", type: "A" }
+  - { name: "netdisco", ip: "10.101.22.137", type: "A" }
+  - { name: "gitlab-builder-1", ip: "10.101.22.138", type: "A" }
+  - { name: "gitlab-builder-2", ip: "10.101.22.139", type: "A" }
+  - { name: "gitlab-builder-3", ip: "10.101.22.140", type: "A" }
   - { name: "zabbix", ip: "10.101.22.200", type: "A" }
   # MAGCloud management IPs
   - { name: "oa1", ip: "10.101.21.11", type: "A" }
   - { name: "oa2", ip: "10.101.21.12", type: "A" }
   - { name: "vc1", ip: "10.101.21.13", type: "A" }
-  - { name: "quorum-ipmi", ip: "10.101.21.20", type: "A" }
-  - { name: "pve1-ipmi", ip: "10.101.21.21", type: "A" }
-  - { name: "pve2-ipmi", ip: "10.101.21.22", type: "A" }
   - { name: "quorum", ip: "10.101.21.40", type: "A" }
   - { name: "pve1", ip: "10.101.21.41", type: "A" }
   - { name: "pve2", ip: "10.101.21.42", type: "A" }
+  - { name: "pve-vampire", ip: "10.101.21.44", type: "A" }
   - { name: "synology", ip: "10.101.21.156", type: "A" }
+  # IPMI
+  - { name: "dell-omsa", ip: "192.168.100.110", type: "A" }
+  - { name: "quorum-ipmi", ip: "192.168.100.111", type: "A" }
+  - { name: "pve1-ipmi", ip: "192.168.100.112", type: "A" }
+  - { name: "pve2-ipmi", ip: "192.168.100.113", type: "A" }
+  - { name: "vampire-ipmi", ip: "192.168.100.114", type: "A" }
+
+  # Network Management
+  - { name: "mag-core-1", ip: "10.101.21.2", type: "A" }
+  - { name: "mag-core-2", ip: "10.101.21.3", type: "A" }
+  - { name: "oob-switch", ip: "10.101.21.4", type: "A" }
+  - { name: "mag-wlc-01", ip: "10.101.21.8", type: "A" }
+  - { name: "mag-wlc-02", ip: "10.101.21.9", type: "A" }
+  # Need to confirm MAG-WLC-02
+
   # external IPs, CNAMEs, etc.
   - { name: "fixit", ip: "52.45.46.140", type: "A" }
   - { name: "fixit", ip: "2600:1f18:423b:a500:76bf:d287:e6f9:2306", type: "AAAA" }
