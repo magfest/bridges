@@ -1,5 +1,5 @@
 module "dhcp" {
-  source = "./modules/lxc"
+  source       = "./modules/lxc"
   cluster_name = "pve1"
   hostname     = "dhcp1.${local.domain}"
   gateway      = cidrhost(var.subnet, 1)
