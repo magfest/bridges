@@ -3,7 +3,7 @@ module "zabbix" {
   cluster_name = "pve1"
   gateway      = cidrhost(var.subnet, 1)
   hostname     = "zabbix-new.${local.domain}"
-  nets         = [
+  nets = [
     {
       ip   = cidrhost(var.subnet, 201)
       cidr = local.cidr_suffix

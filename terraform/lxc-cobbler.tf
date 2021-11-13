@@ -3,7 +3,7 @@ module "cobbler" {
   cluster_name = "pve1"
   gateway      = cidrhost(var.subnet, 1)
   hostname     = "cobbler.${local.domain}"
-  nets         = [
+  nets = [
     {
       ip   = cidrhost(var.subnet, 69)
       cidr = local.cidr_suffix

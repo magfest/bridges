@@ -4,7 +4,7 @@ module "graylog" {
   gateway      = cidrhost(var.subnet, 1)
   hostname     = "graylog.${local.domain}"
   memory       = 4096
-  nets         = [
+  nets = [
     {
       ip   = cidrhost(var.subnet, 129)
       cidr = local.cidr_suffix
