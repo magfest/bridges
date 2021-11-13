@@ -41,6 +41,15 @@ EOT
     }
   }
 
+  dynamic "mountpoint" {
+    for_each = var.bindmounts
+    content {
+      key     = mountpoint.key
+      mp      = mountpoint.guest
+      storage = mountpoint.host
+    }
+  }
+
 }
 
 variable "hostname" {
@@ -78,6 +87,14 @@ variable "nets" {
     cidr = string
   }))
   description = "Additional network interface data"
+}
+
+variable "bindmounts" {
+  type = list(object({
+    guest = string
+    host = string
+  }))
+  description = "Bind mounts from the host to the guest"
 }
 
 output "ip_address" {

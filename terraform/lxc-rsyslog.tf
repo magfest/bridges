@@ -10,4 +10,10 @@ module "rsyslog" {
       tag      = "22"
     }
   ]
+  bindmounts = [
+    {
+      guest = "/var/log/remote"
+      host  = "/mnt/pve/syslog/remote/${var.branch}/"
+    }
+  ]
 }
