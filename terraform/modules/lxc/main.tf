@@ -44,10 +44,12 @@ EOT
   dynamic "mountpoint" {
     for_each = var.bindmounts
     content {
-      key    = mountpoint.key
-      slot   = "${mountpoint.key}"
-      mp     = mountpoint.guest
-      volume = mountpoint.host
+      key     = mountpoint.key
+      slot    = "${mountpoint.key}"
+      mp      = mountpoint.guest
+      volume  = mountpoint.host
+      storage = mountpoint.host
+      size    = "0B"
     }
   }
 
