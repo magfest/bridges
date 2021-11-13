@@ -95,6 +95,7 @@ variable "bindmounts" {
     host = string
   }))
   description = "Bind mounts from the host to the guest"
+  default = null
 }
 
 output "ip_address" {
