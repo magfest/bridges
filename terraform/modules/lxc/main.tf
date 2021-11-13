@@ -46,9 +46,9 @@ EOT
     content {
       key     = mountpoint.key
       slot    = "${mountpoint.key}"
-      mp      = mountpoint.guest
-      volume  = mountpoint.host
-      storage = mountpoint.host
+      mp      = mountpoint.value["guest"]
+      volume  = mountpoint.value["host"]
+      storage = mountpoint.value["host"]
       size    = "0B"
     }
   }
