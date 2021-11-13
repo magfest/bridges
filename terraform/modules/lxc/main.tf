@@ -49,7 +49,7 @@ EOT
       mp      = mountpoint.value["guest"]
       volume  = mountpoint.value["host"]
       storage = mountpoint.value["host"]
-      size    = "0B"
+      size    = "0M"
     }
   }
 
