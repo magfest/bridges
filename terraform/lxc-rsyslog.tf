@@ -10,10 +10,13 @@ module "rsyslog" {
       tag      = "22"
     }
   ]
-  bindmounts = [
-    {
-      guest = "/var/log/remote"
-      host  = "/mnt/pve/syslog/remote/${var.branch}/"
-    }
-  ]
+# THIS DOESN'T WORK RIGHT NOW:
+# Proxmox doesn't currently allow anyone but the root user to create bindmounts.
+# We're not authenticating to Proxmox using root currently.
+#  bindmounts = [
+#    {
+#      guest = "/var/log/remote"
+#      host  = "/mnt/pve/syslog/remote/${var.branch}/"
+#    }
+#  ]
 }
