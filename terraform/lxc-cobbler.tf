@@ -5,14 +5,14 @@ module "cobbler" {
   hostname     = "cobbler.${local.domain}"
   nets         = [
     {
-      ip       = cidrhost(var.subnet, 69)
-      cidr     = local.cidr_suffix
-      tag      = "22"
+      ip   = cidrhost(var.subnet, 69)
+      cidr = local.cidr_suffix
+      tag  = "22"
     },
     {
-      ip       = "10.101.69.1"
-      cidr     = "24"
-      tag      = "69"
+      ip   = "10.101.69.1"
+      cidr = "24"
+      tag  = "69"
     }
   ]
 }

@@ -5,9 +5,9 @@ module "cups" {
   hostname     = "cups.${local.domain}"
   nets         = [
     {
-      ip       = cidrhost(var.subnet, 13)
-      cidr     = local.cidr_suffix
-      tag      = "22"
+      ip   = cidrhost(var.subnet, 13)
+      cidr = local.cidr_suffix
+      tag  = "22"
     }
   ]
 }

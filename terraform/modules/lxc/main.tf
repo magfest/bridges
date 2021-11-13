@@ -33,11 +33,11 @@ EOT
   dynamic "network" {
     for_each = var.nets
     content {
-      name     = "eth${network.key}"
-      bridge   = "vmbr999"
-      tag      = network.value["tag"]
-      ip       = "${network.value["ip"]}/${network.value["cidr"]}"
-      gw       = network.key == 0 ? var.gateway : null
+      name   = "eth${network.key}"
+      bridge = "vmbr999"
+      tag    = network.value["tag"]
+      ip     = "${network.value["ip"]}/${network.value["cidr"]}"
+      gw     = network.key == 0 ? var.gateway : null
     }
   }
 
@@ -45,7 +45,7 @@ EOT
     for_each = var.bindmounts
     content {
       key     = mountpoint.key
-      slot    = "${mountpoint.key}"
+      slot    = mountpoint.key
       mp      = mountpoint.value["guest"]
       volume  = mountpoint.value["host"]
       storage = mountpoint.value["host"]
@@ -85,8 +85,8 @@ variable "memory" {
 
 variable "nets" {
   type = list(object({
-    tag = string
-    ip = string
+    tag  = string
+    ip   = string
     cidr = string
   }))
   description = "Additional network interface data"
@@ -95,10 +95,10 @@ variable "nets" {
 variable "bindmounts" {
   type = list(object({
     guest = string
-    host = string
+    host  = string
   }))
   description = "Bind mounts from the host to the guest"
-  default = []
+  default     = []
 }
 
 output "ip_address" {

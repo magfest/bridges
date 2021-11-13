@@ -5,9 +5,9 @@ module "smtp" {
   hostname     = "smtp.${local.domain}"
   nets         = [
     {
-      ip       = cidrhost(var.subnet, 23)
-      cidr     = local.cidr_suffix
-      tag      = "22"
+      ip   = cidrhost(var.subnet, 23)
+      cidr = local.cidr_suffix
+      tag  = "22"
     }
   ]
 }

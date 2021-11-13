@@ -5,9 +5,9 @@ module "tftp" {
   hostname     = "tftp.${local.domain}"
   nets         = [
     {
-      ip       = cidrhost(var.subnet, 9)
-      cidr     = local.cidr_suffix
-      tag      = "22"
+      ip   = cidrhost(var.subnet, 9)
+      cidr = local.cidr_suffix
+      tag  = "22"
     }
   ]
 }

@@ -6,9 +6,9 @@ module "graylog" {
   memory       = 4096
   nets         = [
     {
-      ip       = cidrhost(var.subnet, 129)
-      cidr     = local.cidr_suffix
-      tag      = "22"
+      ip   = cidrhost(var.subnet, 129)
+      cidr = local.cidr_suffix
+      tag  = "22"
     }
   ]
 }

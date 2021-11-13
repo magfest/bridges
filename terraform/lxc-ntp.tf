@@ -7,9 +7,9 @@ module "ntp" {
   hostname     = "ntp${floor(count.index + 1)}.${local.domain}"
   nets         = [
     {
-      ip       = cidrhost(var.subnet, 6 + count.index)
-      cidr     = local.cidr_suffix
-      tag      = "22"
+      ip   = cidrhost(var.subnet, 6 + count.index)
+      cidr = local.cidr_suffix
+      tag  = "22"
     }
   ]
 }

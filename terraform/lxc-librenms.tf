@@ -5,9 +5,9 @@ module "librenms" {
   hostname     = "librenms-21.${local.domain}"
   nets         = [
     {
-      ip       = cidrhost(var.subnet, 151)
-      cidr     = local.cidr_suffix
-      tag      = "22"
+      ip   = cidrhost(var.subnet, 151)
+      cidr = local.cidr_suffix
+      tag  = "22"
     }
   ]
 }

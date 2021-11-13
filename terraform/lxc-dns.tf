@@ -7,9 +7,9 @@ module "dns" {
   hostname     = "dns${floor(count.index + 1)}.${local.domain}"
   nets         = [
     {
-      ip       = cidrhost(var.subnet, 110 + (count.index * 10))
-      cidr     = local.cidr_suffix
-      tag      = "22"
+      ip   = cidrhost(var.subnet, 110 + (count.index * 10))
+      cidr = local.cidr_suffix
+      tag  = "22"
     }
   ]
 }
