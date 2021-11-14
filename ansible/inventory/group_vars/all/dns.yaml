@@ -22,7 +22,6 @@ magevent_net_hosts:
   - { name: "freeradius", ip: "10.101.22.10", type: "A" }
   - { name: "freeipa", ip: "10.101.22.11", type: "A" }
   - { name: "asterisk", ip: "10.101.22.12", type: "A" }
-  - { name: "repo", ip: "10.101.22.14", type: "A" }
   - { name: "assman", ip: "10.101.22.15", type: "A" }
   - { name: "smokeping", ip: "10.101.22.16", type: "A" }
   - { name: "radios", ip: "10.101.22.17", type: "A" }
@@ -59,6 +58,7 @@ magevent_net_hosts:
   - { name: "pve2", ip: "10.101.21.42", type: "A" }
   - { name: "pve-vampire", ip: "10.101.21.44", type: "A" }
   - { name: "synology", ip: "10.101.21.156", type: "A" }
+  - { name: "repo", ip: "10.101.21.156", type: "A" }
   # IPMI
   - { name: "dell-omsa", ip: "192.168.100.110", type: "A" }
   - { name: "quorum-ipmi", ip: "192.168.100.111", type: "A" }
