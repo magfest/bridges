@@ -38,6 +38,7 @@ shared-network {{ zone.name }} {
 
 {% endfor -%}
 
+{% if dhcp_iterations -%}
 {% for iteration in dhcp_iterations -%}
 {% for n in range(iteration.iterate_range[0], iteration.iterate_range[1]) -%}
 shared-network {{ iteration.name_prefix }}{{ n|string }} {
@@ -70,3 +71,4 @@ shared-network {{ iteration.name_prefix }}{{ n|string }} {
 
 {% endfor -%}
 {% endfor -%}
+{% endif -%}
