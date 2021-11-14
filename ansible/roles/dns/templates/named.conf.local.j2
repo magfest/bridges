@@ -25,7 +25,6 @@ zone "{{ zone_prefix }}magevent.net" IN {
 zone "win.magevent.net" {
         type stub;
         masters {10.101.22.210; 10.101.22.220;};
-        allow-notify {10.101.22.210; 10.101.22.220;};
         file "/var/lib/bind/win.magevent.net.zone";
         forwarders { };
 };
