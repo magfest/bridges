@@ -1,5 +1,6 @@
 ---
 zone_prefix: "{{ branch + '.' if branch != 'prod' else '' }}"
+dhcp_interface: "eth1"
 dhcp_zones:
 - { name: "LaptopProvisioning",
     subnet: "10.101.69.0",
