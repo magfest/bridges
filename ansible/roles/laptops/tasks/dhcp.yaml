@@ -1,0 +1,15 @@
+---
+- name: Install DHCP packages
+  ansible.builtin.apt:
+    name: "{{ packages.dhcp }}"
+    install_recommends: false
+    update_cache: true
+    cache_valid_time: 3600
+    autoclean: true
+    autoremove: true
+
+# Specify a provisioning-server specific DHCP subnet in vars/main.yaml,
+# then call the DHCP role to do the heavy lifting.
+- name: Set up DHCP using existing role
+  include_role:
+    name: dhcp

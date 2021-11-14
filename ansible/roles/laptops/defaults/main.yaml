@@ -1,7 +1,13 @@
 ---
 packages:
-  laptops:
+  dhcp:
+    - isc-dhcp-server
+  tftp:
+    - tftpd
+    - rlinetd
     - grub-efi-amd64-bin
     - grub-efi-amd64-signed
     - pxelinux
     - syslinux-common
+    - apache2
+
