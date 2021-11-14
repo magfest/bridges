@@ -1,8 +1,8 @@
-module "cobbler" {
+module "laptops" {
   source       = "./modules/lxc"
   cluster_name = "pve1"
   gateway      = cidrhost(var.subnet, 1)
-  hostname     = "cobbler.${local.domain}"
+  hostname     = "laptops.${local.domain}"
   nets = [
     {
       ip   = cidrhost(var.subnet, 69)
