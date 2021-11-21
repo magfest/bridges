@@ -33,6 +33,7 @@
     owner: root
     group: root
     mode: 0644
+    remote_src: yes
   with_items:
   - {src: "/usr/lib/syslinux/modules/bios/ldlinux.c32", dest: "/srv/tftp/bios/ldlinux.c32"}
   - {src: "/usr/lib/syslinux/modules/bios/libutil.c32", dest: "/srv/tftp/bios/libutil.c32"}
