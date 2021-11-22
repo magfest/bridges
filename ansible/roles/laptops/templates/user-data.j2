@@ -1,19 +1,21 @@
-version: 1
-early-commands:
-    - sed "s/^.*hostname: hostname$/    hostname: ubuntu-$(ip l | grep -A1 wl | grep ether | cut -d ' ' -f6 | sed 's/://g')/" -i /autoinstall.yaml
-locale: en_US
-storage:
-    layout:
-        name: lvm
-identity:
-    hostname: hostname
-    username: {{ break_glass_user }}
-    password: {{ break_glass_pass }}
-ssh:
-    install-server: yes
-    allow-pw: yes
-packages:
-    - libreoffice
-    - ubuntu-desktop
-late-commands:
-    - wget http://{{ dhcp_ipaddr }}/ansible-cron.sh -P /etc/cron.hourly/
+#cloud-config
+autoinstall:
+    version: 1
+    early-commands:
+        - sed "s/^.*hostname: hostname$/    hostname: ubuntu-$(ip l | grep -A1 wl | grep ether | cut -d ' ' -f6 | sed 's/://g')/" -i /autoinstall.yaml
+    locale: en_US
+    storage:
+        layout:
+            name: lvm
+    identity:
+        hostname: hostname
+        username: {{ break_glass_user }}
+        password: {{ break_glass_pass }}
+    ssh:
+        install-server: yes
+        allow-pw: yes
+    packages:
+        - libreoffice
+        - ubuntu-desktop
+    late-commands:
+        - wget http://{{ dhcp_ipaddr }}/ansible-cron.sh -P /etc/cron.hourly/
