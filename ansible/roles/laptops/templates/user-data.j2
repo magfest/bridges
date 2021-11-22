@@ -22,3 +22,5 @@ autoinstall:
         - wget http://$(sed 's/^.*LAPTOP_BOOTSRV=\(.*\) .*$/\1/' /proc/cmdline)/ansible-cron.sh -P /etc/cron.hourly/
         - echo "X-GNOME-Autostart-enabled=false" >> /target/etc/xdg/autostart/gnome-initial-setup-first-login.desktop
         - sed 's/^GRUB_CMDLINE_LINUX_DEFAULT.*$/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/' -i /target/etc/default/grub
+        - chroot /target update-grub
+        - chroot /target apt-get remove gnome-initial-setup
