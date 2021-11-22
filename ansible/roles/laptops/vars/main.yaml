@@ -2,6 +2,7 @@
 zone_prefix: "{{ branch + '.' if branch != 'prod' else '' }}"
 dhcp_interface: "eth1"
 dhcp_ipaddr: "{{ ansible_all_ipv4_addresses | select('match', '^10.101.69') | list | first }}"
+dhcp_ipaddr_22: "{{ ansible_all_ipv4_addresses | select('match', '^10.101.22') | list | first }}"
 dhcp_zones:
 - { name: "LaptopProvisioning",
     subnet: "10.101.69.0",

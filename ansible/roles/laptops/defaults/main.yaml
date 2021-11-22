@@ -1,12 +1,8 @@
 ---
 packages:
-  dhcp:
-    - isc-dhcp-server
   tftp:
-    - tftpd
-    - tcpd
+    - tftpd-hpa
     - ipxe
-    - rlinetd
     - grub-efi-amd64-bin
     - grub-efi-amd64-signed
     - pxelinux
