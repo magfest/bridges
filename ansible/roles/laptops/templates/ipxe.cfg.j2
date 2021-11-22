@@ -6,4 +6,4 @@ item win10 Windows 10
 choose os && goto ${os}
 
 :win10
-sanboot http://repo.magevent.net/images/windows.iso
+sanboot http://{{ dhcp_ipaddr }}/repo/images/windows.iso

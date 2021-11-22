@@ -1,0 +1,13 @@
+DEFAULT menu.c32
+MENU TITLE MAGFest Laptops
+PROMPT 0
+TIMEOUT 0
+
+LABEL Ubuntu Desktop 20.04
+    kernel http://{{ dhcp_ipaddr }}/repo/casper/focal/vmlinuz
+    initrd http://{{ dhcp_ipaddr }}/repo/casper/focal/initrd
+    append root=/dev/ram0 ramdisk_size=1500000 ip=dhcp ipv6.disable=1 url=http://{{ dhcp_ipaddr }}/repo/ubuntu-releases/20.04/ubuntu-20.04.3-live-server-amd64.iso autoinstall ds=nocloud-net;s=http://{{ dhcp_ipaddr }}/cloud-init/
+
+LABEL Windows 10 via iPXE
+    kernel bios/ipxe.lkrn
+    APPEND dhcp && chain ipxe.cfg
