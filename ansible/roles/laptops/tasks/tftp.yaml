@@ -27,6 +27,14 @@
     group: root
     mode: 0644
 
+- name: Create iPXE config
+  ansible.builtin.copy:
+    src: "ipxe.cfg"
+    dest: "/srv/tftp/ipxe.cfg"
+    owner: root
+    group: root
+    mode: 0644
+
 - name: Copy files
   ansible.builtin.copy:
     src: "{{ item.src }}"
