@@ -2,13 +2,13 @@
 autoinstall:
     version: 1
     early-commands:
-        - sed "s/^.*hostname: hostname$/    hostname: ubuntu-$(ip l | grep -A1 wl | grep ether | cut -d ' ' -f6 | sed 's/://g')/" -i /autoinstall.yaml
+        - sed "s/\(hostname:\) REPLACEME-HOST/\1 ubuntu-$(ip l | grep ether | head -n1 | cut -d ' ' -f6 | sed 's/://g')/" -i /autoinstall.yaml
     locale: en_US
     storage:
         layout:
             name: lvm
     identity:
-        hostname: hostname
+        hostname: REPLACEME-HOST
         username: {{ break_glass_user }}
         password: {{ break_glass_pass }}
     ssh:
