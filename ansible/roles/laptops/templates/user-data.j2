@@ -18,4 +18,4 @@ autoinstall:
         - libreoffice
         - ubuntu-desktop
     late-commands:
-        - wget http://{{ dhcp_ipaddr }}/ansible-cron.sh -P /etc/cron.hourly/
+        - wget http://$(sed 's/^.*LAPTOP_BOOTSRV=\(.*\) .*$/\1/' /proc/cmdline)/ansible-cron.sh -P /etc/cron.hourly/
