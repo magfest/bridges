@@ -20,16 +20,16 @@
   - "/srv/tftp/bios/pxelinux.cfg"
 
 - name: Create PXELINUX config
-  ansible.builtin.copy:
-    src: "pxelinux.cfg"
+  ansible.builtin.template:
+    src: "pxelinux.cfg.j2"
     dest: "/srv/tftp/bios/pxelinux.cfg/default"
     owner: root
     group: root
     mode: 0644
 
 - name: Create iPXE config
-  ansible.builtin.copy:
-    src: "ipxe.cfg"
+  ansible.builtin.template:
+    src: "ipxe.cfg.j2"
     dest: "/srv/tftp/ipxe.cfg"
     owner: root
     group: root
