@@ -19,3 +19,4 @@ autoinstall:
         - ubuntu-desktop
     late-commands:
         - wget http://$(sed 's/^.*LAPTOP_BOOTSRV=\(.*\) .*$/\1/' /proc/cmdline)/ansible-cron.sh -P /etc/cron.hourly/
+        - echo "X-GNOME-Autostart-enabled=false" >> /etc/xdg/autostart/gnome-initial-setup-first-login.desktop
