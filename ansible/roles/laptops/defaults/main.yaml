@@ -4,10 +4,11 @@ packages:
     - isc-dhcp-server
   tftp:
     - tftpd
+    - tcpd
+    - ipxe
     - rlinetd
     - grub-efi-amd64-bin
     - grub-efi-amd64-signed
     - pxelinux
     - syslinux-common
     - apache2
-
