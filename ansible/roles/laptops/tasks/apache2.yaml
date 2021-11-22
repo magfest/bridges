@@ -46,11 +46,11 @@
     mode: 0600
 
 - name: Enable Apache modules
-  ansible.builtin.command: "a2enmod proxy proxy_http"
+  command: "a2enmod proxy proxy_http"
   notify:
   - Restart apache2
 
 - name: Enable Apache site
-  ansible.builtin.command: "a2ensite reverseproxy"
+  command: "a2ensite reverseproxy"
   notify:
   - Restart apache2
