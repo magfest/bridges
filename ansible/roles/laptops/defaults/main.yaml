@@ -11,4 +11,5 @@ packages:
     - grub-efi-amd64-signed
     - pxelinux
     - syslinux-common
+  apache:
     - apache2
