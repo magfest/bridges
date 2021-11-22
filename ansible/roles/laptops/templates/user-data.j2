@@ -16,4 +16,4 @@ packages:
     - libreoffice
     - ubuntu-desktop
 late-commands:
-    - wget http://10.101.24.69/ansible-cron.sh -P /etc/cron.hourly/
+    - wget http://{{ dhcp_ipaddr }}/ansible-cron.sh -P /etc/cron.hourly/

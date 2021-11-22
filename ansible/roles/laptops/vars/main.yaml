@@ -1,6 +1,7 @@
 ---
 zone_prefix: "{{ branch + '.' if branch != 'prod' else '' }}"
 dhcp_interface: "eth1"
+dhcp_ipaddr: "{{ ansible_all_ipv4_addresses | select('match', '^10.101.69') | list | first }}"
 dhcp_zones:
 - { name: "LaptopProvisioning",
     subnet: "10.101.69.0",
@@ -8,9 +9,9 @@ dhcp_zones:
     netmask: "255.255.255.0",
     default_lease_time: 3600,
     max_lease_time: 3600,
-    next_server: "{{ ansible_all_ipv4_addresses | select('match', '^10.101.69') | list | first }}",
+    next_server: "{{ dhcp_ipaddr }}",
     options: {
-      tftp_server_name: "{{ ansible_all_ipv4_addresses | select('match', '^10.101.69') | list | first }}",
+      tftp_server_name: "{{ dhcp_ipaddr }}",
       domain_name: "{{ zone_prefix }}magevent.net",
       domain_name_servers: ["{{ branch_subnet_trimmed }}.110", "{{ branch_subnet_trimmed }}.120"]
     },
