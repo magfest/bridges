@@ -7,15 +7,17 @@ autoinstall:
     storage:
         layout:
             name: lvm
-    identity:
-        hostname: REPLACEME-HOST
-        username: {{ laptop_username }}
-        password: {{ laptop_password }}
     user-data:
+        hostname: REPLACEME-HOST
         users:
+            - name: {{ laptop_username }}
+              gecos: MAGFest Laptops Admin
+              groups: [adm, cdrom, sudo, dip, plugdev, lxd]
+              lock-passwd: false
+              passwd: {{ laptop_password }}
             - name: guest
               gecos: Guest User
-              groups: users
+              groups: [users, cdrom, dip, plugdev]
               lock_passwd: false
               passwd: $6$3N2zUjvojPNGTg$F9TU10kaxHm51QJo5Mp1a3NQxMkkCLXCo7kFTwkZS19UczSc6koXrVOw.y87JHqYjas7QOQDbdP22daOOHQlu/
     ssh:
