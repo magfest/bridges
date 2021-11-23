@@ -23,4 +23,4 @@ autoinstall:
         - echo "X-GNOME-Autostart-enabled=false" >> /target/etc/xdg/autostart/gnome-initial-setup-first-login.desktop
         - sed 's/^GRUB_CMDLINE_LINUX_DEFAULT.*$/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/' -i /target/etc/default/grub
         - curtin in-target --target /target -- update-grub
-        - curtin in-target --target /target -- apt-get remove gnome-initial-setup
+        - curtin in-target --target /target -- apt-get -y remove gnome-initial-setup
