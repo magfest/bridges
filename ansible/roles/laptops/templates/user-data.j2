@@ -11,6 +11,8 @@ autoinstall:
         hostname: REPLACEME-HOST
         username: {{ break_glass_user }}
         password: {{ break_glass_pass }}
+    network:
+        renderer: NetworkManager
     ssh:
         install-server: yes
         allow-pw: yes
