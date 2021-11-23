@@ -2,8 +2,12 @@
 echo MAGFest Laptops
 menu MAGFest Laptops - Windows
 item win10 Windows 10
+item win10ext Windows 10 - external interface
 
 choose os && goto ${os}
 
 :win10
 sanboot http://{{ dhcp_ipaddr }}/repo/images/windows.iso
+
+:win10ext
+sanboot http://{{ dhcp_ipaddr_ext }}/repo/images/windows.iso
