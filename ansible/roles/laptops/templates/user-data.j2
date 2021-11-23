@@ -25,4 +25,4 @@ autoinstall:
         - sed 's/^GRUB_CMDLINE_LINUX_DEFAULT.*$/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/' -i /target/etc/default/grub
         - curtin in-target --target /target -- update-grub
         - curtin in-target --target /target -- apt-get -y remove gnome-initial-setup
-        - echo -e "network:\n    version: 2\n    renderer: NetworkManager\n" > /target/etc/netplan/00-installer-config.yaml
+        - curtin in-target --target /target -- netplan set network.renderer=NetworkManager
