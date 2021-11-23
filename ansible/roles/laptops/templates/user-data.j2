@@ -11,9 +11,6 @@ autoinstall:
         hostname: REPLACEME-HOST
         username: {{ break_glass_user }}
         password: {{ break_glass_pass }}
-    network:
-        version: 2
-        renderer: NetworkManager
     ssh:
         install-server: yes
         allow-pw: yes
@@ -28,3 +25,4 @@ autoinstall:
         - sed 's/^GRUB_CMDLINE_LINUX_DEFAULT.*$/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/' -i /target/etc/default/grub
         - curtin in-target --target /target -- update-grub
         - curtin in-target --target /target -- apt-get -y remove gnome-initial-setup
+        - echo -e "network:\n    version: 2\n    renderer: NetworkManager\n" > /target/etc/netplan/00-installer-config.yaml
