@@ -1,6 +1,8 @@
 module "librenms" {
   source       = "./modules/lxc"
   cluster_name = "pve1"
+  memory       = "1024"
+  cores        = "2"
   gateway      = cidrhost(var.subnet, 1)
   hostname     = "librenms-21.${local.domain}"
   nets = [
