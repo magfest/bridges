@@ -10,7 +10,7 @@ module "laptops" {
       tag  = "22"
     },
     {
-      ip   = "10.101.69.${split(".", var.subnet)[2] - 21}"
+      ip   = "10.101.69.${split(".", var.subnet)[2] - 20}"
       cidr = "24"
       tag  = "69"
     }
