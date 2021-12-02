@@ -5,5 +5,5 @@
 SHELL=/bin/bash
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
-@reboot /usr/local/bin/ansible-cron.sh
-@hourly /usr/local/bin/ansible-cron.sh
+@reboot root /usr/local/bin/ansible-cron.sh
+@hourly root /usr/local/bin/ansible-cron.sh
