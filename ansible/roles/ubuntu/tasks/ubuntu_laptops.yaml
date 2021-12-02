@@ -1,0 +1,11 @@
+---
+- name: Disable Firefox autofill
+  ansible.builtin.copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - { src: "mozilla.cfg", dest: "/usr/lib/firefox/mozilla.cfg" }
+    - { src: "local-settings.js", dest: "/usr/lib/firefox/defaults/pref/local-settings.js" }

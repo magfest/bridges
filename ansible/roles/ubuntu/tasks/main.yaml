@@ -33,6 +33,8 @@
 
 - include: timesyncd.yaml
 
-# - name: Show facts available on the system
-#   ansible.builtin.debug:
-#     var: ansible_facts
+# The following should only run on laptops
+- include: ubuntu_laptops.yaml
+  tags:
+    - never
+    - laptops
