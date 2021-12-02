@@ -8,8 +8,6 @@
   any_errors_fatal: true
   roles:
   - ubuntu
-  tags:
-  - laptops
 
 - name: DNS server setup
   hosts:

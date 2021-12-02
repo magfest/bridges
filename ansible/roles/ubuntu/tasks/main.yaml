@@ -20,7 +20,6 @@
 - include: rsyslog.yaml
   tags:
     - rsyslog-clients
-    - laptops
 
 - include: firewall_rules.yaml
   tags:
@@ -31,8 +30,6 @@
 
 - include: mail.yaml
   when: "'smtp' not in group_names"
-  tags:
-    - laptops
 
 - include: timesyncd.yaml
 
