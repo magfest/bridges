@@ -45,6 +45,14 @@
     group: root
     mode: 0644
 
+- name: Create Ansible crontab
+  ansible.builtin.copy:
+    src: "ansible-cron"
+    dest: "/var/www/html/ansible-cron"
+    owner: root
+    group: root
+    mode: 0644
+
 - name: Enable Apache modules
   command: "a2enmod proxy proxy_http"
   notify:
