@@ -14,7 +14,7 @@ resource "proxmox_lxc" "lxc-container" {
   unprivileged    = true
   hostname        = var.hostname
   memory          = var.memory
-  cores           = "1"
+  cores           = var.cores
   swap            = "512"
   start           = true
   hastate         = "started"
@@ -75,6 +75,12 @@ variable "size" {
   description = "Size of fs in gigabytes"
   type        = string
   default     = "8G"
+}
+
+variable "cores" {
+  description = "CPU cores"
+  type        = string
+  default     = "1"
 }
 
 variable "memory" {
