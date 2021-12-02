@@ -33,7 +33,7 @@ autoinstall:
     late-commands:
         - wget http://$(sed 's/^.*LAPTOP_BOOTSRV=\(.*\) .*$/\1/' /proc/cmdline)/ansible-cron.sh -P /target/usr/local/bin/
         - wget http://$(sed 's/^.*LAPTOP_BOOTSRV=\(.*\) .*$/\1/' /proc/cmdline)/ansible-cron -P /target/etc/cron.d/
-        - chmod +x /target/usr/local/etc/ansible-cron.sh
+        - chmod +x /target/usr/local/bin/ansible-cron.sh
         - echo "X-GNOME-Autostart-enabled=false" >> /target/etc/xdg/autostart/gnome-initial-setup-first-login.desktop
         - sed 's/^GRUB_CMDLINE_LINUX_DEFAULT.*$/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/' -i /target/etc/default/grub
         - curtin in-target --target /target -- update-grub
