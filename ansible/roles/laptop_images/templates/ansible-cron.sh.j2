@@ -9,4 +9,4 @@ logfile='/var/log/ansible-pull-update.log'
 
 mkdir ${directory}
 
-ansible-pull -o -C ${checkout} -d ${directory} -i localhost -U ${url} ansible/laptop-playbook.yaml 2>&1 | tee -a ${logfile}
+ansible-pull -o -C ${checkout} -d ${directory} -i localhost, -U ${url} ansible/laptop-playbook.yaml 2>&1 | tee -a ${logfile}
