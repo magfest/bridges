@@ -32,6 +32,7 @@ autoinstall:
         - ansible
     late-commands:
         - wget http://$(sed 's/^.*LAPTOP_BOOTSRV=\(.*\) .*$/\1/' /proc/cmdline)/ansible-cron.sh -P /target/usr/local/bin/
+        - mkdir /target/opt/ansible
         - echo "{{ laptop_vault_password }}" > /target/opt/ansible/vault-password
         - chown 400 /target/opt/ansible/vault-password
         - wget http://$(sed 's/^.*LAPTOP_BOOTSRV=\(.*\) .*$/\1/' /proc/cmdline)/ansible-cron -P /target/etc/cron.d/

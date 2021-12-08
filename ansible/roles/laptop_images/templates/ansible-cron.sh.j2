@@ -13,4 +13,4 @@ wget -N -P ${directory} ${requirements}
 ansible-galaxy install -r ${directory}/requirements.yaml
 ansible-galaxy collection install -r ${directory}/requirements.yaml
 
-ansible-pull -o -C ${checkout} -d ${directory}/repo -i localhost, -U ${url} --tags "laptops" ansible/playbook.yaml 2>&1 | tee -a ${logfile}
+ansible-pull -o -C ${checkout} -d ${directory}/repo -i localhost, -U ${url} --tags "laptops" --vault-password-file /opt/ansible/vault-password ansible/playbook.yaml 2>&1 | tee -a ${logfile}
