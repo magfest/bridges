@@ -8,3 +8,12 @@
     mode: 0644
   with_items:
     - { src: "syspref.js", dest: "/etc/firefox/syspref.js" }
+
+- name: WiFi credentials
+  ansible.builtin.template:
+    src: NMConnection.j2
+    dest: "/etc/NetworkManager/system-connections/{{ ssid }}.nmconnection"
+    owner: root
+    group: root
+    mode: 0600
+  with_items: "{{ wifi_creds }}"

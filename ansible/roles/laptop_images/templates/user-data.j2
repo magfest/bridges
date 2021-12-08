@@ -32,6 +32,8 @@ autoinstall:
         - ansible
     late-commands:
         - wget http://$(sed 's/^.*LAPTOP_BOOTSRV=\(.*\) .*$/\1/' /proc/cmdline)/ansible-cron.sh -P /target/usr/local/bin/
+        - echo "{{ laptop_vault_password }}" > /target/opt/ansible/vault-password
+        - chown 400 /target/opt/ansible/vault-password
         - wget http://$(sed 's/^.*LAPTOP_BOOTSRV=\(.*\) .*$/\1/' /proc/cmdline)/ansible-cron -P /target/etc/cron.d/
         - chmod +x /target/usr/local/bin/ansible-cron.sh
         - echo "X-GNOME-Autostart-enabled=false" >> /target/etc/xdg/autostart/gnome-initial-setup-first-login.desktop

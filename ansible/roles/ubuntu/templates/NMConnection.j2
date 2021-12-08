@@ -1,0 +1,37 @@
+[connection]
+id={{ ssid }}
+uuid={{ 999999999999999999999999999 | random | to_uuid }}
+type=wifi
+interface-name={{ ansible_interfaces | select('match', '^wl') | list | first }}
+permissions=
+
+[wifi]
+mac-address-blacklist=
+mode=infrastructure
+ssid={{ ssid }}
+
+[wifi-security]
+auth-alg=open
+key-mgmt={{ key_mgmt }}
+{% if key_mgmt == "wpa-psk" -%}
+psk={{ key }}
+{%- endif %}
+
+{% if key_mgmt == "wpa-eap" -%}
+[802-1x]
+eap={{ eap }}
+identity={{ identity }}
+password={{ password }}
+phase2-auth={{ inner_auth }}
+{%- endif %}
+
+[ipv4]
+dns-search=
+method=auto
+
+[ipv6]
+addr-gen-mode=stable-privacy
+dns-search=
+method=auto
+
+[proxy]
