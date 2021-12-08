@@ -12,7 +12,6 @@ magevent_net_hosts:
   - { name: "dns2", ip: "{{ branch_subnet_trimmed }}.120", type: "A" }
   - { name: "graylog", ip: "{{ branch_subnet_trimmed }}.129", type: "A" }
   - { name: "syslog", ip: "{{ branch_subnet_trimmed }}.130", type: "A" }
-  - { name: "librenms", ip: "{{ branch_subnet_trimmed }}.151", type: "A" }
   - { name: "zabbix-new", ip: "{{ branch_subnet_trimmed }}.201", type: "A" }
   - { name: "dhcp1", ip: "{{ branch_subnet_trimmed }}.253", type: "A" }
   - { name: "dhcp2", ip: "{{ branch_subnet_trimmed }}.254", type: "A" }
@@ -48,6 +47,7 @@ magevent_net_hosts:
   - { name: "gitlab-builder-1", ip: "10.101.22.138", type: "A" }
   - { name: "gitlab-builder-2", ip: "10.101.22.139", type: "A" }
   - { name: "gitlab-builder-3", ip: "10.101.22.140", type: "A" }
+  - { name: "librenms", ip: "10.101.22.151", type: "A" }
   - { name: "zabbix", ip: "10.101.22.200", type: "A" }
   # MAGCloud management IPs
   - { name: "oa1", ip: "10.101.21.11", type: "A" }
