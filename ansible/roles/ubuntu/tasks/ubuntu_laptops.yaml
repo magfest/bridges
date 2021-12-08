@@ -12,7 +12,7 @@
 - name: WiFi credentials
   ansible.builtin.template:
     src: NMConnection.j2
-    dest: "/etc/NetworkManager/system-connections/{{ ssid }}.nmconnection"
+    dest: "/etc/NetworkManager/system-connections/{{ item.ssid }}.nmconnection"
     owner: root
     group: root
     mode: 0600

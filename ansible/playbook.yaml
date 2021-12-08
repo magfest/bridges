@@ -1,4 +1,16 @@
 ---
+- name: Load vaults
+  hosts:
+  - all
+  tasks:
+  - name: Bridges vault
+    include_vars: vaults/vault.yaml
+  - name: Laptops-only vault
+    include_vars: vaults/laptop-vault.yaml
+    tags:
+    - never
+    - laptops
+
 - name: Initial Ubuntu setup
   hosts:
   - all
