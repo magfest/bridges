@@ -10,5 +10,5 @@ USERS=$(find /home -maxdepth 1 -mindepth 1 -type d -exec basename {} \;)
 
 for user in $USERS; do
     cp ${USER_ICON} /home/${user}/.face.png
-    su -c "gsettings set org.gnome.desktop.background picture-uri file://${WALLPAPER}" - ${user}
+    sudo -u ${user} dbus-launch gsettings set org.gnome.desktop.background picture-uri file://${WALLPAPER}
 done
