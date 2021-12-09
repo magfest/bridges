@@ -31,6 +31,7 @@ magevent_net_hosts:
   - { name: "rams2", ip: "10.101.22.22", type: "A" }
   - { name: "index", ip: "10.101.22.24", type: "A" }
   - { name: "vpn", ip: "10.101.22.25", type: "A" }
+  - { name: "wifiauth", ip: "10.101.22.26", type: "A" }
   - { name: "isp", ip: "10.101.22.27", type: "A" }
   - { name: "staffsuite", ip: "10.101.22.28", type: "A" }
   - { name: "challenges", ip: "10.101.22.53", type: "A" }
@@ -49,16 +50,27 @@ magevent_net_hosts:
   - { name: "gitlab-builder-3", ip: "10.101.22.140", type: "A" }
   - { name: "librenms", ip: "10.101.22.151", type: "A" }
   - { name: "zabbix", ip: "10.101.22.200", type: "A" }
-  # MAGCloud management IPs
+
+  # MAGCloud / Network Management
+  - { name: "mag-core-1", ip: "10.101.21.2", type: "A" }
+  - { name: "mag-core-2", ip: "10.101.21.3", type: "A" }
+  - { name: "oob-switch", ip: "10.101.21.4", type: "A" }
+  - { name: "party-switch-1", ip: "10.101.21.5", type: "A" }
+  - { name: "party-switch-2", ip: "10.101.21.6", type: "A" }
+  - { name: "mag-wlc-01", ip: "10.101.21.8", type: "A" }
+  - { name: "mag-wlc-02", ip: "10.101.21.9", type: "A" }
   - { name: "oa1", ip: "10.101.21.11", type: "A" }
   - { name: "oa2", ip: "10.101.21.12", type: "A" }
   - { name: "vc1", ip: "10.101.21.13", type: "A" }
+
+  # PVE
   - { name: "quorum", ip: "10.101.21.40", type: "A" }
   - { name: "pve1", ip: "10.101.21.41", type: "A" }
   - { name: "pve2", ip: "10.101.21.42", type: "A" }
   - { name: "pve-vampire", ip: "10.101.21.44", type: "A" }
   - { name: "synology", ip: "10.101.21.156", type: "A" }
   - { name: "repo", ip: "10.101.21.156", type: "A" }
+
   # IPMI
   - { name: "dell-omsa", ip: "192.168.100.110", type: "A" }
   - { name: "quorum-ipmi", ip: "192.168.100.111", type: "A" }
@@ -66,15 +78,7 @@ magevent_net_hosts:
   - { name: "pve2-ipmi", ip: "192.168.100.113", type: "A" }
   - { name: "vampire-ipmi", ip: "192.168.100.114", type: "A" }
 
-  # Network Management
-  - { name: "mag-core-1", ip: "10.101.21.2", type: "A" }
-  - { name: "mag-core-2", ip: "10.101.21.3", type: "A" }
-  - { name: "oob-switch", ip: "10.101.21.4", type: "A" }
-  - { name: "mag-wlc-01", ip: "10.101.21.8", type: "A" }
-  - { name: "mag-wlc-02", ip: "10.101.21.9", type: "A" }
-  # Need to confirm MAG-WLC-02
-
-  # external IPs, CNAMEs, etc.
+  # External IPs, CNAMEs, etc.
   - { name: "fixit", ip: "52.45.46.140", type: "A" }
   - { name: "fixit", ip: "2600:1f18:423b:a500:76bf:d287:e6f9:2306", type: "AAAA" }
   - { name: "streaming", ip: "streaming-456449487.us-east-1.elb.amazonaws.com.", type: "CNAME" }
