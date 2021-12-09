@@ -37,7 +37,7 @@
     - { src: "background_16_9.png", dest: "/usr/share/backgrounds/MAG2022_lockscreen.png" }
     - { src: "wallpaper_16_9.png", dest: "/usr/share/backgrounds/MAG2022_wallpaper.png" }
     - { src: "rip-and-tear.png", dest: "/usr/share/pixmaps/faces/MAG2022_face.png" }
-    - { src: "rip-and-tear.png", dest: "/etc/skel/.face.icon" }
+    - { src: "rip-and-tear.png", dest: "/etc/skel/.face" }
     - { src: "01-background", dest: "/etc/dconf/db/local.d/01-background" }
 
 - name: Update dconf
