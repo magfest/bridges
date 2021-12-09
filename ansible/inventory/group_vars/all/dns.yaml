@@ -81,3 +81,4 @@ magevent_net_hosts:
   - { name: "coldbrew", ip: "hydrophobic-pheasant-7qpulrttf80t5n3leh0etcff.herokudns.com.", type: "CNAME" }
   - { name: "schedule", ip: "schedule.magevent.net.s3-website-us-east-1.amazonaws.com.", type: "CNAME" }
   - { name: "food", ip: "157.245.3.204", type: "A" }
+  - { name: "apt-mirror", ip: "d1oyui1gsktpjk.cloudfront.net.", type: "CNAME"}
