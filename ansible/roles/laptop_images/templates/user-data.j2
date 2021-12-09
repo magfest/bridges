@@ -24,6 +24,10 @@ autoinstall:
     ssh:
         install-server: yes
         allow-pw: yes
+    apt:
+        primary:
+            - arches: [default]
+              uri: http://repo.magevent.net/ubuntu/
     packages:
         - libreoffice
         - ubuntu-desktop
