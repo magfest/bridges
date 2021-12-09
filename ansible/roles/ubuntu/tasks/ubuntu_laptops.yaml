@@ -41,7 +41,7 @@
     - { src: "01-background", dest: "/etc/dconf/db/local.d/01-background" }
 
 - name: Update dconf
-  ansible.builtin.command: "dconf update"
+  command: "dconf update"
 
 - name: Install change-gdm-background prerequisite
   ansible.builtin.apt:
@@ -66,7 +66,7 @@
     - { src: "change-gdm-background", dest: "/usr/local/bin/change-gdm-background" }
 
 - name: Install theme for existing users
-  ansiible.builtin.command: "/usr/local/bin/theme_install.sh"
+  command: "/usr/local/bin/theme_install.sh"
 
 - name: Install login screen background
-  ansiible.builtin.command: "/usr/local/bin/change-gdm-background /usr/share/backgrounds/MAG2022_lockscreen.png"
+  command: "/usr/local/bin/change-gdm-background /usr/share/backgrounds/MAG2022_lockscreen.png"
