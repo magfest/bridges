@@ -18,6 +18,14 @@
     mode: 0600
   with_items: "{{ wifi_creds }}"
 
+- name: Disable NetworkManager MAC randomization
+  ansible.builtin.copy:
+    src: "disable_randmac.conf"
+    dest: "/etc/NetworkManager/conf.d/disable_randmac.conf"
+    owner: root
+    group: root
+    mode: 0644
+
 - name: Create dconf directory for background config
   ansible.builtin.file:
     path: "/etc/dconf/db/local.d/"
