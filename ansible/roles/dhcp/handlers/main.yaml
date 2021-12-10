@@ -3,5 +3,5 @@
 - name: Restart dhcpd
   ansible.builtin.service:
     name: isc-dhcp-server
-    state: restarted
-    enabled: yes
+    state: "{{ 'restarted' if branch == 'prod' else 'stopped' }}"
+    enabled: "{{ 'yes' if branch == 'prod' else 'no' }}"

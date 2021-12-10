@@ -33,6 +33,11 @@ variable "subnet" {
   description = "Subnet for the branch in format 192.168.1.0/24"
 }
 
+variable "subnet_list" {
+  type        = string
+  description = "List of all subnets and branches in JSON format"
+}
+
 locals {
   cidr_suffix = element(split("/", var.subnet), 1)
   domain      = "${var.branch}.magevent.net"
@@ -64,7 +69,7 @@ resource "local_file" "inventory" {
     [smtp]
     ${module.smtp.hostname} ansible_host=${module.smtp.ip_address}
 
-    [cobbler]
-    ${module.cobbler.hostname} ansible_host=${module.cobbler.ip_address}
+    [laptops]
+    ${module.laptops.hostname} ansible_host=${module.laptops.ip_address}
     EOF
 }

@@ -1,0 +1,11 @@
+---
+packages:
+  tftp:
+    - tftpd-hpa
+    - ipxe
+    - grub-efi-amd64-bin
+    - grub-efi-amd64-signed
+    - pxelinux
+    - syslinux-common
+  apache:
+    - apache2

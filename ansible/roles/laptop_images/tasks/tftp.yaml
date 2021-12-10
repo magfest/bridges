@@ -1,0 +1,54 @@
+---
+- name: Install TFTP packages
+  ansible.builtin.apt:
+    name: "{{ packages.tftp }}"
+    install_recommends: false
+    update_cache: true
+    cache_valid_time: 3600
+    autoclean: true
+    autoremove: true
+
+- name: Create tftp directory
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+  - "/srv/tftp"
+  - "/srv/tftp/bios"
+  - "/srv/tftp/efi64"
+  - "/srv/tftp/grub"
+  - "/srv/tftp/bios/pxelinux.cfg"
+
+- name: Create PXELINUX config
+  ansible.builtin.template:
+    src: "pxelinux.cfg.j2"
+    dest: "/srv/tftp/bios/pxelinux.cfg/default"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Create iPXE config
+  ansible.builtin.template:
+    src: "ipxe.cfg.j2"
+    dest: "/srv/tftp/ipxe.cfg"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Copy files
+  ansible.builtin.copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    group: root
+    mode: 0644
+    remote_src: yes
+  with_items:
+  - {src: "/usr/lib/syslinux/modules/bios/ldlinux.c32", dest: "/srv/tftp/bios/ldlinux.c32"}
+  - {src: "/usr/lib/syslinux/modules/bios/libutil.c32", dest: "/srv/tftp/bios/libutil.c32"}
+  - {src: "/usr/lib/syslinux/modules/bios/menu.c32", dest: "/srv/tftp/bios/menu.c32"}
+  - {src: "/usr/lib/syslinux/modules/bios/vesamenu.c32", dest: "/srv/tftp/bios/vesamenu.c32"}
+  - {src: "/usr/lib/PXELINUX/pxelinux.0", dest: "/srv/tftp/bios/pxelinux.0"}
+  - {src: "/usr/lib/PXELINUX/lpxelinux.0", dest: "/srv/tftp/bios/lpxelinux.0"}
+  - {src: "/usr/lib/syslinux/memdisk", dest: "/srv/tftp/bios/memdisk"}
+  - {src: "/usr/lib/ipxe/ipxe.lkrn", dest: "/srv/tftp/bios/ipxe.lkrn"}

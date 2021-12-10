@@ -12,7 +12,7 @@ logs/
 ansible.log
 # SOPS
 .decrypted~*.yaml
-.vault-password
+*vault-password
 # Jetbrains
 .idea
 .venv

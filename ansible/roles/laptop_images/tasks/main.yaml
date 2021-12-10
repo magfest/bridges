@@ -1,0 +1,8 @@
+---
+- include_tasks: tftp.yaml
+
+- include_tasks: dhcp.yaml
+
+- include_tasks: apache2.yaml
+
+- include_tasks: firewall_rules.yaml

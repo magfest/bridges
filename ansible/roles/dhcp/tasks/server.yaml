@@ -15,7 +15,7 @@
   ansible.builtin.lineinfile:
     path: /etc/default/isc-dhcp-server
     regexp: '^INTERFACESv4=.*$'
-    line: 'INTERFACESv4="eth0"'
+    line: 'INTERFACESv4="{{ dhcp_interface }}"'
   notify:
   - Restart dhcpd
 

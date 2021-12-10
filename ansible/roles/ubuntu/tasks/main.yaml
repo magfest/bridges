@@ -2,10 +2,12 @@
 - include: locale.yaml
   tags:
     - locale
+    - laptops
 
 - include: packages.yaml
   tags:
     - packages
+    - laptops
 
 - include: network.yaml
   tags:
@@ -22,20 +24,17 @@
 - include: firewall_rules.yaml
   tags:
     - firewall
-
-- include: packages.yaml
-
-- include: network.yaml
+    - laptops
 
 - include: "etc_hosts.yaml"
 
 - include: mail.yaml
   when: "'smtp' not in group_names"
 
-- include: user.yaml
-
 - include: timesyncd.yaml
 
-# - name: Show facts available on the system
-#   ansible.builtin.debug:
-#     var: ansible_facts
+# The following should only run on laptops
+- include: ubuntu_laptops.yaml
+  tags:
+    - never
+    - laptops

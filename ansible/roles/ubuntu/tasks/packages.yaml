@@ -11,6 +11,14 @@
       APT::Get::Install-Recommends "false";
       APT::Get::Install-Suggests "false";
 
+- name: Set MAGEvent repository mirror
+  ansible.builtin.copy:
+    src: sources.list
+    dest: /etc/apt/sources.list
+    owner: root
+    group: root
+    mode: 0644
+
 - name: Upgrade all system packages
   ansible.builtin.apt:
     upgrade: full
@@ -37,6 +45,7 @@
   - packages.apt_install_vm is defined
   - packages.apt_install_vm is iterable
   - packages.apt_install_vm | length > 0
+  - ansible_facts['virtualization_role'] == "guest"
   - ansible_facts['virtualization_type'] == "kvm"
 
 - name: Install common LXC packages
@@ -54,4 +63,5 @@
   - packages.apt_install_lxc is defined
   - packages.apt_install_lxc is iterable
   - packages.apt_install_lxc | length > 0
+  - ansible_facts['virtualization_role'] == "guest"
   - ansible_facts['virtualization_type'] == "lxc"

@@ -1,4 +1,20 @@
 ---
+- name: Load vaults
+  hosts:
+  - all
+  remote_user: root
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  tasks:
+  - name: Bridges vault
+    include_vars: vaults/vault.yaml
+  - name: Laptops-only vault
+    include_vars: vaults/laptop-vault.yaml
+    tags:
+    - never
+    - laptops
+
 - name: Initial Ubuntu setup
   hosts:
   - all
@@ -78,3 +94,13 @@
   any_errors_fatal: true
   roles:
   - smtp
+
+- name: Laptop deployment setup
+  hosts:
+  - laptops
+  remote_user: root
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  roles:
+  - laptop_images

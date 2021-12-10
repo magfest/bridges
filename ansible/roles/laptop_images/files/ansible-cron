@@ -1,0 +1,9 @@
+###
+### Run Ansible on boot and every hour
+###
+
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+@reboot root /usr/local/bin/ansible-cron.sh
+@hourly root /usr/local/bin/ansible-cron.sh

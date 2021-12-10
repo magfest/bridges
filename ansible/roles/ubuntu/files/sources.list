@@ -1,0 +1,14 @@
+deb http://repo.magevent.net/ubuntu/ focal main restricted
+deb http://repo.magevent.net/ubuntu/ focal-updates main restricted
+
+deb http://repo.magevent.net/ubuntu/ focal universe
+deb http://repo.magevent.net/ubuntu/ focal-updates universe
+
+deb http://repo.magevent.net/ubuntu/ focal multiverse
+deb http://repo.magevent.net/ubuntu/ focal-updates multiverse
+
+deb http://repo.magevent.net/ubuntu/ focal-backports main restricted universe multiverse
+
+deb http://repo.magevent.net/ubuntu focal-security main restricted
+deb http://repo.magevent.net/ubuntu focal-security universe
+deb http://repo.magevent.net/ubuntu focal-security multiverse
