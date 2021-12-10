@@ -4,6 +4,7 @@ uuid={{ 999999999999999999999999999 | random | to_uuid }}
 type=wifi
 interface-name={{ ansible_interfaces | select('match', '^wl') | list | first }}
 permissions=
+autoconnect=true
 
 [wifi]
 mac-address-blacklist=
