@@ -24,6 +24,7 @@ _ldap._tcp                IN        SRV        10        10        389       fre
 
 @                         IN        A        10.101.22.24
 www                       IN        A        10.101.22.24
+snipe                     IN        CNAME    pacific-endive-8stlz9pl72a8tne5ty4fe1wm.herokudns.com.
 {% for item in magevent_net_hosts %}
 ; {{ item.name }}
 {{ item.name }}           IN        {{ item.type }}        {{ item.ip }}
