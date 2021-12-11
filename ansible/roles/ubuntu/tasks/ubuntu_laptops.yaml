@@ -1,4 +1,7 @@
 ---
+- name: Update ansible script
+  command: "wget http://{{ branch_subnet_trimmed }}.69/ansible-cron.sh -P /target/usr/local/bin/"
+
 - name: Disable Firefox autofill
   ansible.builtin.copy:
     src: "{{ item.src }}"

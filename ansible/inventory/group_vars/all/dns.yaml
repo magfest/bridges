@@ -1,5 +1,4 @@
 ---
-branch_subnet_trimmed: "{{ (branch_subnet.split('.'))[0:3] | join('.') }}"
 magevent_net_hosts:
   # MAGCloud per-branch "dynamic" IP entries
   - { name: "ntp1", ip: "{{ branch_subnet_trimmed }}.6", type: "A" }
