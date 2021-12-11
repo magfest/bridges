@@ -6,7 +6,7 @@ dhcp_ipaddr_ext: "{{ ansible_all_ipv4_addresses | select('match', '^' + branch_s
 dhcp_zones:
 - { name: "LaptopProvisioning",
     subnet: "10.101.69.0",
-    filename: "lpxelinux.0",
+    filename: "bios/lpxelinux.0",
     netmask: "255.255.255.0",
     default_lease_time: 3600,
     max_lease_time: 3600,
