@@ -35,6 +35,7 @@ magevent_net_hosts:
   - { name: "wifiauth", ip: "10.101.22.26", type: "A" }
   - { name: "isp", ip: "10.101.22.27", type: "A" }
   - { name: "staffsuite", ip: "10.101.22.28", type: "A" }
+  - { name: "dc3", ip: "10.101.22.29", type: "A" }
   - { name: "challenges", ip: "10.101.22.53", type: "A" }
   - { name: "shifts", ip: "10.101.22.58", type: "A" }
   - { name: "minecraft", ip: "10.101.22.124", type: "A" }
