@@ -165,3 +165,5 @@ magevent_net_hosts:
   - { name: "schedule", ip: "schedule.magevent.net.s3-website-us-east-1.amazonaws.com.", type: "CNAME" }
   - { name: "food", ip: "157.245.3.204", type: "A" }
   - { name: "apt-mirror", ip: "d1oyui1gsktpjk.cloudfront.net.", type: "CNAME"}
+  - { name: "snipe", ip: "pacific-endive-8stlz9pl72a8tne5ty4fe1wm.herokudns.com.", type: "CNAME" }
+}
