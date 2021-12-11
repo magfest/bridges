@@ -2,6 +2,9 @@
 # Branch subnet, provided by GitLab CI system
 branch_subnet: "{{ lookup('env', 'TF_VAR_subnet') }}"
 
+# Same, but trimmed to the first 3 octets
+branch_subnet_trimmed: "{{ (branch_subnet.split('.'))[0:3] | join('.') }}"
+
 # List of branches, provided by GitLab CI system
 branch_list: "{{ lookup('env', 'TF_VAR_subnet_list') | from_json | dict2items(key_name='branch', value_name='subnet') }}"
 
