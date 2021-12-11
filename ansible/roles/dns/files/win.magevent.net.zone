@@ -6,7 +6,5 @@ $TTL 3600
         1800       ; Retry
         604800     ; Expire - 1 week
         86400 )    ; Minimum
-        IN        NS        dc1
-        IN        NS        dc2
-dc1     IN        A        10.101.22.210
-dc2     IN        A        10.101.22.220
+        IN        NS        dc3
+dc3     IN        A        10.101.22.29
