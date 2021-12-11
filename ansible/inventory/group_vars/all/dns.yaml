@@ -13,8 +13,7 @@ magevent_net_hosts:
   - { name: "graylog", ip: "{{ branch_subnet_trimmed }}.129", type: "A" }
   - { name: "syslog", ip: "{{ branch_subnet_trimmed }}.130", type: "A" }
   - { name: "zabbix-new", ip: "{{ branch_subnet_trimmed }}.201", type: "A" }
-  - { name: "dhcp1", ip: "{{ branch_subnet_trimmed }}.253", type: "A" }
-  - { name: "dhcp2", ip: "{{ branch_subnet_trimmed }}.254", type: "A" }
+  - { name: "dhcp1", ip: "{{ branch_subnet_trimmed }}.4", type: "A" }
 
   # MAGCloud static/not-in-Terraform-yet entries
   - { name: "salt", ip: "10.101.22.8", type: "A" }

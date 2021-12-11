@@ -5,7 +5,7 @@ module "dhcp" {
   gateway      = cidrhost(var.subnet, 1)
   nets = [
     {
-      ip   = cidrhost(var.subnet, 253)
+      ip   = cidrhost(var.subnet, 4)
       cidr = local.cidr_suffix
       tag  = "22"
     }
