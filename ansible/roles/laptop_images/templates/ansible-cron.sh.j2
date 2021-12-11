@@ -10,6 +10,9 @@ requirements="https://raw.githubusercontent.com/magfest/bridges/${checkout}/ansi
 
 mkdir -p ${directory}
 wget -N -P ${directory} ${requirements}
+
+while ! ping -c1 google.com; do sleep 3; done
+
 ansible-galaxy install -r ${directory}/requirements.yaml
 ansible-galaxy collection install -r ${directory}/requirements.yaml
 
