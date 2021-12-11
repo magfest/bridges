@@ -1,6 +1,14 @@
 ---
+- name: Update branch for Ansible run
+  ansible.builtin.copy:
+    dest: "/opt/ansible/branch"
+    owner: root
+    group: root
+    mode: 0644
+    content: "{{ branch }}"
+
 - name: Update ansible script
-  command: "wget http://{{ branch_subnet_trimmed }}.69/ansible-cron.sh -P /target/usr/local/bin/"
+  command: "wget http://github.com/magfest/bridges/blob/{{ branch }}/ansible/roles/laptop_images/files/ansible-cron.sh -P /target/usr/local/bin/"
 
 - name: Disable Firefox autofill
   ansible.builtin.copy:

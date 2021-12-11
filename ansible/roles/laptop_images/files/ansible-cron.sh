@@ -9,7 +9,7 @@ else
 fi
 
 url='https://github.com/magfest/bridges.git'
-checkout='{{ branch }}'
+checkout="$(cat /opt/ansible/branch)"
 directory='/opt/ansible'
 logfile='/var/log/ansible-pull-update.log'
 requirements="https://raw.githubusercontent.com/magfest/bridges/${checkout}/ansible/requirements.yaml"
