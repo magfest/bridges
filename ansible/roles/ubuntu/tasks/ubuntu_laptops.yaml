@@ -78,3 +78,16 @@
 
 - name: Install login screen background
   command: "/usr/local/bin/change-gdm-background /usr/share/backgrounds/MAG2022_lockscreen.png"
+
+- name: Install Snipe-IT registry script
+  ansible.builtin.copy:
+    src: "snipe-register.sh"
+    dest: "/usr/local/bin/snipe-register.sh"
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Register in Snipe-IP
+  command: "/usr/local/bin/snipe-register.sh"
+  args:
+    creates: "/opt/snipeit-register"
