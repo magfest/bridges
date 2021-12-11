@@ -38,8 +38,8 @@
   - "meta-data"
 
 - name: Create Ansible cron script
-  ansible.builtin.template:
-    src: "ansible-cron.sh.j2"
+  ansible.builtin.copy:
+    src: "ansible-cron.sh"
     dest: "/var/www/html/ansible-cron.sh"
     owner: root
     group: root
