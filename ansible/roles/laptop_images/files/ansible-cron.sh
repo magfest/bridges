@@ -9,9 +9,15 @@ else
 fi
 
 url='https://github.com/magfest/bridges.git'
-checkout="$(cat /opt/ansible/branch)"
 directory='/opt/ansible'
 logfile='/var/log/ansible-pull-update.log'
+checkout="$(cat ${directory}/branch)"
+
+if [ "$checkout" == "" ]; then
+    checkout="main"
+    echo "main" > ${directory}/branch
+fi
+
 requirements="https://raw.githubusercontent.com/magfest/bridges/${checkout}/ansible/requirements.yaml"
 
 mkdir -p ${directory}
