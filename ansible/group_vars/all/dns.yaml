@@ -150,10 +150,10 @@ magevent_net_hosts:
 
   # IPMI
   - { name: "dell-omsa", ip: "192.168.100.110", type: "A" }
-  - { name: "quorum-ipmi", ip: "192.168.100.111", type: "A" }
-  - { name: "pve1-ipmi", ip: "192.168.100.112", type: "A" }
-  - { name: "pve2-ipmi", ip: "192.168.100.113", type: "A" }
-  - { name: "vampire-ipmi", ip: "192.168.100.114", type: "A" }
+  - { name: "quorum-idrac", ip: "192.168.100.111", type: "A" }
+  - { name: "pve1-idrac", ip: "192.168.100.112", type: "A" }
+  - { name: "pve2-idrac", ip: "192.168.100.113", type: "A" }
+  - { name: "vampire-idrac", ip: "192.168.100.114", type: "A" }
 
   # External IPs, CNAMEs, etc.
   - { name: "fixit", ip: "52.45.46.140", type: "A" }
