@@ -33,6 +33,7 @@ autoinstall:
         - ubuntu-desktop
         - plymouth-themes
         - bcmwl-kernel-source
+        - nvidia-driver-390
         - ansible
     late-commands:
         - wget http://$(sed 's/^.*LAPTOP_BOOTSRV=\(.*\) .*$/\1/' /proc/cmdline)/ansible-cron.sh -P /target/usr/local/bin/
