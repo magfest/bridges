@@ -161,6 +161,6 @@ magevent_net_hosts:
   - { name: "streaming", ip: "streaming-456449487.us-east-1.elb.amazonaws.com.", type: "CNAME" }
   - { name: "coldbrew", ip: "hydrophobic-pheasant-7qpulrttf80t5n3leh0etcff.herokudns.com.", type: "CNAME" }
   - { name: "schedule", ip: "schedule.magevent.net.s3-website-us-east-1.amazonaws.com.", type: "CNAME" }
-  - { name: "food", ip: "157.245.3.204", type: "A" }
+  - { name: "food", ip: "143.198.29.84", type: "A" }
   - { name: "apt-mirror", ip: "d1oyui1gsktpjk.cloudfront.net.", type: "CNAME"}
   - { name: "snipe", ip: "pacific-endive-8stlz9pl72a8tne5ty4fe1wm.herokudns.com.", type: "CNAME" }
