@@ -1,10 +1,12 @@
---
-- name: Install python prereqs
+---
+- name: Install apt provisioner prereqs
   ansible.builtin.apt:
     name: "{{ packages.python3 }}"
 
-# TODO not sure how to add pip packages
-# needs: 'airtable' from pip
+- name: Install pip provisioner prereqs
+  ansible.builtin.pip:
+    name: "{{ packages.pip_airtable }}"
+    executable: "pip3"
 
 - name: Create voip-provisioner directories
   ansible.builtin.file:
@@ -25,3 +27,23 @@
   ansible.builtin.file:
     src: "templates"
     dest: "/etc/voip-provision/templates"
+
+- name: Copy voip-provisioner executable
+  ansible.builtin.file:
+    src: "provisioner.py"
+    dest: "/usr/bin/provisioner.py"
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Copy voip-provisioner systemd file
+  ansible.builtin.file:
+    src: "voip-provision.service"
+    dest: "/etc/systemd/system/voip-provision.service"
+
+- name: Start provisioner
+  ansible.builtin.systemd:
+    name: voip-provision
+    state: started
+    enabled: yes
+    daemon_reload: yes

@@ -1,0 +1,4 @@
+---
+packages:
+  tftp:
+    - tftpd-hpa

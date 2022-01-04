@@ -4,3 +4,6 @@ packages:
     - python3
     - python3-requests
     - python3-flask
+    - python3-pip
+  pip_airtable:
+    - airtable
