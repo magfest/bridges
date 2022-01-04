@@ -1,0 +1,8 @@
+{# This template will become the entire context of [incoming] #}
+{% for ext in extensions %}
+{% if ext.get("incoming_number") %}
+; {{ ext.get("label") }}
+exten => _+{{ ext.get("incoming_number")}},1,Goto(phones,{{ ext.get("extension", 0) }},1)
+same => n,Hangup
+{% endif %}
+{% endfor %}

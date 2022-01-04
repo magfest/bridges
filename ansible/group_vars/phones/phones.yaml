@@ -1,0 +1,26 @@
+---
+phone_models:
+ - { name: "Yealink T20P", filename: "y000000000007.cfg", firmware: "9.73.193.40", type: "yealink-t2x" }
+ - { name: "Yealink T22P", filename: "y000000000005.cfg", firmware: "7.73.193.50", type: "yealink-t2x" }
+ - { name: "Yealink T26P", filename: "y000000000004.cfg", firmware: "6.73.193.50", type: "yealink-t2x" }
+ - { name: "Yealink T28P", filename: "y000000000000.cfg", firmware: "2.73.193.50", type: "yealink-t2x" }
+ - { name: "Yealink T38G", filename: "y000000000038.cfg", firmware: "38.70.1.33", type: "yealink-t2x" }
+
+airtable:
+  base_id: xxx
+  api_key: xxx
+
+twilio_credentials:
+  # External IP of the rack
+  # needed for incoming calls
+  # warehouse: 71.191.143.68
+  external_ip: 127.0.0.1
+  host: magonsite.pstn.twilio.com
+  username: magfest
+  password: <password>
+  default_phone_number: 18556248226
+  permit_ips:
+    - 10.0.0.0/255.0.0.0
+    - 54.172.60.0/255.255.255.252
+    - 34.203.250.0/255.255.254.0
+    - 54.244.51.0/255.255.255.252

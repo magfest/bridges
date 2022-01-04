@@ -1,0 +1,21 @@
+{% for ext in extensions %}
+{% if not ext.get("special") and ext.get("ring_users") %}
+{% for ext_number in [ext.get("extension", [])] + ext.get("alt_extensions", []) %}
+{% if ext.get("use_queue", False) %}
+{# BEGIN QUEUED EXTENSION CONFIG #}
+exten => {{ ext_number }},1,Queue({{ safe_identifier(ext.get("label", "")) }})
+same => n,Goto(phones,0,1)
+{# END QUEUED EXTENSION CONFIG #}
+{% else %}
+{# BEGIN REGULAR EXTENSION CONFIG #}
+exten => {{ ext_number }},1,Dial({{ format_sip_username_list(ext.get("ring_users", [])) }},30)
+{% for fallback_users in ext.get("fallback", []) %}
+same => n,Dial({{ format_sip_username_list(fallback_users) }},30)
+{% endfor %}
+same => n,Goto(phones,0,1)
+same => n,Hangup
+{# END REGULAR EXTENSION CONFIG #}
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endfor %}

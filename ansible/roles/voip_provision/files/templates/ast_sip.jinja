@@ -1,0 +1,10 @@
+{% for cred in credentials %}
+; MAC = {{ cred.get("mac", "Unknown") }}
+[{{ cred["username"] }}]
+type=friend
+username={{ cred["username"] }}
+secret={{ cred["password"] }}
+host=dynamic
+context=phones
+{% if cred.get("label") %}callerid={{ cred.get("label") }}{% endif %}
+{% endfor %}
