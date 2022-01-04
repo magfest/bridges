@@ -1,0 +1,51 @@
+#!version:1.0.0.1
+{% for n, cred in enumerate(credentials) %}
+{% set ord = n + 1 %}
+# input: { credentials: [{username, password, desc}], extensions: [{extension, label}] }
+######################################################
+## Account{{ ord }} Basic Settings ##
+######################################################
+account.{{ ord }}.enable = 1
+account.{{ ord }}.label = {{ cred["desc"] }}
+account.{{ ord }}.display_name = {{ cred["desc"] }}
+account.{{ ord }}.auth_name = {{ cred["username"] }}
+account.{{ ord }}.user_name = {{ cred["username"] }}
+account.{{ ord }}.password ={{ cred["password"] }}
+######################################################
+## Fallback ##
+######################################################
+account.{{ ord }}.reregister_enable = 1
+account.{{ ord }}.fallback.redundancy_type = 0
+account.{{ ord }}.sip_server.1.address = asterisk.magevent.net
+account.{{ ord }}.sip_server.1.port = 5060
+account.{{ ord }}.outbound_proxy_enable = 1
+account.{{ ord }}.outbound_host = asterisk.magevent.net
+account.{{ ord }}.outbound_port = 5060
+{% endfor %}
+
+#local_time.time_zone = -5
+
+{% for n in range(1, 7) %}
+expansion_module.{{ n }}.key.1.type = 37
+expansion_module.{{ n }}.key.1.label = Page 1
+expansion_module.{{ n }}.key.21.type = 37
+expansion_module.{{ n }}.key.21.label = Page 2
+{% endfor %}
+
+{% for num, ext in enumerate(extensions) %}
+{% set module = (num // 38) + 1 %}
+{% set key = (num % 38) + 2 %}
+{% if key > 20 %} {% set key = key + 1 %}{% endif %}
+{% if module <= 6 %}
+expansion_module.{{ module }}.key.{{ key }}.type = 13
+expansion_module.{{ module }}.key.{{ key }}.line = 1
+expansion_module.{{ module }}.key.{{ key }}.value = {{ ext["extension"] }}
+expansion_module.{{ module }}.key.{{ key }}.label = {{ ext["label"] }}
+{% endif %}
+{% endfor %}
+
+# TODO calculate this based on phonebook?
+{% set rules = ["911", "999", "112", "933", "333", "332", "0", "3", "5", "6", "7", "1xx", "2xx", "3xx", "4xx", "5xx", "1[2-9]xx[2-9]xx[2-9]xxx", "[2-9]xx[2-9]xx[2-9]xxx"] %}
+{% for n, rule in enumerate(rules) %}
+dialplan.dialnow.rule.{{ n + 1 }} = {{ rule }}
+{% endfor %}

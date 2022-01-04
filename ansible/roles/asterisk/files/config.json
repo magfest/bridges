@@ -1,0 +1,42 @@
+{
+    "airtable": { "base_id": "appnoZuxsZDfEgDuG", "api_key": "keyqYhTpixQ3FKRq6"},
+    "asterisk": {
+        "reload_command": "echo systemctl restart asterisk"
+    },
+    "templates": {
+        "asterisk.extensions.phones": {
+            "write_path": "./2/extensions_phones.conf"
+        },
+        "asterisk.extensions.incoming": {
+            "write_path": "./2/extensions_incoming.conf"
+        },
+        "asterisk.extensions.outgoing": {
+            "write_path": "./2/extensions_outgoing.conf"
+        },
+        "asterisk.sip": {
+            "write_path": "./2/include_users.conf"
+        },
+        "asterisk.queues": {
+            "write_path": "./2/include_queues.conf"
+        },
+        "custom.phonebook": {
+            "type": "page",
+            "src_path": "./provisioner/summary.html.jinja",
+            "http_path": "/"
+        }
+    },
+    "user_data": "./2/users.json",
+    "airtable_cache": "./2/cache.json",
+    "template_dir": "./provisioner",
+    "http": {
+        "enable": false,
+        "listen": "0.0.0.0",
+        "port": 8080
+    },
+    "update_interval": 60,
+    "logging": {
+        "file_path": "",
+        "console_level": "debug",
+        "syslog_path": null
+    }
+}

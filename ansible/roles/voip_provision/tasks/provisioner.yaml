@@ -1,0 +1,27 @@
+--
+- name: Install python prereqs
+  ansible.builtin.apt:
+    name: "{{ packages.python3 }}"
+
+# TODO not sure how to add pip packages
+# needs: 'airtable' from pip
+
+- name: Create voip-provisioner directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "/etc/voip-provision/"
+    - "/etc/voip-provision/templates"
+    - "/etc/voip-provision/firmware"
+    - "/var/voip-provision"
+
+- name: Create voip-provisioner config file
+  ansible.builtin.template:
+    src: "config.json.j2"
+    dest: "/etc/voip-provision/config.json"
+
+- name: Copy voip-provisioner templates
+  ansible.builtin.file:
+    src: "templates"
+    dest: "/etc/voip-provision/templates"
