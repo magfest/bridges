@@ -1,11 +1,4 @@
 ---
-phone_models:
- - { name: "Yealink T20P", filename: "y000000000007.cfg", firmware: "9.73.193.40", type: "yealink-t2x" }
- - { name: "Yealink T22P", filename: "y000000000005.cfg", firmware: "7.73.193.50", type: "yealink-t2x" }
- - { name: "Yealink T26P", filename: "y000000000004.cfg", firmware: "6.73.193.50", type: "yealink-t2x" }
- - { name: "Yealink T28P", filename: "y000000000000.cfg", firmware: "2.73.193.50", type: "yealink-t2x" }
- - { name: "Yealink T38G", filename: "y000000000038.cfg", firmware: "38.70.1.33", type: "yealink-t2x" }
-
 airtable:
   base_id: xxx
   api_key: xxx
