@@ -20,7 +20,7 @@
 - name: Copy voip-provisioner templates
   ansible.builtin.copy:
     src: "templates"
-    dest: "/etc/voip-provision/templates"
+    dest: "/etc/voip-provision"
 
 - name: Copy voip-provisioner executable
   ansible.builtin.copy:
