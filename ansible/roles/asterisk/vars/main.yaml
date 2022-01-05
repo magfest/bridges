@@ -5,7 +5,7 @@ asterisk_config:
   host: "{{ twilio_host }}"
   username: "{{ twilio_username }}"
   password: "{{ twilio_password }}"
-  default_phone_number: 18556248226
+  default_number: 18556248226
   permit_ips:
     - 10.0.0.0/255.0.0.0
     - 54.172.60.0/255.255.255.252
