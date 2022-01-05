@@ -1,2 +1,2 @@
 ---
--- include_tasks: asterisk.yaml
+- include_tasks: asterisk.yaml
