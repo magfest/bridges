@@ -13,13 +13,13 @@ magevent_net_hosts:
   - { name: "syslog", ip: "{{ branch_subnet_trimmed }}.130", type: "A" }
   - { name: "zabbix-new", ip: "{{ branch_subnet_trimmed }}.201", type: "A" }
   - { name: "dhcp1", ip: "{{ branch_subnet_trimmed }}.4", type: "A" }
+  - { name: "asterisk", ip: "{{ branch_subnet_trimmed }}.12", type: "A" }
 
   # MAGCloud static/not-in-Terraform-yet entries
   - { name: "salt", ip: "10.101.22.8", type: "A" }
   - { name: "foreman", ip: "10.101.22.8", type: "A" }
   - { name: "freeradius", ip: "10.101.22.10", type: "A" }
   - { name: "freeipa", ip: "10.101.22.11", type: "A" }
-  - { name: "asterisk", ip: "10.101.22.12", type: "A" }
   - { name: "assman", ip: "10.101.22.15", type: "A" }
   - { name: "smokeping", ip: "10.101.22.16", type: "A" }
   - { name: "radios", ip: "10.101.22.17", type: "A" }

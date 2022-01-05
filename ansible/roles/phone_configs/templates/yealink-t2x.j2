@@ -1,0 +1,59 @@
+#!version:1.0.0.1
+# Static TFTP config file for ALL yealink models
+# Each model pulls a different y0000000000xx.cfg file.
+# This file handles telling the phone URLs for:
+# * Firmware upgrade
+# * Phone-specific config file
+# * Contact list
+# * Dialplan
+
+
+firmware.url = http://asterisk.magevent.net/firmware/{{ model.type}}/{{ model.firmware }}.rom
+#local_contact.data.url = http://asterisk.magevent.net/provision/{{ model.type }}/contacts.xml
+#dialplan_dialnow.url = http://asterisk.magevent.net/provision/{{ model.type }}/dialplan.xml
+#action_url.register_failed = http://asterisk.magevent.net/status/register_failed.xml
+
+# Disable the PC port
+network.pc_port_enable = 1
+
+# Disable the webUI
+wui.https_enable = 0
+wui.http_enable = 0
+
+# Set syslog to server mode
+syslog.mode = 1
+syslog.server = 10.101.21.156
+# Default log level 3
+syslog.log_level = 6
+
+# enable auto-provision at power-on
+auto_provision.power_on = 1
+# enable auto-provisioning repeatedly
+auto_provision.repeat.enable = 1
+# set repeat interval to 15 minutes
+auto_provision.repeat.minutes = 15
+
+# phone will retrieve mac-specific url from:
+# e.g. http://asterisk.magevent.net/provision/yealink-t2x/0015651130F9.cfg
+# assuming base url is http://asterisk.magevent.net/provision/yealink-t2x
+auto_provision.server.url = http://asterisk.magevent.net/provision/{{ model.type}}
+
+#expansion_module.x.key.y.xml_phonebook = 0-5
+
+local_time.time_zone_name = United States-Eastern Time
+local_time.ntp_server1 = ntp1.magevent.net
+local_time.ntp_server2 = ntp2.magevent.net
+
+# Yealink T20P only supports MM/DD/YY, DD/MM/YY, or YY/MM/DD (7, 8, 9)
+# For other models, YYYY-MM-DD (2) is supported
+{% if model.name == "Yealink T20P" %}
+local_time.date_format = 9
+{% else %}
+local_time.date_format = 2
+{% endif %}
+
+# Only for T20P without screen
+phone_setting.lcd_logo.text = "MAGFest 2022"
+
+#ringtone.url=
+#lcd_logo.url=

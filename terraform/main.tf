@@ -71,5 +71,8 @@ resource "local_file" "inventory" {
 
     [laptops]
     ${module.laptops.hostname} ansible_host=${module.laptops.ip_address}
+
+    [asterisk]
+    ${module.asterisk.hostname} ansible_host=${module.asterisk.ip_address}
     EOF
 }
