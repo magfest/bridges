@@ -19,11 +19,11 @@ provisioner_config:
   http:
     enable: true
     listen: "0.0.0.0"
-    port: 8080
+    port: 80
   update_interval: 60
   logging:
     file_path: /var/log/voip-provision.log
     file_level: debug
     console_level: info
-    syslog_path: /var/log/syslog
+    syslog_path: /dev/log
     syslog_level: debug
