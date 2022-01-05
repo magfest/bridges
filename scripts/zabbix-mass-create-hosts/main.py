@@ -18,7 +18,14 @@ group = parser.add_argument_group('Inputs')
 group.add_argument('-y', '--yaml', required=True, help='dns.yaml file name') # TODO: Make this accept URLs for convenience
 group.add_argument('-m', '--match-prefix', required=True, help='Host name prefix to match against DNS file')
 group.add_argument('-d', '--dry-run', action=argparse.BooleanOptionalAction, default=False, help='Dry run (do not create or update hosts)')
+group = parser.add_argument_group('SNMP configuration')
+group.add_argument('-S', '--snmp-version', type=int, default=2, choices=[2, 3], help='SNMP version')
+group.add_argument('-U', '--snmp-username', help='SNMPv3 username (required if SNMP version is 3)')
+group.add_argument('-P', '--snmp-password', help='SNMPv3 password (required if SNMP version is 3)')
+
 args = parser.parse_args()
+if args.snmp_version == 3 and (args.snmp_username is None or args.snmp_password is None):
+    parser.error('SNMP version 3 requires SNMP username and password.')
 
 #
 # Read hosts from YAML
@@ -35,6 +42,17 @@ dns_entries = list(filter(lambda entry: entry['name'].startswith(args.match_pref
 if len(dns_entries) == 0:
     print("No hosts matched")
     sys.exit()
+
+snmp_details = {"version": args.snmp_version}
+if args.snmp_version == 3:
+    snmp_details['securityname'] = args.snmp_username
+    snmp_details['securitylevel'] = 2 #authPriv
+    snmp_details['authpassphrase'] = args.snmp_password
+    snmp_details['privpassphrase'] = args.snmp_password
+    snmp_details['authprotocol'] = 1 #SHA1
+    snmp_details['privprotocol'] = 1 #AES128
+else:
+    snmp_details['community'] = '{$SNMP_COMMUNITY}'
 
 #
 # Connect to Zabbix and gather IDs
@@ -97,7 +115,7 @@ for entry in dns_entries:
                 "dns": "",
                 "useip": 1,
                 "port": 161,
-                "details": {"version": 2, "community": '{$SNMP_COMMUNITY}'}
+                "details": snmp_details
             }]
         )
         print (" ...done, host ID: %s" % result['hostids'][0])

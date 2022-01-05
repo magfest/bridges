@@ -3,7 +3,7 @@
 Mass creates hosts based on `dns.yaml` entries.
 
 You specify:
-* Zabix credentials
+* Zabbix credentials
 * A prefix (e.g. "c8p") to match hosts from the DNS file against
 * A Zabbix host group
 * Zabbix template ID(s)
