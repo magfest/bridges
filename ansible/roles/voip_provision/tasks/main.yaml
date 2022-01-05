@@ -1,2 +1,2 @@
 ---
--- include_tasks: provisioner.yaml
+- include_tasks: provisioner.yaml
