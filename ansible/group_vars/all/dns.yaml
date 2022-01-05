@@ -49,6 +49,7 @@ magevent_net_hosts:
   - { name: "gitlab-builder-2", ip: "10.101.22.139", type: "A" }
   - { name: "gitlab-builder-3", ip: "10.101.22.140", type: "A" }
   - { name: "librenms", ip: "10.101.22.151", type: "A" }
+  - { name: "zabbix-proxy", ip: "10.101.22.199", type: "A" }
   - { name: "zabbix", ip: "10.101.22.200", type: "A" }
 
   # MAGCloud / Network Management
@@ -65,29 +66,29 @@ magevent_net_hosts:
   - { name: "vc1", ip: "10.101.21.13", type: "A" }
 
   # EdgeRouters
-  - { name: "erx-01", ip: "10.151.0.1", type: "A" }
-  - { name: "erx-02", ip: "10.152.0.1", type: "A" }
-  - { name: "erx-03", ip: "10.153.0.1", type: "A" }
-  - { name: "erx-04", ip: "10.154.0.1", type: "A" }
-  - { name: "erx-05", ip: "10.155.0.1", type: "A" }
-  - { name: "erx-06", ip: "10.156.0.1", type: "A" }
-  - { name: "erx-07", ip: "10.157.0.1", type: "A" }
-  - { name: "erx-08", ip: "10.158.0.1", type: "A" }
-  - { name: "erx-09", ip: "10.159.0.1", type: "A" }
-  - { name: "erx-10", ip: "10.160.0.1", type: "A" }
-  - { name: "erx-11", ip: "10.161.0.1", type: "A" }
-  - { name: "erx-12", ip: "10.162.0.1", type: "A" }
-  - { name: "erx-13", ip: "10.163.0.1", type: "A" }
-  - { name: "erx-14", ip: "10.164.0.1", type: "A" }
-  - { name: "erx-15", ip: "10.165.0.1", type: "A" }
-  - { name: "erx-16", ip: "10.166.0.1", type: "A" }
-  - { name: "erx-17", ip: "10.167.0.1", type: "A" }
-  - { name: "erx-18", ip: "10.168.0.1", type: "A" }
-  - { name: "erx-19", ip: "10.169.0.1", type: "A" }
-  - { name: "erx-20", ip: "10.170.0.1", type: "A" }
-  - { name: "erx-21", ip: "10.171.0.1", type: "A" }
-  - { name: "erx-22", ip: "10.172.0.1", type: "A" }
-  - { name: "erx-23", ip: "10.173.0.1", type: "A" }
+  - { name: "erx-01", ip: "10.161.0.1", type: "A" }
+  - { name: "erx-02", ip: "10.162.0.1", type: "A" }
+  - { name: "erx-03", ip: "10.163.0.1", type: "A" }
+  - { name: "erx-04", ip: "10.164.0.1", type: "A" }
+  - { name: "erx-05", ip: "10.165.0.1", type: "A" }
+  - { name: "erx-06", ip: "10.166.0.1", type: "A" }
+  - { name: "erx-07", ip: "10.167.0.1", type: "A" }
+  - { name: "erx-08", ip: "10.168.0.1", type: "A" }
+  - { name: "erx-09", ip: "10.169.0.1", type: "A" }
+  - { name: "erx-10", ip: "10.170.0.1", type: "A" }
+  - { name: "erx-11", ip: "10.171.0.1", type: "A" }
+  - { name: "erx-12", ip: "10.172.0.1", type: "A" }
+  - { name: "erx-13", ip: "10.173.0.1", type: "A" }
+  - { name: "erx-14", ip: "10.174.0.1", type: "A" }
+  - { name: "erx-15", ip: "10.175.0.1", type: "A" }
+  - { name: "erx-16", ip: "10.176.0.1", type: "A" }
+  - { name: "erx-17", ip: "10.177.0.1", type: "A" }
+  - { name: "erx-18", ip: "10.178.0.1", type: "A" }
+  - { name: "erx-19", ip: "10.179.0.1", type: "A" }
+  - { name: "erx-20", ip: "10.180.0.1", type: "A" }
+  - { name: "erx-21", ip: "10.181.0.1", type: "A" }
+  - { name: "erx-22", ip: "10.182.0.1", type: "A" }
+  - { name: "erx-23", ip: "10.183.0.1", type: "A" }
 
   # Cisco 8-port core
   - { name: "c8p-01", ip: "10.111.0.1", type: "A" }
@@ -140,6 +141,23 @@ magevent_net_hosts:
   - { name: "csw-01", ip: "10.101.0.1", type: "A" }
   - { name: "csw-02", ip: "10.102.0.1", type: "A" }
   - { name: "csw-03", ip: "10.103.0.1", type: "A" }
+
+  # Cisco 48-port leaf
+    - { name: "c48p-01", ip: "10.191.0.1", type: "A" }
+    - { name: "c48p-01", ip: "10.192.0.1", type: "A" }
+    - { name: "c48p-01", ip: "10.193.0.1", type: "A" }
+    - { name: "c48p-01", ip: "10.194.0.1", type: "A" }
+    - { name: "c48p-01", ip: "10.195.0.1", type: "A" }
+    - { name: "c48p-01", ip: "10.196.0.1", type: "A" }
+    - { name: "c48p-01", ip: "10.197.0.1", type: "A" }
+    - { name: "c48p-01", ip: "10.198.0.1", type: "A" }
+    - { name: "c48p-01", ip: "10.199.0.1", type: "A" }
+    - { name: "c48p-01", ip: "10.200.0.1", type: "A" }
+    - { name: "c48p-01", ip: "10.201.0.1", type: "A" }
+    - { name: "c48p-01", ip: "10.202.0.1", type: "A" }
+    - { name: "c48p-01", ip: "10.203.0.1", type: "A" }
+    - { name: "c48p-01", ip: "10.204.0.1", type: "A" }
+    - { name: "c48p-01", ip: "10.205.0.1", type: "A" }
 
   # PVE
   - { name: "quorum", ip: "10.101.21.40", type: "A" }
