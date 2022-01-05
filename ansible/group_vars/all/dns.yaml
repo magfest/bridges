@@ -56,8 +56,6 @@ magevent_net_hosts:
   - { name: "mag-core-1", ip: "10.101.21.2", type: "A" }
   - { name: "mag-core-2", ip: "10.101.21.3", type: "A" }
   - { name: "oob-switch", ip: "10.101.21.4", type: "A" }
-  - { name: "party-switch-1", ip: "10.101.21.5", type: "A" }
-  - { name: "party-switch-2", ip: "10.101.21.6", type: "A" }
   - { name: "mag-wlc-01", ip: "10.101.21.8", type: "A" }
   - { name: "cisco-capwap-controller", ip: "10.101.21.8", type: "A" }
   - { name: "mag-wlc-02", ip: "10.101.21.9", type: "A" }
