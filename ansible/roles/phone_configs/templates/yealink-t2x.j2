@@ -17,8 +17,9 @@ firmware.url = http://asterisk.magevent.net/firmware/{{ item.type}}/{{ item.firm
 network.pc_port_enable = 1
 
 # Disable the webUI
-wui.https_enable = 0
+wui.https_enable = 1
 wui.http_enable = 0
+security.user_password = {{ phone_admin_username }}:{{ phone_admin_password }}
 
 # Set syslog to server mode
 syslog.mode = 1
