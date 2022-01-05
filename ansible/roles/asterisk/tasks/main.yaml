@@ -1,2 +1,6 @@
 ---
-- include_tasks: asterisk.yaml
+- name: Configure Asterisk
+  include: "asterisk.yaml"
+
+- name: Configure Asterisk firewall rules
+  include: "firewall_rules.yaml"
