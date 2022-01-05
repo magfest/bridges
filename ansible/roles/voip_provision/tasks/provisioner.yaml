@@ -9,7 +9,6 @@
     state: directory
   with_items:
     - "/etc/voip-provision/"
-    - "/etc/voip-provision/templates"
     - "/etc/voip-provision/firmware"
     - "/var/voip-provision"
 
