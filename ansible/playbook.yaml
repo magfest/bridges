@@ -114,3 +114,14 @@
   any_errors_fatal: true
   roles:
   - tftp
+
+- name: Asterisk server
+  hosts:
+  - asterisk
+  remote_user: root
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  roles:
+  - asterisk
+  - voip_provision

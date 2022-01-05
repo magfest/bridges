@@ -4,6 +4,29 @@ packages:
     - python3
     - python3-requests
     - python3-flask
-    - python3-pip
-  pip_airtable:
-    - airtable
+
+pip_install_packages:
+  - airtable
+
+provisioner_config:
+  airtable:
+    base_id: "{{ airtable_base_id }}"
+    api_key: "{{ airtable_api_key }}"
+  asterisk:
+    reload_command: "systemctl restart asterisk"
+  templates:
+    custom.summary:
+      type: page
+      src_path: summary.html.jinja
+      http_path: "/"
+  http:
+    enable: true
+    listen: "0.0.0.0"
+    port: 8080
+  update_interval: 60
+  logging:
+    file_path: /var/log/voip-provision.log
+    file_level: debug
+    console_level: info
+    syslog_path: /var/log/syslog
+    syslog_level: debug
