@@ -1,0 +1,16 @@
+---
+asterisk_config:
+  # warehouse: 71.191.143.68
+  external_ip: 71.126.187.120
+  host: "{{ twilio_host }}"
+  username: "{{ twilio_username }}"
+  password: "{{ twilio_password }}"
+  default_number: 18556248226
+  emergency_cid:
+    name: MAGFest Security
+    number: 18333378732
+  permit_ips:
+    - 10.0.0.0/255.0.0.0
+    - 54.172.60.0/255.255.255.252
+    - 34.203.250.0/255.255.254.0
+    - 54.244.51.0/255.255.255.252

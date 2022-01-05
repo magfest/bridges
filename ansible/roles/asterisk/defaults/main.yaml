@@ -1,0 +1,6 @@
+---
+packages:
+  asterisk:
+    - asterisk
+    - asterisk-config
+    - asterisk-espeak

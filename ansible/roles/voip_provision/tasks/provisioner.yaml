@@ -1,0 +1,43 @@
+---
+- name: Install apt provisioner prereqs
+  ansible.builtin.apt:
+    name: "{{ packages.python3 }}"
+
+- name: Create voip-provisioner directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "/etc/voip-provision/"
+    - "/etc/voip-provision/firmware"
+    - "/var/voip-provision"
+
+- name: Create voip-provisioner config file
+  ansible.builtin.template:
+    src: "config.json.j2"
+    dest: "/etc/voip-provision/config.json"
+
+- name: Copy voip-provisioner templates
+  ansible.builtin.copy:
+    src: "templates"
+    dest: "/etc/voip-provision/templates"
+
+- name: Copy voip-provisioner executable
+  ansible.builtin.copy:
+    src: "provisioner.py"
+    dest: "/usr/bin/provisioner.py"
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Copy voip-provisioner systemd file
+  ansible.builtin.copy:
+    src: "voip-provision.service"
+    dest: "/etc/systemd/system/voip-provision.service"
+
+- name: Start provisioner
+  ansible.builtin.systemd:
+    name: voip-provision
+    state: started
+    enabled: yes
+    daemon_reload: yes

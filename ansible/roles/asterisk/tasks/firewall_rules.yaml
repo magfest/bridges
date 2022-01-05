@@ -1,0 +1,22 @@
+---
+- name: Allow port 5060 UDP for Asterisk SIP
+  community.general.ufw:
+    rule: allow
+    proto: udp
+    port: "5060"
+
+- name: Allow port 5060 TCP for Asterisk SIP
+  community.general.ufw:
+    rule: allow
+    proto: tcp
+    port: "5060"
+
+- name: Allow port 10000-11000 UDP for Asterisk SIP
+  community.general.ufw:
+    rule: allow
+    proto: udp
+    port: "10000:11000"
+
+- name: Reload UFW
+  community.general.ufw:
+    state: reloaded

@@ -1,0 +1,20 @@
+{% for ext in extensions %}
+{% if not ext.get("special") and ext.get("use_queue", False) %}
+[{{ safe_identifier(ext.get("label", "")) }}]
+music = default
+strategy = ringall
+ringinuse = no
+timeout = 30
+retry = 1
+wrapuptime = 5
+maxlen = 0
+announce-frequency = 90
+announce-position = yes
+announce-holdtime = no
+
+{% for user in ext.get("ring_users", []) %}
+member => {{ format_sip_username(user) }},1
+{% endfor %}
+
+{% endif %}
+{% endfor %}

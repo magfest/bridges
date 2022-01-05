@@ -1,0 +1,19 @@
+{# This file will be surrounded with the rest of the outoging context #}
+
+{# BEGIN context #}
+{# exten => _NXXNXXXXXX,1,Noop #}
+{# same => n,Set(CIDSET=0) #}
+{# END context #}
+
+{% for ext in extensions %}
+{% if ext.get("incoming_number") %}
+; {{ ext.get("label") }}
+same => n,ExecIf($["${CALLERID(number)}" : "{{ ext.get("extension", "xxx") }}-"]?Set(CIDSET="1"))
+same => n,ExecIf($["${CALLERID(number)}" : "{{ ext.get("extension", "xxx") }}-"]?Set(CALLERID(all)="{{ externalize_callerid(ext.get("label")) }}" <{{ ext.get("incoming_number", (default_extension or {}).get("incoming_number")) }}>))
+{% endif %}
+{% endfor %}
+
+{# BEGIN context #}
+{# same => n,ExecIf($[${CIDSET} = 0]?Set(CALLERID(all)="MAGFest" <{{ phones.twilio_credentials.default_phone_number }}>)) #}
+{# same => n,Dial(SIP/twilio0/+1${EXTEN}) #}
+{# END context #}

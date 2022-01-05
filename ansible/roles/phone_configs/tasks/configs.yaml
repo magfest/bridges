@@ -1,0 +1,9 @@
+---
+- name: Create phone provisioning configs
+  ansible.builtin.template:
+    src: "{{ item.type }}.j2"
+    dest: "/srv/tftp/{{ item.filename }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items: "{{ phone_models }}"
