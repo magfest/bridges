@@ -6,6 +6,4 @@
     owner: root
     group: root
     mode: 0644
-    vars:
-      model: "{{ item }}"
   with_items: "{{ phone_models }}"
