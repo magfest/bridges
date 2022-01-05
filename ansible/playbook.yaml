@@ -124,6 +124,7 @@
   gather_facts: true
   any_errors_fatal: true
   roles:
+  - geerlingguy.pip
   - asterisk
   - geerlingguy.pip
   - voip_provision
