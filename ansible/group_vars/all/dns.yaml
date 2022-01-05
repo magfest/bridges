@@ -141,6 +141,13 @@ magevent_net_hosts:
   - { name: "csw-01", ip: "10.101.0.1", type: "A" }
   - { name: "csw-02", ip: "10.102.0.1", type: "A" }
   - { name: "csw-03", ip: "10.103.0.1", type: "A" }
+  - { name: "csw-04", ip: "10.104.0.1", type: "A" }
+  - { name: "csw-05", ip: "10.105.0.1", type: "A" }
+  - { name: "csw-06", ip: "10.106.0.1", type: "A" }
+  - { name: "csw-07", ip: "10.107.0.1", type: "A" }
+  - { name: "csw-08", ip: "10.108.0.1", type: "A" }
+  - { name: "csw-09", ip: "10.109.0.1", type: "A" }
+  - { name: "csw-10", ip: "10.110.0.1", type: "A" }
 
   # Cisco 48-port leaf
   - { name: "c48p-01", ip: "10.191.0.1", type: "A" }
