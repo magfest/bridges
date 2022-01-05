@@ -125,4 +125,5 @@
   any_errors_fatal: true
   roles:
   - asterisk
+  - geerlingguy.pip
   - voip_provision
