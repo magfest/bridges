@@ -114,6 +114,7 @@
   any_errors_fatal: true
   roles:
   - tftp
+  - phone_configs
 
 - name: Asterisk server
   hosts:
