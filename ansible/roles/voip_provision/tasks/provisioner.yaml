@@ -3,6 +3,10 @@
   ansible.builtin.apt:
     name: "{{ packages.python3 }}"
 
+- name: Include pip role
+  include_role:
+    name: geerlingguy.pip
+
 - name: Create voip-provisioner directories
   ansible.builtin.file:
     path: "{{ item }}"
