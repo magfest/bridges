@@ -66,6 +66,9 @@ shared-network {{ iteration.name_prefix }}{{ n|string }} {
 {% if 'range' in iteration %}
         range {{ iteration.range[0] }} {{ iteration.range[1] }};
 {% endif %}
+{% if 'range_suffix' in iteration %}
+        range {{ iteration.subnet_prefix }}{{ n|string }}{{ iteration.range_suffix[0] }} {{ iteration.subnet_prefix }}{{ n|string }}{{ iteration.range_suffix[1] }};
+{% endif %}
     }
 }
 
