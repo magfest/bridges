@@ -1,0 +1,10 @@
+---
+- name: Allow port 80 for HTTP
+  community.general.ufw:
+    rule: allow
+    proto: tcp
+    port: "80"
+
+- name: Reload UFW
+  community.general.ufw:
+    state: reloaded
