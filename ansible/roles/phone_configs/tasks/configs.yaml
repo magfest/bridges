@@ -1,8 +1,4 @@
 ---
-{% for item in phone_models %}
-- name: "Create {{ item.model }} phone provisioning config"
-  ansible.builtin.template:
-{% endfor %}
 - name: Create phone provisioning configs
   ansible.builtin.template:
     src: "{{ item.type }}.j2"
