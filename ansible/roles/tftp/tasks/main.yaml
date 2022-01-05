@@ -1,2 +1,4 @@
 ---
 - include_tasks: tftp.yaml
+
+- include_tasks: firewall_rules.yaml
