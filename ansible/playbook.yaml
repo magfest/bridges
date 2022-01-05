@@ -126,4 +126,5 @@
   roles:
   - geerlingguy.pip
   - asterisk
+  - geerlingguy.pip
   - voip_provision
