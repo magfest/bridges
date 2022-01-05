@@ -8,7 +8,6 @@
     autoclean: true
     autoremove: true
 
----
 - name: Create Asterisk Configs
   ansible.builtin.template:
     src: "{{ item }}"
@@ -23,5 +22,3 @@
   - "confbridge.conf"
   - "queues.conf"
   - "iax.conf"
-
-# TODO: where to put binary blobs (audio in /usr/share/asterisk/sounds/magfest)
