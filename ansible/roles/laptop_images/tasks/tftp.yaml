@@ -1,23 +1,7 @@
 ---
-- name: Install TFTP packages
-  ansible.builtin.apt:
-    name: "{{ packages.tftp }}"
-    install_recommends: false
-    update_cache: true
-    cache_valid_time: 3600
-    autoclean: true
-    autoremove: true
-
-- name: Create tftp directory
-  ansible.builtin.file:
-    path: "{{ item }}"
-    state: directory
-  with_items:
-  - "/srv/tftp"
-  - "/srv/tftp/bios"
-  - "/srv/tftp/efi64"
-  - "/srv/tftp/grub"
-  - "/srv/tftp/bios/pxelinux.cfg"
+- name: Set up TFTP using existing role
+  include_role:
+    name: tftp
 
 - name: Create PXELINUX config
   ansible.builtin.template:

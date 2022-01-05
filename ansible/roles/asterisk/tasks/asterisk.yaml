@@ -1,0 +1,24 @@
+---
+- name: Install Asterisk packages
+  ansible.builtin.apt:
+    name: "{{ packages.asterisk }}"
+    install_recommends: true
+    update_cache: true
+    cache_valid_time: 3600
+    autoclean: true
+    autoremove: true
+
+- name: Create Asterisk Configs
+  ansible.builtin.template:
+    src: "{{ item }}"
+    dest: "/etc/asterisk/{{ item }}"
+    owner: asterisk
+    group: asterisk
+    mode: 0644
+  with_items:
+  - "sip.conf"
+  - "extensions.conf"
+  - "rtp.conf"
+  - "confbridge.conf"
+  - "queues.conf"
+  - "iax.conf"

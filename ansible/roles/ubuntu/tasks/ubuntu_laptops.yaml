@@ -99,3 +99,12 @@
   command: "/usr/local/bin/snipe-register.sh"
   args:
     creates: "/opt/snipeit-register"
+
+- name: Install GPU drivers
+  ansible.builtin.apt:
+    name: "nvidia-driver-390"
+    install_recommends: false
+    update_cache: true
+    cache_valid_time: 3600
+    autoclean: true
+    autoremove: true

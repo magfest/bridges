@@ -1,9 +1,9 @@
 ---
-- name: Allow port 80 for HTTP proxy
+- name: Allow port 69 (nice) for TFTP
   community.general.ufw:
     rule: allow
-    proto: tcp
-    port: "80"
+    proto: udp
+    port: "69"
 
 - name: Reload UFW
   community.general.ufw:
