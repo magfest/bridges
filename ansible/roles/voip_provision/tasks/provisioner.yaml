@@ -18,12 +18,12 @@
     dest: "/etc/voip-provision/config.json"
 
 - name: Copy voip-provisioner templates
-  ansible.builtin.file:
+  ansible.builtin.copy:
     src: "templates"
     dest: "/etc/voip-provision/templates"
 
 - name: Copy voip-provisioner executable
-  ansible.builtin.file:
+  ansible.builtin.copy:
     src: "provisioner.py"
     dest: "/usr/bin/provisioner.py"
     owner: root
