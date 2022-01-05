@@ -5,6 +5,9 @@ packages:
     - python3-requests
     - python3-flask
 
+pip_install_packages:
+  - airtable
+
 provisioner_config:
   airtable:
     base_id: "{{ airtable_base_id }}"
