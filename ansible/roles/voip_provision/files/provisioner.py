@@ -15,6 +15,7 @@ import threading
 from airtable import airtable
 from flask import request
 from collections import namedtuple
+from logging.handlers import SysLogHandler
 
 # Big TODOs:
 # - Use model classes for the airtable stuff instead of json/dicts
@@ -538,7 +539,7 @@ def main():
 
     syslog_path = logging_config.get("syslog_path", CONFIG_DEFAULTS["logging"]["syslog_path"])
     if syslog_path:
-        sh = logging.handlers.SysLogHandler(address=syslog_path)
+        sh = SysLogHandler(address=syslog_path)
         syslog_formatter = logging.Formatter("%(name)s[%(process)d: %(asctime)s %(levelname)s: %(message)s")
         sh.setFormatter(syslog_formatter)
         log.addHandler(sh)
