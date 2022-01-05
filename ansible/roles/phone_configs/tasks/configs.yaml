@@ -6,4 +6,4 @@
     owner: root
     group: root
     mode: 0644
-  with_items: {{ phone_models }}
+  with_items: "{{ phone_models }}"
