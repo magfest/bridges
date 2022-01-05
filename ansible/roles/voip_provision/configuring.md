@@ -12,7 +12,7 @@ Yealink T20P    Yes     2-line B&W  9.73.193.40 y000000000007.cfg
 Yealink T22P    Yes     Full B&W    7.73.193.50 y000000000005.cfg
 Yealink T26P    Yes     Full B&W    6.73.193.50 y000000000004.cfg
 Yealink T28P    Yes     Full B&W    2.73.193.50 y000000000000.cfg
-Yealink T38G    Yes     Full Color  38.70.1.33  
+Yealink T38G    Yes     Full Color  38.70.1.33
 
 # Provisioning Templates
 There are several sets of template files that control phone and asterisk configuration.
@@ -63,4 +63,4 @@ Settings we want to set
 
 ## maybe only for boot files ^^ ?
 Specific to each firmware
-firmware.url = 
+firmware.url =

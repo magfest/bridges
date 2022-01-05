@@ -358,7 +358,7 @@ class VoipProvisioner:
             raw_ext = self.find_extension(ext["extension"])
             ext["ring_users"] = [
                 list(map(lambda cred: cred.get("username"),
-                         filter(lambda cred: cred.get("extension") == ext,
+                        filter(lambda cred: cred.get("extension") == ext,
                                 self.get_credentials(phone["fields"].get("MAC Address")))))
                 for phone in self.resolved(raw_ext["fields"].get("Phones", []))
             ]
@@ -424,7 +424,7 @@ class VoipProvisioner:
             phonebook = filter(lambda entry:entry.get("active", False), phonebook)
 
         # Sort so that entries are ordered first by "Phonebook Sort Order" field, with a default of 1000,
-        # and then by name, or 
+        # and then by name, or
         return sorted(phonebook, key=lambda ext: (ext.get("sort_order"), ext.get("label")))
 
     def render_phone_mac_config(self, mac, template_name=None, stream=False):
