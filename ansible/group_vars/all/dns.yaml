@@ -58,6 +58,7 @@ magevent_net_hosts:
   - { name: "party-switch-1", ip: "10.101.21.5", type: "A" }
   - { name: "party-switch-2", ip: "10.101.21.6", type: "A" }
   - { name: "mag-wlc-01", ip: "10.101.21.8", type: "A" }
+  - { name: "cisco-capwap-controller", ip: "10.101.21.8", type: "A" }
   - { name: "mag-wlc-02", ip: "10.101.21.9", type: "A" }
   - { name: "oa1", ip: "10.101.21.11", type: "A" }
   - { name: "oa2", ip: "10.101.21.12", type: "A" }
@@ -157,10 +158,30 @@ magevent_net_hosts:
 
   # External IPs, CNAMEs, etc.
   - { name: "fixit", ip: "52.45.46.140", type: "A" }
-  - { name: "fixit", ip: "2600:1f18:423b:a500:76bf:d287:e6f9:2306", type: "AAAA" }
-  - { name: "streaming", ip: "streaming-456449487.us-east-1.elb.amazonaws.com.", type: "CNAME" }
-  - { name: "coldbrew", ip: "hydrophobic-pheasant-7qpulrttf80t5n3leh0etcff.herokudns.com.", type: "CNAME" }
-  - { name: "schedule", ip: "schedule.magevent.net.s3-website-us-east-1.amazonaws.com.", type: "CNAME" }
+  - {
+      name: "fixit",
+      ip: "2600:1f18:423b:a500:76bf:d287:e6f9:2306",
+      type: "AAAA",
+    }
+  - {
+      name: "streaming",
+      ip: "streaming-456449487.us-east-1.elb.amazonaws.com.",
+      type: "CNAME",
+    }
+  - {
+      name: "coldbrew",
+      ip: "hydrophobic-pheasant-7qpulrttf80t5n3leh0etcff.herokudns.com.",
+      type: "CNAME",
+    }
+  - {
+      name: "schedule",
+      ip: "schedule.magevent.net.s3-website-us-east-1.amazonaws.com.",
+      type: "CNAME",
+    }
   - { name: "food", ip: "143.198.29.84", type: "A" }
-  - { name: "apt-mirror", ip: "d1oyui1gsktpjk.cloudfront.net.", type: "CNAME"}
-  - { name: "snipe", ip: "pacific-endive-8stlz9pl72a8tne5ty4fe1wm.herokudns.com.", type: "CNAME" }
+  - { name: "apt-mirror", ip: "d1oyui1gsktpjk.cloudfront.net.", type: "CNAME" }
+  - {
+      name: "snipe",
+      ip: "pacific-endive-8stlz9pl72a8tne5ty4fe1wm.herokudns.com.",
+      type: "CNAME",
+    }
