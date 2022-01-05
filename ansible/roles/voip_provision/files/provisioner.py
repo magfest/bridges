@@ -269,7 +269,11 @@ class VoipProvisioner:
         """Re-write any generated files after data has changed, and tell Asterisk to reload"""
         log.info("Re-syncing files")
 
-        for name, template_info in dict(self.config.get("templates", CONFIG_DEFAULTS["templates"])).items():
+        # don't skip the base templates that aren't in the config
+        base_templates = {k: v for k, v in CONFIG_DEFAULTS["templates"] if k not in self.config.get("templates", {})}
+        base_templates.update(self.config.get("templates", {}))
+
+        for name, template_info in dict(self.config.get("templates", base_templates)).items():
             # bring in the defaults in a weird way here
             template_info.update({k: v for k, v in CONFIG_DEFAULTS["templates"].get(name, {}).items() if k not in template_info})
             if template_info.get("write_path"):
@@ -560,9 +564,12 @@ def main():
         # we want the enumerate function in some templates
         app.jinja_env.globals.update(JINJA_GLOBALS)
 
-        for name, template_info in dict(config.get("templates", CONFIG_DEFAULTS["templates"])).items():
+        base_templates = {k: v for k, v in CONFIG_DEFAULTS["templates"] if k not in self.config.get("templates", {})}
+        base_templates.update(self.config.get("templates", {}))
+
+        for name, template_info in dict(config.get("templates", base_templates)).items():
             # bring in the defaults in a weird way here too
-            template_info.update({k: v for k, v in CONFIG_DEFAULTS["templates"][name].items() if k not in template_info})
+            template_info.update({k: v for k, v in CONFIG_DEFAULTS["templates"].get(name, {}).items() if k not in template_info})
             if template_info.get("http_path"):
                 if template_info["type"] == "phone_mac_config":
                     path_prefix = "/provision"
@@ -584,11 +591,13 @@ def main():
                     log.warning("Unknown template type %s -- skipping route setup", template_info["type"])
                     continue
 
+                log.debug("Adding template {%s} handler at %s", template_info, path_prefix + template_info.get("http_path"))
                 app.add_url_rule(path_prefix + template_info.get("http_path"), view_func=view_func)
 
         if provisioner.config.get("firmware_dir"):
             def serve_firmware(firmware_path):
                 return send_from_directory(provisioner.config.get("firmware_dir", CONFIG_DEFAULTS["firmware_dir"]), firmware_path)
+            log.debug("Adding firmware handler at %s", "/firmware/<path:firmware_path>")
             app.add_url_rule("/firmware/<path:firmware_path>", view_func=serve_firmware)
 
         try:
