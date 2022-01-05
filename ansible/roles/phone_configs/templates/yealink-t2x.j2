@@ -8,9 +8,9 @@
 # * Dialplan
 
 
-firmware.url = http://asterisk.magevent.net/firmware/{{ model.type}}/{{ model.firmware }}.rom
-#local_contact.data.url = http://asterisk.magevent.net/provision/{{ model.type }}/contacts.xml
-#dialplan_dialnow.url = http://asterisk.magevent.net/provision/{{ model.type }}/dialplan.xml
+firmware.url = http://asterisk.magevent.net/firmware/{{ item.type}}/{{ item.firmware }}.rom
+#local_contact.data.url = http://asterisk.magevent.net/provision/{{ item.type }}/contacts.xml
+#dialplan_dialnow.url = http://asterisk.magevent.net/provision/{{ item.type }}/dialplan.xml
 #action_url.register_failed = http://asterisk.magevent.net/status/register_failed.xml
 
 # Disable the PC port
@@ -36,7 +36,7 @@ auto_provision.repeat.minutes = 15
 # phone will retrieve mac-specific url from:
 # e.g. http://asterisk.magevent.net/provision/yealink-t2x/0015651130F9.cfg
 # assuming base url is http://asterisk.magevent.net/provision/yealink-t2x
-auto_provision.server.url = http://asterisk.magevent.net/provision/{{ model.type}}
+auto_provision.server.url = http://asterisk.magevent.net/provision/{{ item.type}}
 
 #expansion_module.x.key.y.xml_phonebook = 0-5
 
@@ -45,8 +45,8 @@ local_time.ntp_server1 = ntp1.magevent.net
 local_time.ntp_server2 = ntp2.magevent.net
 
 # Yealink T20P only supports MM/DD/YY, DD/MM/YY, or YY/MM/DD (7, 8, 9)
-# For other models, YYYY-MM-DD (2) is supported
-{% if model.name == "Yealink T20P" %}
+# For other items, YYYY-MM-DD (2) is supported
+{% if item.name == "Yealink T20P" %}
 local_time.date_format = 9
 {% else %}
 local_time.date_format = 2
