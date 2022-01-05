@@ -3,11 +3,6 @@
   ansible.builtin.apt:
     name: "{{ packages.python3 }}"
 
-- name: Install pip provisioner prereqs
-  ansible.builtin.pip:
-    name: "{{ packages.pip_airtable }}"
-    executable: "pip3"
-
 - name: Create voip-provisioner directories
   ansible.builtin.file:
     path: "{{ item }}"
