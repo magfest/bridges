@@ -31,7 +31,7 @@
     mode: 0755
 
 - name: Copy voip-provisioner systemd file
-  ansible.builtin.file:
+  ansible.builtin.copy:
     src: "voip-provision.service"
     dest: "/etc/systemd/system/voip-provision.service"
 
