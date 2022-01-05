@@ -104,3 +104,13 @@
   any_errors_fatal: true
   roles:
   - laptop_images
+
+- name: TFTP setup
+  hosts:
+  - tftp
+  remote_user: root
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  roles:
+  - tftp
