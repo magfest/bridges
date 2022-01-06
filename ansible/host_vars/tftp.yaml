@@ -30,5 +30,5 @@ provisioner_config:
   sync:
     enable: true
     primary_host: http://asterisk.magevent.net
-    username: {{ phone_sync_username }}
-    password: {{ phone_sync_password }}
+    username: "{{ phone_sync_username }}"
+    password: "{{ phone_sync_password }}"
