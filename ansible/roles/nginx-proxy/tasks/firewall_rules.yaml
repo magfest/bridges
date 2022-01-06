@@ -1,3 +1,4 @@
+---
 - name: Allow port 80 TCP for HTTP
   community.general.ufw:
     rule: allow
