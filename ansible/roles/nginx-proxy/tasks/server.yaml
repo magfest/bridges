@@ -1,0 +1,26 @@
+---
+- name: Install NGINX package
+  ansible.builtin.apt:
+    name: "{{ packages.nginx }}"
+    install_recommends: false
+    update_cache: true
+    cache_valid_time: 3600
+    autoclean: true
+    autoremove: true
+  notify:
+    - Restart nginx
+
+- name: Copy repo_proxy.conf
+  ansible.builtin.copy:
+    src: files/repo_proxy.conf
+    dest: /etc/nginx/sites-enabled/repo_proxy.conf
+    mode: "0644"
+    owner: root
+    group: root
+  notify:
+    - Restart nginx
+
+- name: Link NGINX Reverse Proxy
+  become: yes
+  command:
+    cmd: ln -s /etc/nginx/sites-available/repo_proxy.conf /etc/nginx/sites-enabled/repo_proxy.conf

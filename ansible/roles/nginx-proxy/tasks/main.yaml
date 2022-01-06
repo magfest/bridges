@@ -1,0 +1,6 @@
+---
+- name: Configure Nginx Proxy server
+  include: "server.yaml"
+
+- name: Configure Nginx Proxy firewall rules
+  include: "firewall_rules.yaml"
