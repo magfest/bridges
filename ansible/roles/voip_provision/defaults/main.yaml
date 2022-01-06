@@ -10,8 +10,10 @@ provisioner_config:
     base_id: "{{ airtable_base_id }}"
     api_key: "{{ airtable_api_key }}"
   asterisk:
-    reload_command: "systemctl restart asterisk"
+    reload_command: "systemctl reload asterisk"
   templates:
+    yealink.cfg:
+      write_path: "/srv/tftp/provision/yealink-t2x/{mac}.cfg"
     custom.summary:
       type: page
       src_path: summary.html.jinja

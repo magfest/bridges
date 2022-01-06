@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Phone Directory</title>
+    <style type="text/css">
+      html {
+          font-size: 2em;
+      }
+
+      td {
+          padding-left: .5em;
+          padding-right: .5em;
+      }
+
+      td.ext {
+          text-align: right;
+      }
+    </style>
+  </head>
+  <body>
+    <h1> MAGPhone Directory</h1>
+    <table>
+      <thead>
+        <tr><th>Extension</th><th>Department</th></tr>
+      </thead>
+      <tbody>
+        {% for ext in extensions %}
+        {% if not ext.get("hidden") %}
+        <tr><td class="ext">{{ ext.get("extension") }}</td><td class="dept">{{ ext.get("label") }}</td></tr>
+        {% if ext.get("long_description") %}
+        <tr class="long-desc"><td colspan="2"></td></tr>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>

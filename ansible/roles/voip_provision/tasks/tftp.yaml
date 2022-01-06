@@ -1,0 +1,9 @@
+---
+- name: Set up TFTP using existing role
+  include_role:
+    name: tftp
+
+- name: Create directory for provisioning files
+  ansible.builtin.file:
+    path: /srv/tftp/provision/yealink-t2x
+    state: directory
