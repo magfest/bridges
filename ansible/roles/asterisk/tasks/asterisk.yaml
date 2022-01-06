@@ -22,6 +22,7 @@
   - "confbridge.conf"
   - "queues.conf"
   - "iax.conf"
+  - "logger.conf"
 
 - name: Copy sound files
   ansible.builtin.copy:

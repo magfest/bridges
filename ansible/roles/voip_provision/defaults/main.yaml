@@ -25,7 +25,7 @@ provisioner_config:
   update_interval: 60
   logging:
     file_path: /var/log/voip-provision.log
-    file_level: debug
+    file_level: info
     console_level: info
     syslog_path: /dev/log
-    syslog_level: debug
+    syslog_level: info
