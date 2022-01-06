@@ -6,6 +6,7 @@ magevent_net_hosts:
   - { name: "tftp", ip: "{{ branch_subnet_trimmed }}.9", type: "A" }
   - { name: "cups", ip: "{{ branch_subnet_trimmed }}.13", type: "A" }
   - { name: "smtp", ip: "{{ branch_subnet_trimmed }}.23", type: "A" }
+  - { name: "nginx-proxy", ip: "{{ branch_subnet_trimmed }}.30", type: "A" }
   - { name: "repo", ip: "{{ branch_subnet_trimmed }}.30", type: "A" }
   - { name: "laptops", ip: "{{ branch_subnet_trimmed }}.69", type: "A" }
   - { name: "dns1", ip: "{{ branch_subnet_trimmed }}.110", type: "A" }
