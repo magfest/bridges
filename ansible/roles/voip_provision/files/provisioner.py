@@ -265,17 +265,16 @@ class VoipProvisioner:
 
         log.info("Stopping updater thread")
 
+    def resolve_config(self):
+        """Return template configs properly resolved with defaults and custom ones"""
+        return dict_default(CONFIG_DEFAULTS, self.config)
+
     def resync(self):
         """Re-write any generated files after data has changed, and tell Asterisk to reload"""
         log.info("Re-syncing files")
 
-        # don't skip the base templates that aren't in the config
-        base_templates = {k: v for k, v in CONFIG_DEFAULTS["templates"] if k not in self.config.get("templates", {})}
-        base_templates.update(self.config.get("templates", {}))
-
-        for name, template_info in dict(self.config.get("templates", base_templates)).items():
+        for name, template_info in self.resolve_config().get("templates").items():
             # bring in the defaults in a weird way here
-            template_info.update({k: v for k, v in CONFIG_DEFAULTS["templates"].get(name, {}).items() if k not in template_info})
             if template_info.get("write_path"):
                 # this is a template that expects to be written to a file
                 if template_info["type"] == "phone_mac_config":
@@ -324,18 +323,19 @@ class VoipProvisioner:
 
         phone_creds = user_data.get(phone_mac, [])
 
-        assigned_extensions = [ext["fields"]["Extension"] for ext in phone_exts]
+        assigned_extensions = [ext["fields"] for ext in phone_exts]
         found = []
         added = []
 
-        for ext in assigned_extensions:
+        for ext_info in assigned_extensions:
+            ext = ext_info.get("Extension")
             # In case the phone has multiple assigned extensions, select the credentials that match this extension
             found_creds = list(filter(lambda cred: cred.get("extension") == ext, phone_creds))
             if len(found_creds):
                 found.append(ext)
             else:
                 log.info("Generating new credentials for phone: %s (MAC %s) at extension %s", phone["fields"].get("ID"), phone_mac, ext)
-                phone_creds.append({"username": gen_username(ext, phone_mac), "password": gen_password(), "extension": ext})
+                phone_creds.append({"username": gen_username(ext, phone_mac), "password": gen_password(), "extension": ext, "desc": ext_info.get("Caller ID") or ext_info.get("Name") or ext_info.get("Extension")})
                 added.append(ext)
 
         if added:
@@ -361,13 +361,19 @@ class VoipProvisioner:
 
         def augment_ext(ext):
             raw_ext = self.find_extension(ext["extension"])
-            ext["ring_users"] = [
-                list(map(lambda cred: cred.get("username"),
-                        filter(lambda cred: cred.get("extension") == ext,
-                                self.get_credentials(phone["fields"].get("MAC Address")))))
-                for phone in self.resolved(raw_ext["fields"].get("Phones", []))
-            ]
 
+            ext_phones = list(self.resolved(raw_ext["fields"].get("Phones", [])))
+            ring_users = []
+
+            log.debug("Extension %s phones: %s", ext["extension"], ext_phones)
+            for phone in ext_phones:
+                creds = self.get_credentials(phone["fields"].get("MAC Address"))
+
+                for cred in creds:
+                    if cred.get("extension") == ext["extension"]:
+                        ring_users.append(cred.get("username"))
+
+            ext["ring_users"] = ring_users
             ext["use_queue"] = bool(raw_ext["fields"].get("Queue"))
             ext["alt_extensions"] = [alt.strip() for alt in raw_ext.get("Alternate Extensions", "").split(",") if alt.strip()]
             return ext
@@ -440,19 +446,24 @@ class VoipProvisioner:
             phone = self.find_phone_by_mac(mac)
             if not phone:
                 raise FileNotFoundError("File not found")
-            matching_templates = [template for name, template in TEMPLATE_FILES.items() if phone.get("Type") in template.get("phone_types", [])]
+            matching_templates = [template for name, template in TEMPLATE_DEFAULTS.items() if phone.get("Type") in template.get("phone_types", [])]
+            log.debug("Matching templates: %s", matching_templates)
 
             if len(matching_templates) != 1:
                 log.error("Expected to find 1 but got %d matching templates for phone type %s", len(matching_templates), phone.get("Type"))
                 raise ArgumentError("Cannot find suitable template for phone of type {}".format(phone.get("Type")))
 
             template_name = next(matching_templates)
+        else:
+            log.debug("Template specified: %s", template_name)
 
         #{ credentials: [{username, password, desc}], extensions: [{extension, label}] }
-        template_paremeters = {
-            "credentials": provisioner.get_credentials(mac),
-            "extensions": provisioner.get_phonebook()
+        template_parameters = {
+            "credentials": self.get_credentials(mac),
+            "extensions": self.get_phonebook()
         }
+
+        log.debug("Rendering template %s with data: %s", template_name, template_parameters)
 
         if stream:
             return self.jinja.get_template(template_name).stream(**template_parameters)
@@ -460,6 +471,8 @@ class VoipProvisioner:
             return self.jinja.get_template(template_name).render(**template_parameters)
 
     def render_asterisk_template(self, template_name, stream=False):
+        log.debug("Rendering template %s with data: %s", template_name, self.get_configured_credentials())
+
         if stream:
             return self.jinja.get_template(template_name).stream(**self.get_configured_credentials())
         else:
@@ -485,7 +498,7 @@ def format_sip_username(username):
 
 def format_sip_username_list(users):
     log.debug("Formatting %s into a list SIP/blah&SIP/foo...", users)
-    return "&".join(list(map(format_sip_username, users)))
+    return "&".join([format_sip_username(user) for user in users if user])
 
 def parse_log_level(level):
     return {
@@ -497,6 +510,22 @@ def parse_log_level(level):
         "critical": logging.CRITICAL
     }.get(level.lower(), logging.INFO)
 
+def dict_default(defaults, base, path="/"):
+    if isinstance(base, dict):
+        result = {}
+
+        for key in base.keys() | defaults.keys():
+            if key in defaults and key not in base:
+                result[key] = defaults[key]
+            elif key in defaults and key in base:
+                result[key] = dict_default(defaults[key], base[key], path + key + "/")
+            elif key in base and key not in defaults:
+                result[key] = base[key]
+        return result
+    else:
+        return base
+
+
 JINJA_GLOBALS = {
     "enumerate": enumerate,
     "safe_identifier": safe_identifier,
@@ -504,6 +533,15 @@ JINJA_GLOBALS = {
     "format_sip_username": format_sip_username,
     "format_sip_username_list": format_sip_username_list
 }
+
+def make_view_func(provisioner, target, template_name):
+    def view_func(*args, **kwargs):
+        return target(*args, **kwargs, template_name=template_name)
+
+    view_func.__name__ = template_name.replace(".", "")
+
+    return view_func
+
 
 def main():
     # Decide on the config path
@@ -564,29 +602,25 @@ def main():
         # we want the enumerate function in some templates
         app.jinja_env.globals.update(JINJA_GLOBALS)
 
-        base_templates = {k: v for k, v in CONFIG_DEFAULTS["templates"] if k not in self.config.get("templates", {})}
-        base_templates.update(self.config.get("templates", {}))
+        def error_404(e):
+            return "not found", 404
 
-        for name, template_info in dict(config.get("templates", base_templates)).items():
-            # bring in the defaults in a weird way here too
-            template_info.update({k: v for k, v in CONFIG_DEFAULTS["templates"].get(name, {}).items() if k not in template_info})
+        app.register_error_handler(404, error_404)
+
+        for name, template_info in provisioner.resolve_config().get("templates").items():
             if template_info.get("http_path"):
                 if template_info["type"] == "phone_mac_config":
                     path_prefix = "/provision"
-                    def view_func(*args, **kwargs):
-                        return provisioner.render_phone_mac_config(*args, **kwargs, template_name=template_info["src_path"], mac=mac)
+                    view_func = make_view_func(provisioner, provisioner.render_phone_mac_config, template_name=template_info["src_path"])
                 elif template_info["type"] == "phone_generic_config":
                     path_prefix = "/provision"
-                    def view_func(*args, **kwargs):
-                        return provisioner.render_phone_generic_config(*args, **kwargs, template_name=template_info["src_path"])
+                    view_func = make_view_func(provisioner, provisioner.render_phone_generic_config, template_name=template_info["src_path"])
                 elif template_info["type"] == "full_config":
                     path_prefix = "/config"
-                    def view_func(*args, **kwargs):
-                        return provisioner.render_asterisk_template(*args, **kwargs, template_name=template_info["src_path"])
+                    view_func = make_view_func(provisioner, provisioner.render_asterisk_template, template_name=template_info["src_path"])
                 elif template_info["type"] == "page":
                     path_prefix = ""
-                    def view_func(*args, **kwargs):
-                        return provisioner.render_asterisk_template(*args, **kwargs, template_name=template_info["src_path"])
+                    view_func = make_view_func(provisioner, provisioner.render_asterisk_template, template_name=template_info["src_path"])
                 else:
                     log.warning("Unknown template type %s -- skipping route setup", template_info["type"])
                     continue
