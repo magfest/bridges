@@ -16,6 +16,8 @@ from airtable import airtable
 from flask import request
 from collections import namedtuple
 from logging.handlers import SysLogHandler
+from requests.auth import HTTPBasicAuth
+from werkzeug.exceptions import Unauthorized
 
 # Big TODOs:
 # - Use model classes for the airtable stuff instead of json/dicts
@@ -83,6 +85,12 @@ CONFIG_DEFAULTS = {
         "file_path": "/var/log/voip-provision.log",
         "syslog_level": "debug",
         "syslog_path": None
+    },
+    "sync": {
+        "enable": False,
+        "username": None,
+        "password": None,
+        "primary_host": None
     }
 }
 
@@ -119,7 +127,7 @@ class VoipProvisioner:
     def get_user_data_file(self):
         return self.config.get("user_data", CONFIG_DEFAULTS["user_data"])
 
-    def get_user_data(self):
+    def get_user_data_local(self):
         try:
             with open(self.get_user_data_file()) as f:
                 return json.load(f)
@@ -131,9 +139,31 @@ class VoipProvisioner:
         with open(self.get_user_data_file(), 'w') as f:
             json.dump(user_data, f)
 
+    def get_sync_auth(self):
+        return HTTPBasicAuth(self.resolve_config().get("sync", {}).get("username", ""), self.resolve_config().get("sync", {}).get("password", ""))
+
+    @TtlCache(10)
+    def get_user_data_remote(self):
+        try:
+            result = requests.get(self.resolve_config().get("sync", {}).get("primary_host") + "/sync", auth=self.get_sync_auth())
+            result.raise_for_status()
+            data = result.json()
+            self.save_user_data(data)
+            return data
+        except:
+            log.exception("Unable to sync from primary. Using local cache...")
+            return self.get_user_data_local()
+
+    def get_user_data(self):
+        conf = self.resolve_config().get("sync")
+        if conf.get("enable"):
+            if conf.get("primary_host"):
+                return self.get_user_data_remote()
+
+        return self.get_user_data_local()
+
     @TtlCache(10)
     def get_airtable(self):
-        #raise ValueError()
         log.info("Fetching records from airtable")
         base_id = self.config.get("airtable", {}).get("base_id")
         api_key = self.config.get("airtable", {}).get("api_key")
@@ -283,7 +313,7 @@ class VoipProvisioner:
                             with open(template_info["write_path"].format(mac=phone.get("MAC Address")), "w") as f:
                                 log.debug("Writing template %s to file %s", name, f.name)
                                 self.render_phone_mac_config(
-                                    mac=phone["MAC Address"],
+                                    mac=phone["MAC Address"].lower(),
                                     template_name=template_info["src_path"],
                                     stream=True
                                 ).dump(f, encoding=template_info.get("encoding"))
@@ -306,7 +336,20 @@ class VoipProvisioner:
 
         self.reload_asterisk()
 
-    def get_credentials(self, phone_mac):
+    def gen_new_creds(self, phone_mac, ext, ext_info):
+        conf = self.resolve_config().get("sync")
+        if conf.get("enable") and conf.get("primary_host"):
+            return requests.get(conf.get("primary_host") + "/sync/new_credential/" + phone_mac.lower(), auth=self.get_sync_auth()).json()
+        else:
+            return {"username": gen_username(ext, phone_mac), "password": gen_password(), "extension": ext, "desc": ext_info.get("Caller ID") or ext_info.get("Name") or ext_info.get("Extension")}
+
+    # Local method only!!
+    def new_credential(self, mac):
+        res = self.get_credentials(mac, new_only=True)
+        log.debug("Generated new cred: %s", res)
+        return res
+
+    def get_credentials(self, phone_mac, new_only=False):
         # find the phone's assigned extension if any
         log.debug("Retrieving credentials for phone with mac %s", phone_mac)
         phone = self.find_phone_by_mac(phone_mac)
@@ -335,15 +378,25 @@ class VoipProvisioner:
                 found.append(ext)
             else:
                 log.info("Generating new credentials for phone: %s (MAC %s) at extension %s", phone["fields"].get("ID"), phone_mac, ext)
-                phone_creds.append({"username": gen_username(ext, phone_mac), "password": gen_password(), "extension": ext, "desc": ext_info.get("Caller ID") or ext_info.get("Name") or ext_info.get("Extension")})
+                new_cred = self.gen_new_creds(phone_mac, ext, ext_info)
+                log.debug("New generated cred: %s", new_cred)
+                phone_creds.append(new_cred)
                 added.append(ext)
 
         if added:
             user_data[phone_mac] = phone_creds
-            self.save_user_data(user_data)
+
+            # skip saving if we are not primary node
+            if not self.resolve_config().get("sync", {}).get("enable") or not self.resolve_config().get("sync", {}).get("primary_host"):
+                log.debug("Saving user data because we are the primary node")
+                self.save_user_data(user_data)
+
             self.resync()
 
-        return phone_creds
+        if new_only:
+            return added[0]
+        else:
+            return phone_creds
 
     def is_extension_active(self, extension):
         # TODO
@@ -367,7 +420,7 @@ class VoipProvisioner:
 
             log.debug("Extension %s phones: %s", ext["extension"], ext_phones)
             for phone in ext_phones:
-                creds = self.get_credentials(phone["fields"].get("MAC Address"))
+                creds = self.get_credentials(phone["fields"].get("MAC Address").lower())
 
                 for cred in creds:
                     if cred.get("extension") == ext["extension"]:
@@ -605,7 +658,37 @@ def main():
         def error_404(e):
             return "not found", 404
 
+        def error_401(e):
+            return "Not Authorized", 401
+
         app.register_error_handler(404, error_404)
+        app.register_error_handler(401, error_401)
+
+        sync_config = config.get("sync", CONFIG_DEFAULTS["sync"])
+        if sync_config.get("enable", CONFIG_DEFAULTS["sync"]["enable"]):
+            if not sync_config.get("primary_host"):
+                log.debug("Setting up sync server...")
+                def check_auth():
+                    if sync_config.get("password") and sync_config.get("username"):
+                        auth = request.authorization
+                    if not auth:
+                        raise Unauthorized()
+                    if auth.username != sync_config.get("username") or auth.password != sync_config.get("password"):
+                        raise Unauthorized()
+
+                def sync_view():
+                    check_auth()
+                    return provisioner.get_user_data()
+
+                def new_cred_view(mac):
+                    check_auth()
+                    return provisioner.new_credential(mac)
+
+                log.info("Enabled sync at /sync")
+                app.add_url_rule("/sync/new_credential/<mac>", view_func=new_cred_view)
+                app.add_url_rule("/sync", view_func=sync_view)
+        else:
+            log.debug("Not enabling sync server")
 
         for name, template_info in provisioner.resolve_config().get("templates").items():
             if template_info.get("http_path"):
