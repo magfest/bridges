@@ -21,6 +21,7 @@
     - Restart nginx
 
 - name: Link NGINX Reverse Proxy
-  become: yes
-  command:
-    cmd: ln -s /etc/nginx/sites-available/repo_proxy.conf /etc/nginx/sites-enabled/repo_proxy.conf
+  ansible.builtin.file:
+    src: /etc/nginx/sites-available/repo_proxy.conf 
+    dest: /etc/nginx/sites-enabled/repo_proxy.conf
+    state: link
