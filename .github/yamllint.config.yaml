@@ -19,3 +19,4 @@ rules:
   indentation:
     spaces: 2
     indent-sequences: consistent
+    check-multi-line-strings: false
