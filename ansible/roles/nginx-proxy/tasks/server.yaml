@@ -10,12 +10,6 @@
   notify:
     - Restart nginx
 
-- name: Create NGINX conf file for repo
-  become: yes
-  file:
-    path: /etc/nginx/sites-available/repo_proxy.conf
-    state: touch
-
 - name: Copy repo_proxy.conf
   ansible.builtin.copy:
     src: files/repo_proxy.conf
