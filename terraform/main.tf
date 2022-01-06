@@ -76,6 +76,6 @@ resource "local_file" "inventory" {
     ${module.asterisk.hostname} ansible_host=${module.asterisk.ip_address}
 
     [nginx-proxy]
-    ${module.nginx.hostname} ansible_host=${module.nginx.ip_address}
+    ${module.nginx-proxy.hostname} ansible_host=${module.nginx-proxy.ip_address}
     EOF
 }
