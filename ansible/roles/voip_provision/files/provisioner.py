@@ -304,13 +304,17 @@ class VoipProvisioner:
         log.info("Re-syncing files")
 
         for name, template_info in self.resolve_config().get("templates").items():
+            log.debug("Syncing template %s...", name)
             # bring in the defaults in a weird way here
             if template_info.get("write_path"):
                 # this is a template that expects to be written to a file
                 if template_info["type"] == "phone_mac_config":
-                    for phone in self.get_extensions().get("phones", []):
+                    log.debug("Handling as phone mac...")
+                    for phone_rec in self.get_extensions().get("phones", []):
+                        phone = phone_rec.get("fields")
+                        log.debug("Phone %s", phone)
                         if phone.get("MAC Address"):
-                            with open(template_info["write_path"].format(mac=phone.get("MAC Address")), "w") as f:
+                            with open(template_info["write_path"].format(mac=phone.get("MAC Address").lower()), "w") as f:
                                 log.debug("Writing template %s to file %s", name, f.name)
                                 self.render_phone_mac_config(
                                     mac=phone["MAC Address"].lower(),
