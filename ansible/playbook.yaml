@@ -125,6 +125,7 @@
   roles:
     - tftp
     - phone_configs
+    - voip_provision
 
 - name: Asterisk server
   hosts:
