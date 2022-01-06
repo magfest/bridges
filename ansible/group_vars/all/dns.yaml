@@ -183,7 +183,7 @@ magevent_net_hosts:
   - { name: "fixit", ip: "52.45.46.140", type: "A" }
   - { name: "fixit", ip: "2600:1f18:423b:a500:76bf:d287:e6f9:2306", type: "AAAA" }
   - { name: "streaming", ip: "streaming-456449487.us-east-1.elb.amazonaws.com.", type: "CNAME" }
-  - { name: "2022-reg-verify": "d3i61ov5x454o2.cloudfront.net.", "type": "CNAME" }
+  - { name: "2022-reg-verify", ip: "d3i61ov5x454o2.cloudfront.net.", type: "CNAME" }
   - { name: "coldbrew", ip: "hydrophobic-pheasant-7qpulrttf80t5n3leh0etcff.herokudns.com.", type: "CNAME" }
   - { name: "schedule", ip: "schedule.magevent.net.s3-website-us-east-1.amazonaws.com.", type: "CNAME" }
   - { name: "food", ip: "143.198.29.84", type: "A" }
