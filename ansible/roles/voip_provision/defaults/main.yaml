@@ -31,5 +31,5 @@ provisioner_config:
     syslog_level: info
   sync:
     enable: true
-    username: {{ phone_sync_username }}
-    password: {{ phone_sync_password }}
+    username: "{{ phone_sync_username }}"
+    password: "{{ phone_sync_password }}"
