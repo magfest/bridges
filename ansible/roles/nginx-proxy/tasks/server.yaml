@@ -22,6 +22,6 @@
 
 - name: Link NGINX Reverse Proxy
   ansible.builtin.file:
-    src: /etc/nginx/sites-available/repo_proxy.conf 
-    dest: /etc/nginx/sites-enabled/repo_proxy.conf
+    dest: /etc/nginx/sites-available/repo_proxy.conf 
+    src: /etc/nginx/sites-enabled/repo_proxy.conf
     state: link
