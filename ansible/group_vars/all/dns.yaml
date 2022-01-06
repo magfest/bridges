@@ -172,6 +172,8 @@ magevent_net_hosts:
   - { name: "pve2", ip: "10.101.21.42", type: "A" }
   - { name: "pve-vampire", ip: "10.101.21.44", type: "A" }
   - { name: "synology", ip: "10.101.21.156", type: "A" }
+  - { name: "synrepo", ip: "10.101.21.156", type: "A" }
+
 
   # IPMI
   - { name: "dell-omsa", ip: "192.168.100.110", type: "A" }
