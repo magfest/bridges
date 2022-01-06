@@ -2,3 +2,5 @@
 - include_tasks: provisioner.yaml
 
 - include_tasks: firewall_rules.yaml
+
+- include_tasks: tftp.yaml
