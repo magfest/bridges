@@ -6,6 +6,7 @@ magevent_net_hosts:
   - { name: "tftp", ip: "{{ branch_subnet_trimmed }}.9", type: "A" }
   - { name: "cups", ip: "{{ branch_subnet_trimmed }}.13", type: "A" }
   - { name: "smtp", ip: "{{ branch_subnet_trimmed }}.23", type: "A" }
+  - { name: "repo", ip: "{{ branch_subnet_trimmed }}.30", type: "A" }
   - { name: "laptops", ip: "{{ branch_subnet_trimmed }}.69", type: "A" }
   - { name: "dns1", ip: "{{ branch_subnet_trimmed }}.110", type: "A" }
   - { name: "dns2", ip: "{{ branch_subnet_trimmed }}.120", type: "A" }
@@ -170,7 +171,6 @@ magevent_net_hosts:
   - { name: "pve2", ip: "10.101.21.42", type: "A" }
   - { name: "pve-vampire", ip: "10.101.21.44", type: "A" }
   - { name: "synology", ip: "10.101.21.156", type: "A" }
-  - { name: "repo", ip: "10.101.21.156", type: "A" }
 
   # IPMI
   - { name: "dell-omsa", ip: "192.168.100.110", type: "A" }
