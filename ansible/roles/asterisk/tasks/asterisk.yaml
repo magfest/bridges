@@ -22,3 +22,8 @@
   - "confbridge.conf"
   - "queues.conf"
   - "iax.conf"
+
+- name: Copy sound files
+  ansible.builtin.copy:
+    src: "sounds"
+    dest: /usr/share/sounds/magfest
