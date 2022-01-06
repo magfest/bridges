@@ -278,9 +278,10 @@ class VoipProvisioner:
             if template_info.get("write_path"):
                 # this is a template that expects to be written to a file
                 if template_info["type"] == "phone_mac_config":
-                    for phone in self.get_extensions().get("phones", []):
+                    for phone_record in self.get_extensions().get("phones", []):
+                        phone = phone_record["fields"]
                         if phone.get("MAC Address"):
-                            with open(template_info["write_path"].format(mac=phone.get("MAC Address")), "w") as f:
+                            with open(template_info["write_path"].format(mac=phone.get("MAC Address").lower(), umac=phone.get("MAC Address").upper()), "w") as f:
                                 log.debug("Writing template %s to file %s", name, f.name)
                                 self.render_phone_mac_config(
                                     mac=phone["MAC Address"],
