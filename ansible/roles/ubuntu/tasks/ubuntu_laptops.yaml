@@ -17,6 +17,14 @@
   with_items:
     - { src: "syspref.js", dest: "/etc/firefox/syspref.js" }
 
+- name: Create Firefox Policy directory
+  ansible.builtin.file:
+    path: "/etc/firefox/policies/"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
 - name: Configure Firefox ManagedBookmarks
   ansible.builtin.copy:
     src: "{{ item.src }}"
