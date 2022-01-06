@@ -25,3 +25,4 @@
     dest: /etc/nginx/sites-enabled/repo_proxy.conf 
     src: /etc/nginx/sites-available/repo_proxy.conf
     state: link
+    force: true
