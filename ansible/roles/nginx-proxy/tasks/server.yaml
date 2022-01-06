@@ -1,0 +1,57 @@
+- name: Install NGINX package
+  ansible.builtin.apt:
+    name: "{{ packages.nginx }}"
+    install_recommends: false
+    update_cache: true
+    cache_valid_time: 3600
+    autoclean: true
+    autoremove: true
+  notify:
+    - Restart nginx
+
+- name: Disable NGINX Default Virtual Host
+  become: yes
+  command:
+    cmd: unlink /etc/nginx/sites-enabled/default
+
+- name: Create NGINX conf file for repo
+  become: yes
+  file:
+    path: /etc/nginx/sites-available/repo_proxy.conf
+    state: touch
+
+- name: Amend NGINX Conf File
+  become: yes
+  blockinfile:
+    path: /etc/nginx/sites-available/repo_proxy.conf
+    marker: ""
+    block: |
+      http {
+        proxy_cache_path  /var/www/cache levels=1:2 keys_zone=my-cache:8m max_size=1000m inactive=600m;
+          proxy_temp_path /var/www/cache/tmp;
+          server {
+          listen 80;
+          location / {
+            proxy_pass http://synology.magevent.net;
+            proxy_set_header Host repo.magevent.net;
+            proxy_set_header X-Real-IP $remote_addr;
+          }
+            proxy_buffers 16 4k;
+            proxy_buffer_size 2k;
+            proxy_cache my-cache;
+            proxy_cache_valid  200 302  60m;
+            proxy_cache_valid  404      1m;
+        }
+      }
+
+- name: Link NGINX Reverse Proxy
+  become: yes
+  command:
+    cmd: ln -s /etc/nginx/sites-available/repo_proxy.conf /etc/nginx/sites-enabled/repo_proxy.conf
+
+- name: Make Sure NGINX Service Is Running
+  become: yes
+  service:
+    name: nginx
+    state: restarted
+    enabled: yes
