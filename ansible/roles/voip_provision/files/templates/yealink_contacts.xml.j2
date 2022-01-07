@@ -1,0 +1,9 @@
+<root_group>
+  <group display_name="MAGFest" ring=""/>
+</root_group>
+
+<root_contact>
+  {% for extension in extensions %}
+  <contact display_name="{{ extension["label"] }}" office_number="{{ extension["extension"] }}" line="0" ring="Auto" group_id_name="MAGFest"/>
+  {% endfor %}
+</root_contact>

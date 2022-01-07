@@ -9,7 +9,7 @@
 
 
 #firmware.url = http://asterisk.magevent.net/firmware/{{ item.type}}/{{ item.firmware }}.rom
-#local_contact.data.url = http://asterisk.magevent.net/provision/{{ item.type }}/contacts.xml
+local_contact.data.url = tftp://tftp.magevent.net/yealink_contacts.xml
 #dialplan_dialnow.url = http://asterisk.magevent.net/provision/{{ item.type }}/dialplan.xml
 #action_url.register_failed = http://asterisk.magevent.net/status/register_failed.xml
 
@@ -42,6 +42,7 @@ auto_provision.repeat.minutes = 15
 #expansion_module.x.key.y.xml_phonebook = 0-5
 
 local_time.time_zone_name = United States-Eastern Time
+local_time.time_zone = -5
 local_time.ntp_server1 = ntp1.magevent.net
 local_time.ntp_server2 = ntp2.magevent.net
 

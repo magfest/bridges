@@ -8,6 +8,10 @@ provisioner_config:
   templates:
     yealink.cfg:
       write_path: "/srv/tftp/{mac}.cfg"
+    yealink.contacts:
+      src_path: "yealink_contacts.xml.j2"
+      write_path: "/srv/tftp/yealink_contacts.xml"
+      type: full_config
     asterisk.extensions.phones:
       write_path: null
     asterisk.extensions.incoming:
