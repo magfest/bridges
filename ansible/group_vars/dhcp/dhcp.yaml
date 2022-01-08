@@ -7,7 +7,7 @@ dhcp_zones:
     netmask: "255.255.255.0",
     default_lease_time: 3600,
     max_lease_time: 3600,
-    next_server: "10.101"".22.9",
+    next_server: "10.101.22.9",
     options: {
       timezone: "America/New_York",
       ntp_servers: ["10.101.22.6", "10.101.22.7"],
