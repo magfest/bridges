@@ -2,3 +2,5 @@
 - include: apt.yaml
 
 - include: config.yaml
+
+- include: firewall_rules.yaml
