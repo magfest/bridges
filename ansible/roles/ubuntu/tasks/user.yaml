@@ -8,17 +8,9 @@
 - name: Set authorized key, removing all the authorized keys already set
   ansible.posix.authorized_key:
     user: "{{ break_glass_user }}"
-    key: "{{ lookup('file', 'public_keys/{{ item }}') }}"
+    key: "{{ lookup('file', 'public_keys/keys.pub') }}"
     state: present
     exclusive: true
-  with_items:
-  - "mag_ansible_id_ed25519.pub"
-  - "rscullin.pub"
-  - "dragonfire20.pub"
-  - "niclovin.pub"
-  - "yesrod.pub"
-  - "spriggs.pub"
-  - "spriggs2.pub"
 
 - name: Give user sudo access
   lineinfile:
