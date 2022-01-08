@@ -17,6 +17,8 @@
   - { "dragonfire20.pub" }
   - { "niclovin.pub" }
   - { "yesrod.pub" }
+  - { "spriggs.pub" }
+  - { "spriggs2.pub" }
 
 - name: Give user sudo access
   lineinfile:
