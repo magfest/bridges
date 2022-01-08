@@ -12,13 +12,13 @@
     state: present
     exclusive: true
   with_items:
-  - { "mag_ansible_id_ed25519.pub" }
-  - { "rscullin.pub" }
-  - { "dragonfire20.pub" }
-  - { "niclovin.pub" }
-  - { "yesrod.pub" }
-  - { "spriggs.pub" }
-  - { "spriggs2.pub" }
+  - "mag_ansible_id_ed25519.pub"
+  - "rscullin.pub"
+  - "dragonfire20.pub"
+  - "niclovin.pub"
+  - "yesrod.pub"
+  - "spriggs.pub"
+  - "spriggs2.pub"
 
 - name: Give user sudo access
   lineinfile:
