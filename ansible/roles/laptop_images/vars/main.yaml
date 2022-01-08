@@ -12,6 +12,7 @@ dhcp_zones:
     max_lease_time: 3600,
     next_server: "{{ dhcp_ipaddr }}",
     options: {
+      ntp_servers: ["10.101.22.6", "10.101.22.7"],
       routers: ["10.101.69.1"],
       tftp_server_name: "{{ dhcp_ipaddr }}",
       domain_name: "{{ zone_prefix }}magevent.net",
