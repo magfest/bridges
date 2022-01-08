@@ -1,0 +1,10 @@
+---
+- name: Install Zabbix repo
+  ansible.builtin.apt:
+    deb: "{{ defaults.packages.zabbix_repo }}"
+    state: present
+
+- name: Install Zabbix agent
+  ansible.builtin.apt:
+    name: "{{ defaults.packages.zabbix_agent }}"
+    state: present

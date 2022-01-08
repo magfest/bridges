@@ -35,6 +35,16 @@
   roles:
     - ubuntu
 
+- name: Zabbix agent
+  hosts:
+    - all
+  remote_user: root
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  roles:
+    - zabbix_agent
+
 - name: DNS server setup
   hosts:
     - dns

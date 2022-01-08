@@ -1,0 +1,7 @@
+---
+
+- name: Restart Zabbix agent
+  ansible.builtin.service:
+    name: zabbix-agent
+    state: restarted
+    enabled: yes
