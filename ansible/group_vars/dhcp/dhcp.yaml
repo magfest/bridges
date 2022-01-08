@@ -9,6 +9,7 @@ dhcp_zones:
     max_lease_time: 3600,
     next_server: "10.101.22.9",
     options: {
+      ntp_servers: ["10.101.22.6", "10.101.22.7"],
       routers: ["10.101.21.1"],
       tftp_server_name: "tftp.magevent.net",
       domain_name: "magevent.net",
@@ -24,6 +25,7 @@ dhcp_zones:
     max_lease_time: 3600,
     next_server: "10.101.22.9",
     options: {
+      ntp_servers: ["10.101.22.6", "10.101.22.7"],
       routers: ["10.101.22.1"],
       tftp_server_name: "tftp.magevent.net",
       domain_name: "magevent.net",
@@ -39,6 +41,7 @@ dhcp_zones:
     max_lease_time: 3600,
     next_server: "10.101.22.9",
     options: {
+      ntp_servers: ["10.101.22.6", "10.101.22.7"],
       routers: ["10.101.12.1"],
       tftp_server_name: "tftp.magevent.net",
       domain_name: "magevent.net",
@@ -54,6 +57,7 @@ dhcp_zones:
     max_lease_time: 3600,
     next_server: "10.101.22.9",
     options: {
+      ntp_servers: ["10.101.22.6", "10.101.22.7"],
       routers: ["10.101.88.1"],
       tftp_server_name: "tftp.magevent.net",
       domain_name: "magevent.net",
@@ -69,6 +73,7 @@ dhcp_zones:
     max_lease_time: 3600,
     next_server: "10.101.22.9",
     options: {
+      ntp_servers: ["10.101.22.6", "10.101.22.7"],
       routers: ["10.101.11.1"],
       tftp_server_name: "tftp.magevent.net",
       domain_name: "magevent.net",
@@ -84,6 +89,7 @@ dhcp_zones:
     max_lease_time: 3600,
     next_server: "10.101.22.9",
     options: {
+      ntp_servers: ["10.101.22.6", "10.101.22.7"],
       routers: ["10.101.10.1"],
       tftp_server_name: "tftp.magevent.net",
       domain_name: "magevent.net",
@@ -100,6 +106,7 @@ dhcp_zones:
     max_lease_time: 3600,
     next_server: "10.101.22.9",
     options: {
+      ntp_servers: ["10.101.22.6", "10.101.22.7"],
       routers: ["10.101.20.1"],
       tftp_server_name: "tftp.magevent.net",
       domain_name: "magevent.net",
@@ -114,6 +121,7 @@ dhcp_zones:
     max_lease_time: 3600,
     next_server: "10.101.22.9",
     options: {
+      ntp_servers: ["10.101.22.6", "10.101.22.7"],
       routers: ["10.48.0.1"],
       tftp_server_name: "tftp.magevent.net",
       domain_name: "magevent.net",
@@ -132,6 +140,7 @@ dhcp_iterations:
     max_lease_time: 3600,
     next_server: "10.101.22.9",
     options: {
+      ntp_servers: ["10.101.22.6", "10.101.22.7"],
       routers_suffix: ".10.1",
       tftp_server_name: "tftp.magevent.net",
       domain_name: "magevent.net",
