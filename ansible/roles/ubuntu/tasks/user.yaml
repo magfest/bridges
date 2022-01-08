@@ -7,8 +7,8 @@
 
 - name: Set authorized key, removing all the authorized keys already set
   ansible.posix.authorized_key:
-    user: magcloud
-    key: "{{ lookup('file', 'public_keys/mag_ansible_id_ed25519.pub') }}"
+    user: "{{ break_glass_user }}"
+    key: "{{ lookup('file', 'public_keys/keys.pub') }}"
     state: present
     exclusive: true
 
