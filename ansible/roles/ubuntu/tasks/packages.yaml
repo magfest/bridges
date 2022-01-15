@@ -19,6 +19,10 @@
     group: root
     mode: 0644
 
+- name: Force Apt cache update
+  ansible.builtin.apt:
+    update_cache: true
+
 - name: Upgrade all system packages
   ansible.builtin.apt:
     upgrade: full
