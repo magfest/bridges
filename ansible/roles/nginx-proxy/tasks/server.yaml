@@ -10,22 +10,28 @@
   notify:
     - Restart nginx
 
-- name: Copy repo_proxy.conf
+- name: Copy proxy configs
   ansible.builtin.copy:
-    src: files/repo_proxy.conf
-    dest: /etc/nginx/sites-available/repo_proxy.conf
+    src: "files/{{ item }}"
+    dest: "/etc/nginx/sites-available/{{ item }}"
     mode: "0644"
     owner: root
     group: root
+  with_items:
+    - "repo_proxy.conf"
+    - "dynmap_proxy.conf"
   notify:
     - Restart nginx
 
-- name: Link NGINX Reverse Proxy
+- name: Link reverse proxy configs
   ansible.builtin.file:
-    dest: /etc/nginx/sites-enabled/repo_proxy.conf
-    src: /etc/nginx/sites-available/repo_proxy.conf
+    dest: "/etc/nginx/sites-enabled/{{ item }}"
+    src: "/etc/nginx/sites-available/{{ item }}"
     state: link
     force: true
+  with_items:
+    - "repo_proxy.conf"
+    - "dynmap_proxy.conf"
   notify:
     - Restart nginx
 
