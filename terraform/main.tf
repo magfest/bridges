@@ -7,6 +7,10 @@ terraform {
       source  = "Telmate/proxmox"
       version = ">=2.7.4"
     }
+    local = {
+      source  = "hashicorp/local"
+      version = "2.2.3"
+    }
   }
 }
 
@@ -31,11 +35,6 @@ variable "branch" {
 variable "subnet" {
   type        = string
   description = "Subnet for the branch in format 192.168.1.0/24"
-}
-
-variable "subnet_list" {
-  type        = string
-  description = "List of all subnets and branches in JSON format"
 }
 
 locals {
