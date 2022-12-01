@@ -5,7 +5,7 @@ terraform {
   required_providers {
     proxmox = {
       source  = "Telmate/proxmox"
-      version = ">=2.7.4"
+      required_version = ">=2.7.4"
     }
   }
 }
@@ -31,11 +31,6 @@ variable "branch" {
 variable "subnet" {
   type        = string
   description = "Subnet for the branch in format 192.168.1.0/24"
-}
-
-variable "subnet_list" {
-  type        = string
-  description = "List of all subnets and branches in JSON format"
 }
 
 locals {
