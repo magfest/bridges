@@ -10,12 +10,12 @@ LABEL -
 LABEL Ubuntu Desktop 20.04
     kernel http://{{ dhcp_ipaddr }}/repo/casper/focal/vmlinuz
     initrd http://{{ dhcp_ipaddr }}/repo/casper/focal/initrd
-    append net.ifnames=0 biosdevname=0 ip=dhcp ipv6.disable=1 url=http://{{ dhcp_ipaddr }}/repo/ubuntu-releases/20.04/ubuntu-20.04.3-live-server-amd64.iso autoinstall ds=nocloud-net;s=http://{{ dhcp_ipaddr }}/cloud-init/ cloud-config-url=http://{{ dhcp_ipaddr }}/cloud-init/ LAPTOP_BOOTSRV={{ dhcp_ipaddr }}
+    append net.ifnames=0 biosdevname=0 ip=dhcp ipv6.disable=1 url=http://{{ dhcp_ipaddr }}/repo/ubuntu-releases/20.04/ubuntu-20.04.5-live-server-amd64.iso autoinstall ds=nocloud-net;s=http://{{ dhcp_ipaddr }}/cloud-init/ cloud-config-url=http://{{ dhcp_ipaddr }}/cloud-init/ LAPTOP_BOOTSRV={{ dhcp_ipaddr }}
 
 LABEL Ubuntu Desktop 20.04 - external interface
     kernel http://{{ dhcp_ipaddr_ext }}/repo/casper/focal/vmlinuz
     initrd http://{{ dhcp_ipaddr_ext }}/repo/casper/focal/initrd
-    append net.ifnames=0 biosdevname=0 ip=dhcp ipv6.disable=1 url=http://{{ dhcp_ipaddr_ext }}/repo/ubuntu-releases/20.04/ubuntu-20.04.3-live-server-amd64.iso autoinstall ds=nocloud-net;s=http://{{ dhcp_ipaddr_ext }}/cloud-init/ cloud-config-url=http://{{ dhcp_ipaddr_ext }}/cloud-init/ LAPTOP_BOOTSRV={{ dhcp_ipaddr_ext }}
+    append net.ifnames=0 biosdevname=0 ip=dhcp ipv6.disable=1 url=http://{{ dhcp_ipaddr_ext }}/repo/ubuntu-releases/20.04/ubuntu-20.04.5-live-server-amd64.iso autoinstall ds=nocloud-net;s=http://{{ dhcp_ipaddr_ext }}/cloud-init/ cloud-config-url=http://{{ dhcp_ipaddr_ext }}/cloud-init/ LAPTOP_BOOTSRV={{ dhcp_ipaddr_ext }}
 
 MENU SEPARATOR
 LABEL -
