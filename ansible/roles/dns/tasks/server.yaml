@@ -1,0 +1,71 @@
+---
+- name: Install named package
+  ansible.builtin.apt:
+    name: "{{ packages.named }}"
+    install_recommends: false
+    update_cache: true
+    cache_valid_time: 3600
+    autoclean: true
+    autoremove: true
+  notify:
+  - Restart named
+
+- name: Correct named directory permissions
+  ansible.builtin.file:
+    path: "{{ item }}"
+    mode: 02775
+    owner: root
+    group: bind
+  with_items:
+  - "/etc/bind"
+  - "/var/lib/bind"
+  - "/var/cache/bind"
+  notify:
+  - Restart named
+
+- name: Install named config
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "/etc/bind/{{ item }}"
+    mode: 0660
+    owner: root
+    group: bind
+  with_items:
+  - "named.conf"
+  - "named.conf.options"
+  notify:
+  - Restart named
+
+- name: Generate named.conf.local config file
+  ansible.builtin.template:
+    src: named.conf.local.j2
+    dest: /etc/bind/named.conf.local
+    mode: 0660
+    owner: root
+    group: bind
+  notify:
+  - Restart named
+
+- name: Generate magevent.net zone file
+  ansible.builtin.template:
+    src: magevent.net.zone.j2
+    dest: /var/lib/bind/{{ zone_prefix }}magevent.net.zone
+    mode: 0660
+    owner: root
+    group: bind
+  notify:
+  - Restart named
+
+- name: Install additional zone files
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "/var/lib/bind/{{ item }}"
+    mode: 0660
+    owner: root
+    group: bind
+  with_items:
+  - "onsite.reggie.magfest.org.zone"
+  - "onsite.uber.magfest.org.zone"
+  - "win.magevent.net.zone"
+  notify:
+  - Restart named

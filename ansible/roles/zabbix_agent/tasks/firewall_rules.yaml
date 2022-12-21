@@ -1,0 +1,10 @@
+---
+- name: Allow port 10050 for Zabbix agent
+  community.general.ufw:
+    rule: allow
+    proto: tcp
+    port: "10050"
+
+- name: Allow everything and enable UFW
+  community.general.ufw:
+    state: reloaded

@@ -1,0 +1,197 @@
+---
+magevent_net_hosts:
+  # MAGCloud per-branch "dynamic" IP entries
+  - { name: "ntp1", ip: "{{ branch_subnet_trimmed }}.6", type: "A" }
+  - { name: "ntp2", ip: "{{ branch_subnet_trimmed }}.7", type: "A" }
+  - { name: "tftp", ip: "{{ branch_subnet_trimmed }}.9", type: "A" }
+  - { name: "cups", ip: "{{ branch_subnet_trimmed }}.13", type: "A" }
+  - { name: "smtp", ip: "{{ branch_subnet_trimmed }}.23", type: "A" }
+  - { name: "nginx-proxy", ip: "{{ branch_subnet_trimmed }}.30", type: "A" }
+  - { name: "repo", ip: "{{ branch_subnet_trimmed }}.30", type: "A" }
+  - { name: "laptops", ip: "{{ branch_subnet_trimmed }}.69", type: "A" }
+  - { name: "dns1", ip: "{{ branch_subnet_trimmed }}.110", type: "A" }
+  - { name: "dns2", ip: "{{ branch_subnet_trimmed }}.120", type: "A" }
+  - { name: "graylog", ip: "{{ branch_subnet_trimmed }}.129", type: "A" }
+  - { name: "syslog", ip: "{{ branch_subnet_trimmed }}.130", type: "A" }
+  - { name: "zabbix-new", ip: "{{ branch_subnet_trimmed }}.201", type: "A" }
+  - { name: "dhcp1", ip: "{{ branch_subnet_trimmed }}.4", type: "A" }
+  - { name: "asterisk", ip: "{{ branch_subnet_trimmed }}.12", type: "A" }
+
+  # MAGCloud static/not-in-Terraform-yet entries
+  - { name: "salt", ip: "10.101.22.8", type: "A" }
+  - { name: "foreman", ip: "10.101.22.8", type: "A" }
+  - { name: "freeradius", ip: "10.101.22.10", type: "A" }
+  - { name: "freeipa", ip: "10.101.22.11", type: "A" }
+  - { name: "assman", ip: "10.101.22.15", type: "A" }
+  - { name: "smokeping", ip: "10.101.22.16", type: "A" }
+  - { name: "radios", ip: "10.101.22.17", type: "A" }
+  - { name: "wowza", ip: "10.101.22.18", type: "A" }
+  - { name: "badges", ip: "10.101.22.19", type: "A" }
+  - { name: "stereo", ip: "10.101.22.20", type: "A" }
+  - { name: "rams1", ip: "10.101.22.21", type: "A" }
+  - { name: "rams2", ip: "10.101.22.22", type: "A" }
+  - { name: "index", ip: "10.101.22.24", type: "A" }
+  - { name: "vpn", ip: "10.101.22.25", type: "A" }
+  - { name: "wifiauth", ip: "10.101.22.26", type: "A" }
+  - { name: "isp", ip: "10.101.22.27", type: "A" }
+  - { name: "staffsuite", ip: "10.101.22.28", type: "A" }
+  - { name: "dc3", ip: "10.101.22.29", type: "A" }
+  - { name: "challenges", ip: "10.101.22.53", type: "A" }
+  - { name: "shifts", ip: "10.101.22.58", type: "A" }
+  - { name: "minecraft", ip: "10.101.22.124", type: "A" }
+  - { name: "vyos", ip: "10.101.22.122", type: "A" }
+  - { name: "freeradius2020", ip: "10.101.22.131", type: "A" }
+  - { name: "netbox", ip: "10.101.22.132", type: "A" }
+  - { name: "radiomon", ip: "10.101.22.133", type: "A" }
+  - { name: "gitlab", ip: "10.101.22.134", type: "A" }
+  - { name: "gitlab-runner-1", ip: "10.101.22.135", type: "A" }
+  - { name: "stackstorm", ip: "10.101.22.136", type: "A" }
+  - { name: "netdisco", ip: "10.101.22.137", type: "A" }
+  - { name: "gitlab-builder-1", ip: "10.101.22.138", type: "A" }
+  - { name: "gitlab-builder-2", ip: "10.101.22.139", type: "A" }
+  - { name: "gitlab-builder-3", ip: "10.101.22.140", type: "A" }
+  - { name: "citric-thermal", ip: "10.101.22.141", type: "A" }
+  - { name: "boost", ip: "10.101.22.142", type: "A" }
+  - { name: "ltc", ip: "10.101.22.143", type: "A" }
+  - { name: "librenms", ip: "10.101.22.151", type: "A" }
+  - { name: "zabbix-proxy", ip: "10.101.22.199", type: "A" }
+  - { name: "zabbix", ip: "10.101.22.200", type: "A" }
+
+  # MAGCloud / Network Management
+  - { name: "mag-core-1", ip: "10.101.21.2", type: "A" }
+  - { name: "mag-core-2", ip: "10.101.21.3", type: "A" }
+  - { name: "oob-switch", ip: "10.101.21.4", type: "A" }
+  - { name: "mag-wlc-01", ip: "10.101.21.8", type: "A" }
+  - { name: "cisco-capwap-controller", ip: "10.101.21.8", type: "A" }
+  - { name: "mag-wlc-02", ip: "10.101.21.9", type: "A" }
+  - { name: "oa1", ip: "10.101.21.11", type: "A" }
+  - { name: "oa2", ip: "10.101.21.12", type: "A" }
+  - { name: "vc1", ip: "10.101.21.13", type: "A" }
+
+  # EdgeRouters
+  - { name: "erx-01", ip: "10.161.0.1", type: "A" }
+  - { name: "erx-02", ip: "10.162.0.1", type: "A" }
+  - { name: "erx-03", ip: "10.163.0.1", type: "A" }
+  - { name: "erx-04", ip: "10.164.0.1", type: "A" }
+  - { name: "erx-05", ip: "10.165.0.1", type: "A" }
+  - { name: "erx-06", ip: "10.166.0.1", type: "A" }
+  - { name: "erx-07", ip: "10.167.0.1", type: "A" }
+  - { name: "erx-08", ip: "10.168.0.1", type: "A" }
+  - { name: "erx-09", ip: "10.169.0.1", type: "A" }
+  - { name: "erx-10", ip: "10.170.0.1", type: "A" }
+  - { name: "erx-11", ip: "10.171.0.1", type: "A" }
+  - { name: "erx-12", ip: "10.172.0.1", type: "A" }
+  - { name: "erx-13", ip: "10.173.0.1", type: "A" }
+  - { name: "erx-14", ip: "10.174.0.1", type: "A" }
+  - { name: "erx-15", ip: "10.175.0.1", type: "A" }
+  - { name: "erx-16", ip: "10.176.0.1", type: "A" }
+  - { name: "erx-17", ip: "10.177.0.1", type: "A" }
+  - { name: "erx-18", ip: "10.178.0.1", type: "A" }
+  - { name: "erx-19", ip: "10.179.0.1", type: "A" }
+  - { name: "erx-20", ip: "10.180.0.1", type: "A" }
+  - { name: "erx-21", ip: "10.181.0.1", type: "A" }
+  - { name: "erx-22", ip: "10.182.0.1", type: "A" }
+  - { name: "erx-23", ip: "10.183.0.1", type: "A" }
+
+  # Cisco 8-port core
+  - { name: "c8p-01", ip: "10.111.0.1", type: "A" }
+  - { name: "c8p-02", ip: "10.112.0.1", type: "A" }
+  - { name: "c8p-03", ip: "10.113.0.1", type: "A" }
+  - { name: "c8p-04", ip: "10.114.0.1", type: "A" }
+  - { name: "c8p-05", ip: "10.115.0.1", type: "A" }
+  - { name: "c8p-06", ip: "10.116.0.1", type: "A" }
+  - { name: "c8p-07", ip: "10.117.0.1", type: "A" }
+  - { name: "c8p-08", ip: "10.118.0.1", type: "A" }
+  - { name: "c8p-09", ip: "10.119.0.1", type: "A" }
+  - { name: "c8p-10", ip: "10.120.0.1", type: "A" }
+  - { name: "c8p-11", ip: "10.121.0.1", type: "A" }
+  - { name: "c8p-12", ip: "10.122.0.1", type: "A" }
+  - { name: "c8p-13", ip: "10.123.0.1", type: "A" }
+  - { name: "c8p-14", ip: "10.124.0.1", type: "A" }
+  - { name: "c8p-15", ip: "10.125.0.1", type: "A" }
+  - { name: "c8p-16", ip: "10.126.0.1", type: "A" }
+  - { name: "c8p-17", ip: "10.127.0.1", type: "A" }
+  - { name: "c8p-18", ip: "10.128.0.1", type: "A" }
+  - { name: "c8p-19", ip: "10.129.0.1", type: "A" }
+  - { name: "c8p-20", ip: "10.130.0.1", type: "A" }
+  - { name: "c8p-21", ip: "10.131.0.1", type: "A" }
+  - { name: "c8p-22", ip: "10.132.0.1", type: "A" }
+  - { name: "c8p-23", ip: "10.133.0.1", type: "A" }
+  - { name: "c8p-24", ip: "10.134.0.1", type: "A" }
+  - { name: "c8p-25", ip: "10.135.0.1", type: "A" }
+  - { name: "c8p-26", ip: "10.136.0.1", type: "A" }
+  - { name: "c8p-27", ip: "10.137.0.1", type: "A" }
+  - { name: "c8p-28", ip: "10.138.0.1", type: "A" }
+  - { name: "c8p-29", ip: "10.139.0.1", type: "A" }
+  - { name: "c8p-30", ip: "10.140.0.1", type: "A" }
+  - { name: "c8p-31", ip: "10.141.0.1", type: "A" }
+  - { name: "c8p-32", ip: "10.142.0.1", type: "A" }
+  - { name: "c8p-33", ip: "10.143.0.1", type: "A" }
+  - { name: "c8p-34", ip: "10.144.0.1", type: "A" }
+  - { name: "c8p-35", ip: "10.145.0.1", type: "A" }
+  - { name: "c8p-36", ip: "10.146.0.1", type: "A" }
+  - { name: "c8p-37", ip: "10.147.0.1", type: "A" }
+  - { name: "c8p-38", ip: "10.148.0.1", type: "A" }
+  - { name: "c8p-39", ip: "10.149.0.1", type: "A" }
+  - { name: "c8p-40", ip: "10.150.0.1", type: "A" }
+  - { name: "c8p-41", ip: "10.151.0.1", type: "A" }
+  - { name: "c8p-42", ip: "10.152.0.1", type: "A" }
+  - { name: "c8p-43", ip: "10.153.0.1", type: "A" }
+  - { name: "c8p-44", ip: "10.154.0.1", type: "A" }
+  - { name: "c8p-45", ip: "10.155.0.1", type: "A" }
+
+  # Cisco 48-port core
+  - { name: "csw-01", ip: "10.101.0.1", type: "A" }
+  - { name: "csw-02", ip: "10.102.0.1", type: "A" }
+  - { name: "csw-03", ip: "10.103.0.1", type: "A" }
+  - { name: "csw-04", ip: "10.104.0.1", type: "A" }
+  - { name: "csw-05", ip: "10.105.0.1", type: "A" }
+  - { name: "csw-06", ip: "10.106.0.1", type: "A" }
+  - { name: "csw-07", ip: "10.107.0.1", type: "A" }
+  - { name: "csw-08", ip: "10.108.0.1", type: "A" }
+  - { name: "csw-09", ip: "10.109.0.1", type: "A" }
+  - { name: "csw-10", ip: "10.110.0.1", type: "A" }
+
+  # Cisco 48-port leaf
+  - { name: "c48p-01", ip: "10.191.0.1", type: "A" }
+  - { name: "c48p-02", ip: "10.192.0.1", type: "A" }
+  - { name: "c48p-03", ip: "10.193.0.1", type: "A" }
+  - { name: "c48p-04", ip: "10.194.0.1", type: "A" }
+  - { name: "c48p-05", ip: "10.195.0.1", type: "A" }
+  - { name: "c48p-06", ip: "10.196.0.1", type: "A" }
+  - { name: "c48p-07", ip: "10.197.0.1", type: "A" }
+  - { name: "c48p-08", ip: "10.198.0.1", type: "A" }
+  - { name: "c48p-09", ip: "10.199.0.1", type: "A" }
+  - { name: "c48p-10", ip: "10.200.0.1", type: "A" }
+  - { name: "c48p-11", ip: "10.201.0.1", type: "A" }
+  - { name: "c48p-12", ip: "10.202.0.1", type: "A" }
+  - { name: "c48p-13", ip: "10.203.0.1", type: "A" }
+  - { name: "c48p-14", ip: "10.204.0.1", type: "A" }
+  - { name: "c48p-15", ip: "10.205.0.1", type: "A" }
+
+  # PVE
+  - { name: "quorum", ip: "10.101.21.40", type: "A" }
+  - { name: "pve1", ip: "10.101.21.41", type: "A" }
+  - { name: "pve2", ip: "10.101.21.42", type: "A" }
+  - { name: "pve-vampire", ip: "10.101.21.44", type: "A" }
+  - { name: "synology", ip: "10.101.21.156", type: "A" }
+  - { name: "synrepo", ip: "10.101.21.156", type: "A" }
+
+
+  # IPMI
+  - { name: "dell-omsa", ip: "192.168.100.110", type: "A" }
+  - { name: "quorum-idrac", ip: "192.168.100.111", type: "A" }
+  - { name: "pve1-idrac", ip: "192.168.100.112", type: "A" }
+  - { name: "pve2-idrac", ip: "192.168.100.113", type: "A" }
+  - { name: "vampire-idrac", ip: "192.168.100.114", type: "A" }
+
+  # External IPs, CNAMEs, etc.
+  - { name: "fixit", ip: "52.45.46.140", type: "A" }
+  - { name: "fixit", ip: "2600:1f18:423b:a500:76bf:d287:e6f9:2306", type: "AAAA" }
+  - { name: "streaming", ip: "streaming-456449487.us-east-1.elb.amazonaws.com.", type: "CNAME" }
+  - { name: "2022-reg-verify", ip: "d3i61ov5x454o2.cloudfront.net.", type: "CNAME" }
+  - { name: "coldbrew", ip: "hydrophobic-pheasant-7qpulrttf80t5n3leh0etcff.herokudns.com.", type: "CNAME" }
+  - { name: "schedule", ip: "schedule.magevent.net.s3-website-us-east-1.amazonaws.com.", type: "CNAME" }
+  - { name: "food", ip: "143.198.29.84", type: "A" }
+  - { name: "apt-mirror", ip: "d1oyui1gsktpjk.cloudfront.net.", type: "CNAME"}
+  - { name: "snipe", ip: "pacific-endive-8stlz9pl72a8tne5ty4fe1wm.herokudns.com.", type: "CNAME" }

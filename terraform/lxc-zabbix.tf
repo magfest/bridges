@@ -1,7 +1,13 @@
 module "zabbix" {
   source       = "./modules/lxc"
   cluster_name = "pve1"
-  ip_address   = cidrhost(var.subnet, 200)
-  cidr_mask    = local.cidr_suffix
-  hostname     = "zabbix.${local.domain}"
+  gateway      = cidrhost(var.subnet, 1)
+  hostname     = "zabbix-new.${local.domain}"
+  nets = [
+    {
+      ip   = cidrhost(var.subnet, 201)
+      cidr = local.cidr_suffix
+      tag  = "22"
+    }
+  ]
 }

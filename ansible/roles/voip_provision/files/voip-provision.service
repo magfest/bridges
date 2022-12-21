@@ -1,0 +1,11 @@
+[Unit]
+Description=Automagic Phone Provisioner for Asterisk
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/provisioner.py
+User=root
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

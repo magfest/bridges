@@ -1,0 +1,34 @@
+---
+provisioner_config:
+  airtable:
+    base_id: "{{ airtable_base_id }}"
+    api_key: "{{ airtable_api_key }}"
+  asterisk:
+    reload_command: null
+  templates:
+    yealink.cfg:
+      write_path: "/srv/tftp/{mac}.cfg"
+    asterisk.extensions.phones:
+      write_path: null
+    asterisk.extensions.incoming:
+      write_path: null
+    asterisk.extensions.outgoing:
+      write_path: null
+    asterisk.sip:
+      write_path: null
+    asterisk.queues:
+      write_path: null
+  http:
+    enable: false
+  update_interval: 60
+  logging:
+    file_path: /var/log/voip-provision.log
+    file_level: info
+    console_level: info
+    syslog_path: /dev/log
+    syslog_level: info
+  sync:
+    enable: true
+    primary_host: http://asterisk.magevent.net
+    username: "{{ phone_sync_username }}"
+    password: "{{ phone_sync_password }}"

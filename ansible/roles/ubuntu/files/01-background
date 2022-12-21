@@ -1,0 +1,5 @@
+# dconf path
+[org/gnome/desktop/background]
+
+# dconf key names and their corresponding values
+picture-uri='file:///usr/share/backgrounds/MAG2022_wallpaper.jpeg'

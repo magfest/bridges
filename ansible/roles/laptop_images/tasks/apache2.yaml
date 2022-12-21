@@ -1,0 +1,64 @@
+---
+- name: Install Apache packages
+  ansible.builtin.apt:
+    name: "{{ packages.apache }}"
+    install_recommends: false
+    update_cache: true
+    cache_valid_time: 3600
+    autoclean: true
+    autoremove: true
+
+- name: Install Apache reverse proxy config
+  ansible.builtin.copy:
+    src: "reverseproxy.conf"
+    dest: "/etc/apache2/sites-available/reverseproxy.conf"
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+  - Restart apache2
+
+- name: Create cloud-init directory
+  ansible.builtin.file:
+    path: "/var/www/html/cloud-init/"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Create cloud-init files
+  ansible.builtin.template:
+    src: "{{ item }}.j2"
+    dest: "/var/www/html/cloud-init/{{ item }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+  - "user-data"
+  - "meta-data"
+
+- name: Create Ansible cron script
+  ansible.builtin.copy:
+    src: "ansible-cron.sh"
+    dest: "/var/www/html/ansible-cron.sh"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Create Ansible crontab
+  ansible.builtin.copy:
+    src: "ansible-cron"
+    dest: "/var/www/html/ansible-cron"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Enable Apache modules
+  command: "a2enmod proxy proxy_http"
+  notify:
+  - Restart apache2
+
+- name: Enable Apache site
+  command: "a2ensite reverseproxy"
+  notify:
+  - Restart apache2

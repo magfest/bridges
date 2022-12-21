@@ -1,0 +1,20 @@
+---
+- name: Install Zabbix repo
+  ansible.builtin.apt:
+    deb: "{{ defaults.packages.zabbix_repo }}"
+    state: present
+    install_recommends: false
+    update_cache: true
+    cache_valid_time: 3600
+    autoclean: true
+    autoremove: true
+
+- name: Install Zabbix agent
+  ansible.builtin.apt:
+    name: "{{ defaults.packages.zabbix_agent }}"
+    state: latest
+    install_recommends: false
+    update_cache: true
+    cache_valid_time: 3600
+    autoclean: true
+    autoremove: true

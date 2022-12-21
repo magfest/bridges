@@ -1,0 +1,30 @@
+---
+- name: Install dhcpd package
+  ansible.builtin.apt:
+    name: "{{ packages.dhcpd }}"
+    install_recommends: false
+    update_cache: true
+    cache_valid_time: 3600
+    autoclean: true
+    autoremove: true
+  notify:
+  - Restart dhcpd
+
+# INTERFACESv4=""
+- name: Set listener interface as eth0
+  ansible.builtin.lineinfile:
+    path: /etc/default/isc-dhcp-server
+    regexp: '^INTERFACESv4=.*$'
+    line: 'INTERFACESv4="{{ dhcp_interface }}"'
+  notify:
+  - Restart dhcpd
+
+- name: Generate dhcpd.conf config file
+  ansible.builtin.template:
+    src: dhcpd.conf.j2
+    dest: /etc/dhcp/dhcpd.conf
+    mode: 0660
+    owner: root
+    group: root
+  notify:
+  - Restart dhcpd

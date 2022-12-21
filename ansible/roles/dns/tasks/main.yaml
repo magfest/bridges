@@ -1,0 +1,6 @@
+---
+- name: Configure DNS servers
+  include: "server.yaml"
+
+- name: Configure DNS firewall rules
+  include: "firewall_rules.yaml"

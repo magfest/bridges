@@ -1,0 +1,128 @@
+---
+- name: Update Ansible cron script
+  ansible.builtin.copy:
+    src: "../../laptop_images/files/ansible-cron.sh"
+    dest: "/usr/local/bin/ansible-cron.sh"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Disable Firefox autofill
+  ansible.builtin.copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - { src: "syspref.js", dest: "/etc/firefox/syspref.js" }
+
+- name: Create Firefox Policy directory
+  ansible.builtin.file:
+    path: "/etc/firefox/policies/"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Configure Firefox ManagedBookmarks
+  ansible.builtin.copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - { src: "policies.json", dest: "/etc/firefox/policies/policies.json" }
+
+- name: WiFi credentials
+  ansible.builtin.template:
+    src: NMConnection.j2
+    dest: "/etc/NetworkManager/system-connections/{{ item.ssid }}.nmconnection"
+    owner: root
+    group: root
+    mode: 0600
+  with_items: "{{ wifi_creds }}"
+
+- name: Disable NetworkManager MAC randomization
+  ansible.builtin.copy:
+    src: "disable_randmac.conf"
+    dest: "/etc/NetworkManager/conf.d/disable_randmac.conf"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Create dconf directory for background config
+  ansible.builtin.file:
+    path: "/etc/dconf/db/local.d/"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Install theme stuff
+  ansible.builtin.copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - { src: "background_16_9.jpeg", dest: "/usr/share/backgrounds/MAG2022_lockscreen.jpeg", }
+    - { src: "background_16_9.jpeg", dest: "/usr/share/backgrounds/MAG2022_wallpaper.jpeg", }
+    - { src: "rip-and-tear.png", dest: "/usr/share/pixmaps/faces/MAG2022_face.png", }
+    - { src: "rip-and-tear.png", dest: "/etc/skel/.face" }
+    - { src: "01-background", dest: "/etc/dconf/db/local.d/01-background" }
+
+- name: Update dconf
+  command: "dconf update"
+
+- name: Install change-gdm-background prerequisite
+  ansible.builtin.apt:
+    name: "libglib2.0-dev-bin"
+    install_recommends: false
+    update_cache: true
+    cache_valid_time: 3600
+    autoclean: true
+    autoremove: true
+
+# change-gdm-background script larcenied from
+# https://github.com/thiggy01/change-gdm-background
+- name: Install theme scripts
+  ansible.builtin.copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    group: root
+    mode: 0755
+  with_items:
+    - { src: "theme_install.sh", dest: "/usr/local/bin/theme_install.sh" }
+    - { src: "change-gdm-background", dest: "/usr/local/bin/change-gdm-background", }
+
+- name: Install theme for existing users
+  command: "/usr/local/bin/theme_install.sh"
+
+- name: Install login screen background
+  command: "/usr/local/bin/change-gdm-background /usr/share/backgrounds/MAG2022_lockscreen.png"
+
+- name: Install Snipe-IT registry script
+  ansible.builtin.copy:
+    src: "snipe-register.sh"
+    dest: "/usr/local/bin/snipe-register.sh"
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Register in Snipe-IP
+  command: "/usr/local/bin/snipe-register.sh"
+  args:
+    creates: "/opt/snipeit-register"
+
+- name: Install GPU drivers
+  ansible.builtin.apt:
+    name: "nvidia-driver-390"
+    install_recommends: false
+    update_cache: true
+    cache_valid_time: 3600
+    autoclean: true
+    autoremove: true

@@ -1,0 +1,6 @@
+---
+- name: Configure DHCP servers
+  include: "server.yaml"
+
+- name: Configure DHCP firewall rules
+  include: "firewall_rules.yaml"

@@ -1,0 +1,42 @@
+{% if branch == "prod" %}
+zone "magevent.net" IN {
+        type master;
+        file "/var/lib/bind/magevent.net.zone";
+        notify no;
+};
+
+{% for item in branch_list %}
+zone "{{ item.branch }}.magevent.net" IN {
+        type slave;
+        file "/var/lib/bind/{{ item.branch }}.magevent.net.zone";
+        masters { {{ (item.subnet.split('.'))[0:3] | join('.') }}.110; {{ (item.subnet.split('.'))[0:3] | join('.') }}.120; };
+        allow-notify { {{ (item.subnet.split('.'))[0:3] | join('.') }}.110; {{ (item.subnet.split('.'))[0:3] | join('.') }}.120; };
+};
+{% endfor %}
+{% else %}
+zone "{{ zone_prefix }}magevent.net" IN {
+        type master;
+        file "/var/lib/bind/{{ zone_prefix }}magevent.net.zone";
+        allow-transfer {10.101.22.110; 10.101.22.120;};
+        also-notify {10.101.22.110; 10.101.22.120;};
+};
+{% endif %}
+
+zone "win.magevent.net" {
+        type stub;
+        masters {10.101.22.210; 10.101.22.220;};
+        file "/var/lib/bind/win.magevent.net.zone";
+        forwarders { };
+};
+
+zone "onsite.uber.magfest.org" IN {
+        type master;
+        file "/var/lib/bind/onsite.uber.magfest.org.zone";
+        notify no;
+};
+
+zone "onsite.reggie.magfest.org" IN {
+        type master;
+        file "/var/lib/bind/onsite.reggie.magfest.org.zone";
+        notify no;
+};

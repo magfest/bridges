@@ -1,0 +1,35 @@
+---
+packages:
+  python3:
+    - python3
+    - python3-requests
+    - python3-flask
+
+provisioner_config:
+  airtable:
+    base_id: "{{ airtable_base_id }}"
+    api_key: "{{ airtable_api_key }}"
+  asterisk:
+    reload_command: "systemctl reload asterisk"
+  templates:
+    yealink.cfg:
+      write_path: "/srv/tftp/provision/yealink-t2x/{mac}.cfg"
+    custom.summary:
+      type: page
+      src_path: summary.html.jinja
+      http_path: "/"
+  http:
+    enable: true
+    listen: "0.0.0.0"
+    port: 80
+  update_interval: 60
+  logging:
+    file_path: /var/log/voip-provision.log
+    file_level: info
+    console_level: info
+    syslog_path: /dev/log
+    syslog_level: info
+  sync:
+    enable: true
+    username: "{{ phone_sync_username }}"
+    password: "{{ phone_sync_password }}"

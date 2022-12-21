@@ -1,0 +1,6 @@
+---
+- name: Configure Asterisk
+  include: "asterisk.yaml"
+
+- name: Configure Asterisk firewall rules
+  include: "firewall_rules.yaml"

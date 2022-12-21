@@ -1,0 +1,9 @@
+---
+- name: Copy in new agent config
+  ansible.builtin.copy:
+    src: zabbix_agentd.conf
+    dest: /etc/zabbix/zabbix_agentd.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: Restart Zabbix agent

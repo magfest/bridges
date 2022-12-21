@@ -1,0 +1,16 @@
+---
+- name: Allow port 80 TCP for HTTP
+  community.general.ufw:
+    rule: allow
+    proto: tcp
+    port: "80"
+
+- name: Allow port 8123 TCP for Dynmap proxy
+  community.general.ufw:
+    rule: allow
+    proto: tcp
+    port: "8123"
+
+- name: Reload UFW
+  community.general.ufw:
+    state: reloaded

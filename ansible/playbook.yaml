@@ -1,0 +1,151 @@
+---
+- name: Load vaults
+  hosts:
+    - all
+  remote_user: root
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  tasks:
+    - name: Bridges vault
+      include_vars: vaults/vault.yaml
+    - name: Laptops-only vault
+      include_vars: vaults/laptop-vault.yaml
+      tags:
+        - never
+        - laptops
+
+- name: NGINX server
+  hosts:
+    - nginx-proxy
+  remote_user: root
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  roles:
+    - nginx-proxy
+
+- name: Initial Ubuntu setup
+  hosts:
+    - all
+  remote_user: root
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  roles:
+    - ubuntu
+
+- name: Zabbix agent
+  hosts:
+    - all
+  remote_user: root
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  roles:
+    - zabbix_agent
+
+- name: DNS server setup
+  hosts:
+    - dns
+  remote_user: root
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  roles:
+    - dns
+
+- name: FreeIPA client enrollment
+  hosts:
+    - all
+  remote_user: root
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  roles:
+    - freeipa_enroll
+
+- name: DHCP server setup
+  hosts:
+    - dhcp
+  remote_user: root
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  roles:
+    - dhcp
+
+- name: CUPS setup
+  hosts:
+    - cups
+  remote_user: root
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  roles:
+    - cups
+
+- name: rsyslog setup
+  hosts:
+    - rsyslog
+  remote_user: root
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  roles:
+    - rsyslog
+
+- name: NTP setup
+  hosts:
+    - ntp
+  remote_user: root
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  roles:
+    - ntp
+
+- name: SMTP setup
+  hosts:
+    - smtp
+  remote_user: root
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  roles:
+    - smtp
+
+- name: Laptop deployment setup
+  hosts:
+    - laptops
+  remote_user: root
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  roles:
+    - laptop_images
+
+- name: TFTP setup
+  hosts:
+    - tftp
+  remote_user: root
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  roles:
+    - tftp
+    - phone_configs
+    - voip_provision
+    - geerlingguy.pip
+
+- name: Asterisk server
+  hosts:
+    - asterisk
+  remote_user: root
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  roles:
+    - asterisk
+    - voip_provision
+    - geerlingguy.pip

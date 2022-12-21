@@ -1,0 +1,44 @@
+---
+- name: Install NGINX package
+  ansible.builtin.apt:
+    name: "{{ packages.nginx }}"
+    install_recommends: false
+    update_cache: true
+    cache_valid_time: 3600
+    autoclean: true
+    autoremove: true
+  notify:
+    - Restart nginx
+
+- name: Copy proxy configs
+  ansible.builtin.copy:
+    src: "files/{{ item }}"
+    dest: "/etc/nginx/sites-available/{{ item }}"
+    mode: "0644"
+    owner: root
+    group: root
+  with_items:
+    - "repo_proxy.conf"
+    - "dynmap_proxy.conf"
+  notify:
+    - Restart nginx
+
+- name: Link reverse proxy configs
+  ansible.builtin.file:
+    dest: "/etc/nginx/sites-enabled/{{ item }}"
+    src: "/etc/nginx/sites-available/{{ item }}"
+    state: link
+    force: true
+  with_items:
+    - "repo_proxy.conf"
+    - "dynmap_proxy.conf"
+  notify:
+    - Restart nginx
+
+- name: Disable NGINX default config
+  ansible.builtin.file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+    force: true
+  notify:
+    - Restart nginx
