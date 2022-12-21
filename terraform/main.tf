@@ -43,9 +43,10 @@ locals {
   vlan_mapping = {
     prod = 22,
     main = 23,
-    dev = 24
+    dev = 24,
+    aaron-dev = 25
   }
-  branch_vlan = lookup(local.vlan_mapping, lower(var.branch), 24)
+  branch_vlan = lookup(local.vlan_mapping, lower(var.branch), 26)
 }
 
 resource "local_file" "inventory" {
