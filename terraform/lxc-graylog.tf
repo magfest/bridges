@@ -8,7 +8,7 @@ module "graylog" {
     {
       ip   = cidrhost(var.subnet, 129)
       cidr = local.cidr_suffix
-      tag  = "22"
+      tag  = local.branch_vlan
     }
   ]
 }

@@ -7,7 +7,7 @@ module "asterisk" {
     {
       ip   = cidrhost(var.subnet, 12)
       cidr = local.cidr_suffix
-      tag  = "22"
+      tag  = local.branch_vlan
     }
   ]
 }

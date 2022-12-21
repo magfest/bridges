@@ -7,7 +7,7 @@ module "rsyslog" {
     {
       ip   = cidrhost(var.subnet, 130)
       cidr = local.cidr_suffix
-      tag  = "22"
+      tag  = local.branch_vlan
     }
   ]
   # THIS DOESN'T WORK RIGHT NOW:

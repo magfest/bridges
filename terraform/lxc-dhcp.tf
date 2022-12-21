@@ -7,7 +7,7 @@ module "dhcp" {
     {
       ip   = cidrhost(var.subnet, 4)
       cidr = local.cidr_suffix
-      tag  = "22"
+      tag  = local.branch_vlan
     }
   ]
 }
