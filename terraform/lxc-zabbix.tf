@@ -7,7 +7,7 @@ module "zabbix" {
     {
       ip   = cidrhost(var.subnet, 201)
       cidr = local.cidr_suffix
-      tag  = "22"
+      tag  = local.branch_vlan
     }
   ]
 }

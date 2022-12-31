@@ -7,7 +7,7 @@ module "cups" {
     {
       ip   = cidrhost(var.subnet, 13)
       cidr = local.cidr_suffix
-      tag  = "22"
+      tag  = local.branch_vlan
     }
   ]
 }
