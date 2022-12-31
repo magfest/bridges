@@ -7,7 +7,7 @@ module "tftp" {
     {
       ip   = cidrhost(var.subnet, 9)
       cidr = local.cidr_suffix
-      tag  = "22"
+      tag  = local.branch_vlan
     }
   ]
 }

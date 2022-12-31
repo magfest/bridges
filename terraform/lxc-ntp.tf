@@ -9,7 +9,7 @@ module "ntp" {
     {
       ip   = cidrhost(var.subnet, 6 + count.index)
       cidr = local.cidr_suffix
-      tag  = "22"
+      tag  = local.branch_vlan
     }
   ]
 }

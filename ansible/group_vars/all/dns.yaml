@@ -50,8 +50,9 @@ magevent_net_hosts:
   - { name: "gitlab-builder-1", ip: "10.101.22.138", type: "A" }
   - { name: "gitlab-builder-2", ip: "10.101.22.139", type: "A" }
   - { name: "gitlab-builder-3", ip: "10.101.22.140", type: "A" }
-  - { name: "nexthop", ip: "10.101.22.141", type: "A" }
+  - { name: "calgary", ip: "10.101.22.141", type: "A" }
   - { name: "boost", ip: "10.101.22.142", type: "A" }
+  - { name: "ltc", ip: "10.101.22.143", type: "A" }
   - { name: "librenms", ip: "10.101.22.151", type: "A" }
   - { name: "zabbix-proxy", ip: "10.101.22.199", type: "A" }
   - { name: "zabbix", ip: "10.101.22.200", type: "A" }

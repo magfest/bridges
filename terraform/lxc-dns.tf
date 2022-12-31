@@ -9,7 +9,7 @@ module "dns" {
     {
       ip   = cidrhost(var.subnet, 110 + (count.index * 10))
       cidr = local.cidr_suffix
-      tag  = "22"
+      tag  = local.branch_vlan
     }
   ]
 }
