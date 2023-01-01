@@ -62,10 +62,10 @@
   any_errors_fatal: true
   tasks:
     - apt:
-      upgrade: yes
-      update_cache: yes
-      cache_valid_time: 86400
-      become: true
+        upgrade: yes
+        update_cache: yes
+        cache_valid_time: 86400
+        become: true
 
 - name: Configure automated security updates
   hosts:
