@@ -105,7 +105,7 @@ run-playbooks:
     - echo ${ANSIBLE_VAULT_PASSWORD} > ${CI_PROJECT_DIR}/ansible/.vault-password
     - ansible-galaxy install -r requirements.yaml
     - ansible-galaxy collection install -r requirements.yaml
-    - ansible-playbook -vvv -i ${TF_ROOT}/hosts.ini --vault-password-file ./.vault-password playbook.yaml
+    - ansible-playbook -i ${TF_ROOT}/hosts.ini --vault-password-file ./.vault-password playbook.yaml
   rules:
     - if: '$TF_VAR_subnet != ""'
       when: on_success

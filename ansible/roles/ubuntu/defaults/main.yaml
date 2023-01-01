@@ -5,6 +5,8 @@ packages:
     - rsyslog
     - net-tools
     - unattended-upgrades
+    - toilet
+    - figlet
   apt_install_vm:
     - qemu-guest-agent
     - python3-virtualenv

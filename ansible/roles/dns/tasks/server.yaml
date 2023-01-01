@@ -48,7 +48,7 @@
 
 - name: Touch optional include file
   ansible.builtin.file:
-    path: /var/lib/bind/{{ zone_prefix }}.magevent.net.zone.aux
+    path: /var/lib/bind/{{ zone_prefix }}magevent.net.zone.aux
     state: touch
     mode: u+rw,g-wx,o-rwx
     owner: root
