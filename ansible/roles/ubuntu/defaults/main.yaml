@@ -9,5 +9,6 @@ packages:
     - qemu-guest-agent
     - python3-virtualenv
     - python3-pip
+  # There are no LXC specific packages at this time.
   apt_install_lxc:
-
+    - apt
