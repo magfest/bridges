@@ -178,7 +178,6 @@
     - tftp
     - phone_configs
     - voip_provision
-    - geerlingguy.pip
 
 - name: Asterisk server
   hosts:

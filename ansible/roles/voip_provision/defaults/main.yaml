@@ -4,6 +4,7 @@ packages:
     - python3
     - python3-requests
     - python3-flask
+    - python3-pip
 
 provisioner_config:
   airtable:
