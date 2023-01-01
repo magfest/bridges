@@ -31,6 +31,8 @@ www                       IN        A        10.101.22.24
 {{ item.name }}           IN        {{ item.type }}        {{ item.ip }}
 {% endfor %}
 
+$INCLUDE /var/lib/bind/{{ zone_prefix }}magevent.net.zone.aux
+
 {% if branch == "prod" %}
 {% for item in branch_list %}
 $ORIGIN {{ item.branch }}.magevent.net.
@@ -39,7 +41,6 @@ $TTL 3600
 dns1-{{ item.branch }}     IN  A   {{ (item.subnet.split('.'))[0:3] | join('.') }}.110
 dns2-{{ item.branch }}     IN  A   {{ (item.subnet.split('.'))[0:3] | join('.') }}.120
 
-$INCLUDE /var/lib/bind/{{ item.branch }}magevent.net.zone.aux
 
 {% endfor %}
 {% endif %}
