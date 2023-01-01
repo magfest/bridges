@@ -61,7 +61,8 @@
   gather_facts: true
   any_errors_fatal: true
   tasks:
-    - apt:
+    - name: Update and upgrade apt
+      apt:
         upgrade: yes
         update_cache: yes
         cache_valid_time: 86400
@@ -73,10 +74,8 @@
   become: true
   gather_facts: true
   any_errors_fatal: true
-  tasks:
-    - name: Configure automated security updates
-      ansible.builtin.include_role:
-        name: automated_security_updates
+  roles:
+    - automated_security_updates
 
 - name: Zabbix agent
   hosts:

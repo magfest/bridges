@@ -7,5 +7,7 @@ packages:
     - unattended-upgrades
   apt_install_vm:
     - qemu-guest-agent
+    - python3-virtualenv
+    - python3-pip
   apt_install_lxc:
 
