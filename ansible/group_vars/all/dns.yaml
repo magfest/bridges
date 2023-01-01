@@ -1,21 +1,22 @@
 ---
 magevent_net_hosts:
   # MAGCloud per-branch "dynamic" IP entries
+  - { name: "dhcp1", ip: "{{ branch_subnet_trimmed }}.4", type: "A" }
   - { name: "ntp1", ip: "{{ branch_subnet_trimmed }}.6", type: "A" }
   - { name: "ntp2", ip: "{{ branch_subnet_trimmed }}.7", type: "A" }
   - { name: "tftp", ip: "{{ branch_subnet_trimmed }}.9", type: "A" }
+  - { name: "asterisk", ip: "{{ branch_subnet_trimmed }}.12", type: "A" }
   - { name: "cups", ip: "{{ branch_subnet_trimmed }}.13", type: "A" }
   - { name: "smtp", ip: "{{ branch_subnet_trimmed }}.23", type: "A" }
   - { name: "nginx-proxy", ip: "{{ branch_subnet_trimmed }}.30", type: "A" }
   - { name: "repo", ip: "{{ branch_subnet_trimmed }}.30", type: "A" }
+  - { name: "local-nebula", ip: "{{ branch_subnet_trimmed }}.31", type: "A" }
   - { name: "laptops", ip: "{{ branch_subnet_trimmed }}.69", type: "A" }
   - { name: "dns1", ip: "{{ branch_subnet_trimmed }}.110", type: "A" }
   - { name: "dns2", ip: "{{ branch_subnet_trimmed }}.120", type: "A" }
   - { name: "graylog", ip: "{{ branch_subnet_trimmed }}.129", type: "A" }
   - { name: "syslog", ip: "{{ branch_subnet_trimmed }}.130", type: "A" }
   - { name: "zabbix-new", ip: "{{ branch_subnet_trimmed }}.201", type: "A" }
-  - { name: "dhcp1", ip: "{{ branch_subnet_trimmed }}.4", type: "A" }
-  - { name: "asterisk", ip: "{{ branch_subnet_trimmed }}.12", type: "A" }
 
   # MAGCloud static/not-in-Terraform-yet entries
   - { name: "salt", ip: "10.101.22.8", type: "A" }

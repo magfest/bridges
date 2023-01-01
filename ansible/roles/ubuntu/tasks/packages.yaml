@@ -34,9 +34,9 @@
   retries: 5
   until: apt_upgrade is success
 
-- name: Install common VM packages
+- name: Install packages on VMs
   ansible.builtin.apt:
-    name: "{{ packages.apt_install_vm }}"
+    name: "{{ packages.common + packages.apt_install_vm }}"
     install_recommends: false
     update_cache: true
     cache_valid_time: 3600
@@ -52,9 +52,9 @@
   - ansible_facts['virtualization_role'] == "guest"
   - ansible_facts['virtualization_type'] == "kvm"
 
-- name: Install common LXC packages
+- name: Install packages on LXC
   ansible.builtin.apt:
-    name: "{{ packages.apt_install_lxc }}"
+    name: "{{ packages.common + packages.apt_install_lxc }}"
     install_recommends: false
     update_cache: true
     cache_valid_time: 3600
@@ -69,3 +69,5 @@
   - packages.apt_install_lxc | length > 0
   - ansible_facts['virtualization_role'] == "guest"
   - ansible_facts['virtualization_type'] == "lxc"
+
+
