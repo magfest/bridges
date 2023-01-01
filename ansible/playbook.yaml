@@ -190,4 +190,3 @@
   roles:
     - asterisk
     - voip_provision
-    - geerlingguy.pip
