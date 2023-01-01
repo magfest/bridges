@@ -1,14 +1,11 @@
 ---
 packages:
+  common:
+    - htop
+    - rsyslog
+    - net-tools
+    - unattended-upgrades
   apt_install_vm:
     - qemu-guest-agent
-    - htop
-    - rsyslog
-    - net-tools
-    - unattended-upgrades
-
   apt_install_lxc:
-    - htop
-    - rsyslog
-    - net-tools
-    - unattended-upgrades
+

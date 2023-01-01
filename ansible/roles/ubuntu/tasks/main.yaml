@@ -9,6 +9,11 @@
     - packages
     - laptops
 
+- include: automatic_security_upgrades.yaml
+  tags:
+    - packages
+    - laptops
+
 - include: network.yaml
   tags:
     - network
