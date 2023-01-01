@@ -12,12 +12,12 @@
   file:
     path: "{{item}}"
     state: absent
-loop:
-  - /etc/update-motd.d/10-help-text
-  - /etc/update-motd.d/50-motd-news
-  - /etc/update-motd.d/91-contract-ua-esm-status
-  - /etc/update-motd.d/91-release-upgrade
-  - /etc/update-motd.d/98-esm-announce
+  loop:
+    - /etc/update-motd.d/10-help-text
+    - /etc/update-motd.d/50-motd-news
+    - /etc/update-motd.d/91-contract-ua-esm-status
+    - /etc/update-motd.d/91-release-upgrade
+    - /etc/update-motd.d/98-esm-announce
 
 - name: "Set /etc/update-motd.d/91-fortune"
   become: True
