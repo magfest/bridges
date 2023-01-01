@@ -1,3 +1,0 @@
-- name: Configure automated security updates
-  ansible.builtin.include_role:
-    name: automated_security_updates
