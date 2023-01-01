@@ -4,7 +4,8 @@
       - fortune
       - update-motd
       - toilet
-      - toilet-filters
+      - toilet-fonts
+      - figlet
     state: latest
 
 - name: "Remove MOTD news"
