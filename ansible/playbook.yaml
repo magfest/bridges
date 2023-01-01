@@ -74,8 +74,10 @@
   become: true
   gather_facts: true
   any_errors_fatal: true
-  roles:
-    - automated_security_updates
+  tasks:
+    - name: Configure automated security updates
+      ansible.builtin.include_role:
+        name: automated_security_updates
 
 - name: Zabbix agent
   hosts:
