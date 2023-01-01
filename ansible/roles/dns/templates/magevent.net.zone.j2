@@ -38,7 +38,10 @@ $TTL 3600
 @                         IN  NS  dns1-{{ item.branch }}.magevent.net.
 dns1-{{ item.branch }}     IN  A   {{ (item.subnet.split('.'))[0:3] | join('.') }}.110
 dns2-{{ item.branch }}     IN  A   {{ (item.subnet.split('.'))[0:3] | join('.') }}.120
+
+$INCLUDE /var/lib/bind/{{ item.branch }}magevent.net.zone.aux
+
 {% endfor %}
 {% endif %}
 
-$INCLUDE /var/lib/bind/{{ item.branch }}magevent.net.zone.aux
+
