@@ -44,15 +44,15 @@
   gather_facts: true
   any_errors_fatal: true
   tasks:
-  - name: Reset failsafe password
-    user:
-      name: "{{ item }}"
-      state: present
-      password: "{{ break_glass_pass }}"
-    loop:
-      - root
-      - ubuntu
-      - magcloud
+    - name: Reset failsafe password
+      user:
+        name: "{{ item }}"
+        state: present
+        password: "{{ break_glass_pass }}"
+      loop:
+        - root
+        - ubuntu
+        - magcloud
 
 - name: Update all hosts
   hosts:

@@ -1,3 +1,4 @@
+---
 - name: Install packages
   package:
     name:
@@ -9,7 +10,7 @@
     state: latest
 
 - name: "Remove MOTD news"
-  become: True
+  become: true
   file:
     path: "{{item}}"
     state: absent
@@ -21,12 +22,12 @@
     - /etc/update-motd.d/98-esm-announce
 
 - name: "Set /etc/update-motd.d/91-fortune"
-  become: True
+  become: true
   shell: printf '#!/bin/sh\n\n/usr/games/fortune' > /etc/update-motd.d/91-motd
   when: false
 
 - name: "chmod 0755 /etc/update-motd.d/91-fortune"
-  become: True
+  become: true
   file: path=/etc/update-motd.d/91-motd owner=root group=root mode='0755'
   when: false
 
@@ -39,5 +40,5 @@
     group: root
 
 - name: "update-motd"
-  become: True
+  become: true
   shell: update-motd
