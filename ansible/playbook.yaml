@@ -68,9 +68,6 @@
         update_cache: yes
         cache_valid_time: 86400
 
-- debug: var=kaboom
-- fail: msg=yup
-
 - name: Zabbix agent
   hosts:
     - all
