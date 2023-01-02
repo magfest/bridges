@@ -8,4 +8,4 @@ tput setaf 6 && toilet -f pagga $(printf "MAGFEST $(date +%Y)")
 tput setaf 1 && toilet -f pagga $(printf "{{ branch }} BRANCH$(date +%Y)")
 {% endif %}
 tput sgr0
-echo "Last update on {{ now(fmt='%a, %d %b %Y %H:%M') }}"
+echo "Last ansible run: {{ now(fmt='%a %b %e %H:%M:%S %Y') }}"
