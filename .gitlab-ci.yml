@@ -121,6 +121,10 @@ destroy:
   script:
     - terraform destroy -auto-approve
   rules:
+    - if: '$CI_COMMIT_BRANCH == "aaron-dev"'
+      when: never
+    - if: '$CI_COMMIT_BRANCH == "prod"'
+      when: never
     - if: '$TF_VAR_subnet != "" && $CI_COMMIT_BRANCH != "prod"'
       when: manual
     - when: never
