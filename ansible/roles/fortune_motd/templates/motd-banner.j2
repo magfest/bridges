@@ -1,0 +1,12 @@
+#!/bin/sh
+# This is a hack but yolo
+export TERM="xterm-256color"
+echo ""
+tput setaf 5 && toilet -f pagga $(printf "SUPER")
+tput setaf 6 && toilet -f pagga $(printf "MAGFEST $(date +%Y)")
+{% if branch != "prod" %}
+tput setaf 1 && toilet -f pagga $(printf "{{ branch }}")
+{% endif %}
+echo ""
+tput sgr0
+echo "Last ansible run: {{ now(fmt='%a %b %e %H:%M:%S %Y') }}"

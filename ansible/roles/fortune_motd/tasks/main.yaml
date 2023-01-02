@@ -1,0 +1,44 @@
+---
+- name: Install packages
+  package:
+    name:
+      - fortune
+      - update-motd
+      - toilet
+      - toilet-fonts
+      - figlet
+    state: latest
+
+- name: "Remove MOTD news"
+  become: true
+  file:
+    path: "{{item}}"
+    state: absent
+  loop:
+    - /etc/update-motd.d/10-help-text
+    - /etc/update-motd.d/50-motd-news
+    - /etc/update-motd.d/91-contract-ua-esm-status
+    - /etc/update-motd.d/91-release-upgrade
+    - /etc/update-motd.d/98-esm-announce
+
+- name: "Set /etc/update-motd.d/91-fortune"
+  become: true
+  shell: printf '#!/bin/sh\n\n/usr/games/fortune' > /etc/update-motd.d/91-motd
+  when: false
+
+- name: "chmod 0755 /etc/update-motd.d/91-fortune"
+  become: true
+  file: path=/etc/update-motd.d/91-motd owner=root group=root mode='0755'
+  when: false
+
+- name: "Set MAGFest MOTD template"
+  ansible.builtin.template:
+    src: motd-banner.j2
+    dest: /etc/update-motd.d/92-super-motd
+    mode: 0755
+    owner: root
+    group: root
+
+- name: "update-motd"
+  become: true
+  shell: update-motd
