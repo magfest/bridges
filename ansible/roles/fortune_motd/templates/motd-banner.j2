@@ -7,4 +7,4 @@ tput setaf 6 && toilet -f pagga $(printf "MAGFEST $(date +%Y)")
 {% if branch != "prod" %}
 tput setaf 1 && echo "{{ branch }} branch"
 {% endif %}
-Last update on {{ now(fmt='%a, %d %b %Y %H:%M') }}
+echo "Last update on {{ now(fmt='%a, %d %b %Y %H:%M') }}"
