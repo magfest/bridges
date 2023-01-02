@@ -1,14 +1,17 @@
 ---
 packages:
+  common:
+    - htop
+    - rsyslog
+    - net-tools
+    - unattended-upgrades
+    - toilet
+    - figlet
+    - vim
   apt_install_vm:
     - qemu-guest-agent
-    - htop
-    - rsyslog
-    - net-tools
-    - unattended-upgrades
-
+    - python3-virtualenv
+    - python3-pip
+  # There are no LXC specific packages at this time.
   apt_install_lxc:
-    - htop
-    - rsyslog
-    - net-tools
-    - unattended-upgrades
+    - apt
