@@ -44,5 +44,3 @@ dns2-{{ item.branch }}     IN  A   {{ (item.subnet.split('.'))[0:3] | join('.') 
 
 {% endfor %}
 {% endif %}
-
-

@@ -41,4 +41,3 @@
 - name: "update-motd"
   become: True
   shell: update-motd
-

@@ -69,5 +69,3 @@
   - packages.apt_install_lxc | length > 0
   - ansible_facts['virtualization_role'] == "guest"
   - ansible_facts['virtualization_type'] == "lxc"
-
-
