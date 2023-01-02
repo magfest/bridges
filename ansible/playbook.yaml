@@ -68,18 +68,6 @@
         update_cache: yes
         cache_valid_time: 86400
 
-- name: Configure automated security updates
-  hosts:
-    - all
-  remote_user: root
-  become: true
-  gather_facts: true
-  #any_errors_fatal: true
-  roles:
-    - automated_security_updates
-  ignore_errors: yes
-  register: kaboom
-
 - debug: var=kaboom
 - fail: msg=yup
 
