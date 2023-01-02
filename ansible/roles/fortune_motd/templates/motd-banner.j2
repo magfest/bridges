@@ -5,7 +5,7 @@ export TERM="xterm-256color"
 tput setaf 5 && toilet -f pagga $(printf "SUPER")
 tput setaf 6 && toilet -f pagga $(printf "MAGFEST $(date +%Y)")
 {% if branch != "prod" %}
-tput setaf 1 && toilet -f pagga $(printf "{{ branch }} BRANCH$(date +%Y)")
+tput setaf 1 && toilet -f pagga $(printf "{{ branch }}")
 {% endif %}
 tput sgr0
 echo "Last ansible run: {{ now(fmt='%a %b %e %H:%M:%S %Y') }}"
