@@ -24,6 +24,7 @@ url='https://github.com/magfest/bridges.git'
 directory='/opt/ansible'
 FILE=/opt/laptops/repo/ansible/playbook.yaml
 if [[ -f "$FILE" ]]; then
+    url='https://github.com/magfest/laptops.git'
     echo "$FILE exists ... comfiguring from laptop repo"
     directory='/opt/laptops'
 else
