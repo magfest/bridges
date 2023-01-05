@@ -3,7 +3,7 @@
     "ManagedBookmarks": [
       {
         "name": "Reggie",
-        "url": "https://super2022.reggie.magfest.org/registration"
+        "url": "https://super2023.reggie.magfest.org/registration"
       },
       {
         "name": "SHC Scanner",
@@ -11,7 +11,7 @@
       }
     ],
     "Homepage": {
-      "URL": "https://super2022.reggie.magfest.org/registration",
+      "URL": "https://super2023.reggie.magfest.org/registration",
       "Locked": true,
       "Additional": ["https://2022-reg-verify.magevent.net"],
       "StartPage": "homepage"
