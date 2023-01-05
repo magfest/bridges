@@ -13,10 +13,26 @@ directory='/opt/ansible'
 logfile='/var/log/ansible-pull-update.log'
 checkout="$(cat ${directory}/branch)"
 
+if [ "$checkout" == "update-homepage" ]; then
+  checkout="main"
+  cd /opt/ansible/repo
+  git checkout -b main
+  echo "main" > ${directory}/branch
+fi
+
+if [ "$checkout" == "prod" ]; then
+  checkout="main"
+  cd /opt/ansible/repo
+  git checkout -b main
+  echo "main" > ${directory}/branch
+fi
+
 if [ "$checkout" == "" ]; then
     checkout="main"
     echo "main" > ${directory}/branch
 fi
+
+
 
 requirements="https://raw.githubusercontent.com/magfest/bridges/${checkout}/ansible/requirements.yaml"
 
