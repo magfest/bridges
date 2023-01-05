@@ -7,6 +7,12 @@
     group: root
     mode: 0644
 
+- name: Update Ansible cron script
+  ansible.builtin.git:
+    repo: https://github.com/magfest/laptops
+    dest: /opt/laptops
+    version: main
+
 - name: Disable Firefox autofill
   ansible.builtin.copy:
     src: "{{ item.src }}"

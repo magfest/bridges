@@ -1,11 +1,4 @@
 ---
-- name: Check out laptops
-  tasks:
-    ansible.builtin.git:
-      repo: https://github.com/magfest/laptops
-      dest: /opt/laptops
-      version: main
-
 - name: Load vaults
   hosts:
     - all
