@@ -28,7 +28,7 @@ if [[ -f "$FILE" ]]; then
     url='https://github.com/magfest/laptops.git'
     echo "$FILE exists ... comfiguring from laptop repo"
     directory='/opt/laptops'
-    requirements=${directory}/repo/requirements.yaml
+    requirements=${directory}/repo/ansible/requirements.yaml
 fi
 
 checkout="$(cat ${directory}/branch)"
