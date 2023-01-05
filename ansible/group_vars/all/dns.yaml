@@ -240,8 +240,8 @@ magevent_net_hosts:
   - { name: "vampire-idrac", ip: "192.168.100.114", type: "A" }
 
   # External IPs, CNAMEs, etc.
-  - { name: "magtv-graphics.magevent.net.", ip: "10.101.22.144", type: "A" }
-  - { name: "ripaks.magevent.net.", ip: "3.227.246.32", type: "A" }
+  - { name: "magtv-graphics", ip: "10.101.22.144", type: "A" }
+  - { name: "ripaks", ip: "3.227.246.32", type: "A" }
   - { name: "fixit", ip: "52.45.46.140", type: "A" }
   - { name: "fixit", ip: "2600:1f18:423b:a500:76bf:d287:e6f9:2306", type: "AAAA" }
   - { name: "streaming", ip: "streaming-456449487.us-east-1.elb.amazonaws.com.", type: "CNAME" }
@@ -251,4 +251,3 @@ magevent_net_hosts:
   - { name: "food", ip: "143.198.29.84", type: "A" }
   - { name: "apt-mirror", ip: "d1oyui1gsktpjk.cloudfront.net.", type: "CNAME" }
   - { name: "snipe", ip: "pacific-endive-8stlz9pl72a8tne5ty4fe1wm.herokudns.com.", type: "CNAME" }
-
