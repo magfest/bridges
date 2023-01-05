@@ -8,31 +8,34 @@ else
     FORCE=""
 fi
 
+function change_branch_to_main {
+  checkout="main"
+  cd /opt/ansible/repo
+  git checkout -b main
+  git pull
+  echo "main" > ${directory}/branch
+  SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+  echo "Changing branch back to main - rerunning ${SCRIPTPATH}"
+  bash ${SCRIPTPATH}
+  exit
+}
+
 url='https://github.com/magfest/bridges.git'
 directory='/opt/ansible'
 logfile='/var/log/ansible-pull-update.log'
 checkout="$(cat ${directory}/branch)"
 
 if [ "$checkout" == "update-homepage" ]; then
-  checkout="main"
-  cd /opt/ansible/repo
-  git checkout -b main
-  echo "main" > ${directory}/branch
+  change_branch_to_main
 fi
 
 if [ "$checkout" == "prod" ]; then
-  checkout="main"
-  cd /opt/ansible/repo
-  git checkout -b main
-  echo "main" > ${directory}/branch
+  change_branch_to_main
 fi
 
 if [ "$checkout" == "" ]; then
-    checkout="main"
-    echo "main" > ${directory}/branch
+    change_branch_to_main
 fi
-
-
 
 requirements="https://raw.githubusercontent.com/magfest/bridges/${checkout}/ansible/requirements.yaml"
 
