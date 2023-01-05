@@ -23,11 +23,13 @@ function change_branch_to_main {
 url='https://github.com/magfest/bridges.git'
 directory='/opt/ansible'
 FILE=/opt/laptops/repo/ansible/playbook.yaml
+requirements=${directory}/requirements.yaml
 if [[ -f "$FILE" ]]; then
     url='https://github.com/magfest/laptops.git'
     echo "$FILE exists ... comfiguring from laptop repo"
     directory='/opt/laptops'
-else
+    requirements=${directory}/repo/requirements.yaml
+fi
 
 checkout="$(cat ${directory}/branch)"
 
@@ -41,6 +43,6 @@ fi
 
 while ! ping -c1 google.com; do sleep 3; done
 
-ansible-galaxy install -r ${directory}/requirements.yaml
-ansible-galaxy collection install -r ${directory}/requirements.yaml
+ansible-galaxy install -r ${requirements}
+ansible-galaxy collection install -r ${requirements}
 ansible-pull ${FORCE} -C ${checkout} -d ${directory}/repo -i localhost, -U ${url} --tags "laptops" --vault-password-file ${directory}/vault-password ansible/playbook.yaml 2>&1 | tee -a ${logfile}
