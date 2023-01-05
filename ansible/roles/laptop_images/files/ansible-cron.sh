@@ -11,7 +11,7 @@ fi
 function change_branch_to_main {
   checkout="main"
   cd /opt/ansible/repo
-  git checkout -b main
+  git checkout main
   git pull
   echo "main" > ${directory}/branch
   SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
@@ -24,10 +24,6 @@ url='https://github.com/magfest/bridges.git'
 directory='/opt/ansible'
 logfile='/var/log/ansible-pull-update.log'
 checkout="$(cat ${directory}/branch)"
-
-if [ "$checkout" == "update-homepage" ]; then
-  change_branch_to_main
-fi
 
 if [ "$checkout" == "prod" ]; then
   change_branch_to_main
