@@ -69,106 +69,160 @@ magevent_net_hosts:
   - { name: "oa2", ip: "10.101.21.12", type: "A" }
   - { name: "vc1", ip: "10.101.21.13", type: "A" }
 
-  # EdgeRouters
-  - { name: "erx-01", ip: "10.161.0.1", type: "A" }
-  - { name: "erx-02", ip: "10.162.0.1", type: "A" }
-  - { name: "erx-03", ip: "10.163.0.1", type: "A" }
-  - { name: "erx-04", ip: "10.164.0.1", type: "A" }
-  - { name: "erx-05", ip: "10.165.0.1", type: "A" }
-  - { name: "erx-06", ip: "10.166.0.1", type: "A" }
-  - { name: "erx-07", ip: "10.167.0.1", type: "A" }
-  - { name: "erx-08", ip: "10.168.0.1", type: "A" }
-  - { name: "erx-09", ip: "10.169.0.1", type: "A" }
-  - { name: "erx-10", ip: "10.170.0.1", type: "A" }
-  - { name: "erx-11", ip: "10.171.0.1", type: "A" }
-  - { name: "erx-12", ip: "10.172.0.1", type: "A" }
-  - { name: "erx-13", ip: "10.173.0.1", type: "A" }
-  - { name: "erx-14", ip: "10.174.0.1", type: "A" }
-  - { name: "erx-15", ip: "10.175.0.1", type: "A" }
-  - { name: "erx-16", ip: "10.176.0.1", type: "A" }
-  - { name: "erx-17", ip: "10.177.0.1", type: "A" }
-  - { name: "erx-18", ip: "10.178.0.1", type: "A" }
-  - { name: "erx-19", ip: "10.179.0.1", type: "A" }
-  - { name: "erx-20", ip: "10.180.0.1", type: "A" }
-  - { name: "erx-21", ip: "10.181.0.1", type: "A" }
-  - { name: "erx-22", ip: "10.182.0.1", type: "A" }
-  - { name: "erx-23", ip: "10.183.0.1", type: "A" }
-
-  # Cisco 8-port core
-  - { name: "c8p-01", ip: "10.111.0.1", type: "A" }
-  - { name: "c8p-02", ip: "10.112.0.1", type: "A" }
-  - { name: "c8p-03", ip: "10.113.0.1", type: "A" }
-  - { name: "c8p-04", ip: "10.114.0.1", type: "A" }
-  - { name: "c8p-05", ip: "10.115.0.1", type: "A" }
-  - { name: "c8p-06", ip: "10.116.0.1", type: "A" }
-  - { name: "c8p-07", ip: "10.117.0.1", type: "A" }
-  - { name: "c8p-08", ip: "10.118.0.1", type: "A" }
-  - { name: "c8p-09", ip: "10.119.0.1", type: "A" }
-  - { name: "c8p-10", ip: "10.120.0.1", type: "A" }
-  - { name: "c8p-11", ip: "10.121.0.1", type: "A" }
-  - { name: "c8p-12", ip: "10.122.0.1", type: "A" }
-  - { name: "c8p-13", ip: "10.123.0.1", type: "A" }
-  - { name: "c8p-14", ip: "10.124.0.1", type: "A" }
-  - { name: "c8p-15", ip: "10.125.0.1", type: "A" }
-  - { name: "c8p-16", ip: "10.126.0.1", type: "A" }
-  - { name: "c8p-17", ip: "10.127.0.1", type: "A" }
-  - { name: "c8p-18", ip: "10.128.0.1", type: "A" }
-  - { name: "c8p-19", ip: "10.129.0.1", type: "A" }
-  - { name: "c8p-20", ip: "10.130.0.1", type: "A" }
-  - { name: "c8p-21", ip: "10.131.0.1", type: "A" }
-  - { name: "c8p-22", ip: "10.132.0.1", type: "A" }
-  - { name: "c8p-23", ip: "10.133.0.1", type: "A" }
-  - { name: "c8p-24", ip: "10.134.0.1", type: "A" }
-  - { name: "c8p-25", ip: "10.135.0.1", type: "A" }
-  - { name: "c8p-26", ip: "10.136.0.1", type: "A" }
-  - { name: "c8p-27", ip: "10.137.0.1", type: "A" }
-  - { name: "c8p-28", ip: "10.138.0.1", type: "A" }
-  - { name: "c8p-29", ip: "10.139.0.1", type: "A" }
-  - { name: "c8p-30", ip: "10.140.0.1", type: "A" }
-  - { name: "c8p-31", ip: "10.141.0.1", type: "A" }
-  - { name: "c8p-32", ip: "10.142.0.1", type: "A" }
-  - { name: "c8p-33", ip: "10.143.0.1", type: "A" }
-  - { name: "c8p-34", ip: "10.144.0.1", type: "A" }
-  - { name: "c8p-35", ip: "10.145.0.1", type: "A" }
-  - { name: "c8p-36", ip: "10.146.0.1", type: "A" }
-  - { name: "c8p-37", ip: "10.147.0.1", type: "A" }
-  - { name: "c8p-38", ip: "10.148.0.1", type: "A" }
-  - { name: "c8p-39", ip: "10.149.0.1", type: "A" }
-  - { name: "c8p-40", ip: "10.150.0.1", type: "A" }
-  - { name: "c8p-41", ip: "10.151.0.1", type: "A" }
-  - { name: "c8p-42", ip: "10.152.0.1", type: "A" }
-  - { name: "c8p-43", ip: "10.153.0.1", type: "A" }
-  - { name: "c8p-44", ip: "10.154.0.1", type: "A" }
-  - { name: "c8p-45", ip: "10.155.0.1", type: "A" }
-
   # Cisco 48-port core
   - { name: "csw-01", ip: "10.101.0.1", type: "A" }
-  - { name: "csw-02", ip: "10.102.0.1", type: "A" }
-  - { name: "csw-03", ip: "10.103.0.1", type: "A" }
-  - { name: "csw-04", ip: "10.104.0.1", type: "A" }
-  - { name: "csw-05", ip: "10.105.0.1", type: "A" }
-  - { name: "csw-06", ip: "10.106.0.1", type: "A" }
-  - { name: "csw-07", ip: "10.107.0.1", type: "A" }
-  - { name: "csw-08", ip: "10.108.0.1", type: "A" }
-  - { name: "csw-09", ip: "10.109.0.1", type: "A" }
-  - { name: "csw-10", ip: "10.110.0.1", type: "A" }
 
   # Cisco 48-port leaf
-  - { name: "c48p-01", ip: "10.191.0.1", type: "A" }
-  - { name: "c48p-02", ip: "10.192.0.1", type: "A" }
-  - { name: "c48p-03", ip: "10.193.0.1", type: "A" }
-  - { name: "c48p-04", ip: "10.194.0.1", type: "A" }
-  - { name: "c48p-05", ip: "10.195.0.1", type: "A" }
-  - { name: "c48p-06", ip: "10.196.0.1", type: "A" }
-  - { name: "c48p-07", ip: "10.197.0.1", type: "A" }
-  - { name: "c48p-08", ip: "10.198.0.1", type: "A" }
-  - { name: "c48p-09", ip: "10.199.0.1", type: "A" }
-  - { name: "c48p-10", ip: "10.200.0.1", type: "A" }
-  - { name: "c48p-11", ip: "10.201.0.1", type: "A" }
-  - { name: "c48p-12", ip: "10.202.0.1", type: "A" }
-  - { name: "c48p-13", ip: "10.203.0.1", type: "A" }
-  - { name: "c48p-14", ip: "10.204.0.1", type: "A" }
-  - { name: "c48p-15", ip: "10.205.0.1", type: "A" }
+  - { name: "c48p-02", ip: "10.102.0.1", type: "A" }
+  - { name: "c48p-03", ip: "10.103.0.1", type: "A" }
+  - { name: "c48p-04", ip: "10.104.0.1", type: "A" }
+  - { name: "c48p-05", ip: "10.105.0.1", type: "A" }
+  - { name: "c48p-06", ip: "10.106.0.1", type: "A" }
+  - { name: "c48p-07", ip: "10.107.0.1", type: "A" }
+  - { name: "c48p-08", ip: "10.108.0.1", type: "A" }
+  - { name: "c48p-09", ip: "10.109.0.1", type: "A" }
+  - { name: "c48p-10", ip: "10.110.0.1", type: "A" }
+  - { name: "c48p-11", ip: "10.111.0.1", type: "A" }
+  - { name: "c48p-12", ip: "10.112.0.1", type: "A" }
+  - { name: "c48p-13", ip: "10.113.0.1", type: "A" }
+  - { name: "c48p-14", ip: "10.114.0.1", type: "A" }
+  - { name: "c48p-15", ip: "10.115.0.1", type: "A" }
+  - { name: "c48p-16", ip: "10.116.0.1", type: "A" }
+  - { name: "c48p-17", ip: "10.117.0.1", type: "A" }
+  - { name: "c48p-18", ip: "10.118.0.1", type: "A" }
+  - { name: "c48p-19", ip: "10.119.0.1", type: "A" }
+  - { name: "c48p-20", ip: "10.120.0.1", type: "A" }
+
+  # Cisco 8-port core
+  - { name: "c8p-01", ip: "10.121.0.1", type: "A" }
+  - { name: "c8p-02", ip: "10.122.0.1", type: "A" }
+  - { name: "c8p-03", ip: "10.123.0.1", type: "A" }
+  - { name: "c8p-04", ip: "10.124.0.1", type: "A" }
+  - { name: "c8p-05", ip: "10.125.0.1", type: "A" }
+  - { name: "c8p-06", ip: "10.126.0.1", type: "A" }
+  - { name: "c8p-07", ip: "10.127.0.1", type: "A" }
+  - { name: "c8p-08", ip: "10.128.0.1", type: "A" }
+  - { name: "c8p-09", ip: "10.129.0.1", type: "A" }
+  - { name: "c8p-10", ip: "10.130.0.1", type: "A" }
+  - { name: "c8p-11", ip: "10.131.0.1", type: "A" }
+  - { name: "c8p-12", ip: "10.132.0.1", type: "A" }
+  - { name: "c8p-13", ip: "10.133.0.1", type: "A" }
+  - { name: "c8p-14", ip: "10.134.0.1", type: "A" }
+  - { name: "c8p-15", ip: "10.135.0.1", type: "A" }
+  - { name: "c8p-16", ip: "10.136.0.1", type: "A" }
+  - { name: "c8p-17", ip: "10.137.0.1", type: "A" }
+  - { name: "c8p-18", ip: "10.138.0.1", type: "A" }
+  - { name: "c8p-19", ip: "10.139.0.1", type: "A" }
+  - { name: "c8p-20", ip: "10.140.0.1", type: "A" }
+  - { name: "c8p-21", ip: "10.141.0.1", type: "A" }
+  - { name: "c8p-22", ip: "10.142.0.1", type: "A" }
+  - { name: "c8p-23", ip: "10.143.0.1", type: "A" }
+  - { name: "c8p-24", ip: "10.144.0.1", type: "A" }
+  - { name: "c8p-25", ip: "10.145.0.1", type: "A" }
+  - { name: "c8p-26", ip: "10.146.0.1", type: "A" }
+  - { name: "c8p-27", ip: "10.147.0.1", type: "A" }
+  - { name: "c8p-28", ip: "10.148.0.1", type: "A" }
+  - { name: "c8p-29", ip: "10.149.0.1", type: "A" }
+  - { name: "c8p-30", ip: "10.150.0.1", type: "A" }
+  - { name: "c8p-31", ip: "10.151.0.1", type: "A" }
+  - { name: "c8p-32", ip: "10.152.0.1", type: "A" }
+  - { name: "c8p-33", ip: "10.153.0.1", type: "A" }
+  - { name: "c8p-34", ip: "10.154.0.1", type: "A" }
+  - { name: "c8p-35", ip: "10.155.0.1", type: "A" }
+  - { name: "c8p-36", ip: "10.156.0.1", type: "A" }
+  - { name: "c8p-37", ip: "10.157.0.1", type: "A" }
+  - { name: "c8p-38", ip: "10.158.0.1", type: "A" }
+  - { name: "c8p-39", ip: "10.159.0.1", type: "A" }
+  - { name: "c8p-40", ip: "10.160.0.1", type: "A" }
+  - { name: "c8p-41", ip: "10.161.0.1", type: "A" }
+  - { name: "c8p-42", ip: "10.162.0.1", type: "A" }
+  - { name: "c8p-43", ip: "10.163.0.1", type: "A" }
+  - { name: "c8p-44", ip: "10.164.0.1", type: "A" }
+  - { name: "c8p-45", ip: "10.165.0.1", type: "A" }
+  - { name: "c8p-46", ip: "10.166.0.1", type: "A" }
+  - { name: "c8p-47", ip: "10.167.0.1", type: "A" }
+  - { name: "c8p-48", ip: "10.168.0.1", type: "A" }
+  - { name: "c8p-49", ip: "10.169.0.1", type: "A" }
+  - { name: "c8p-50", ip: "10.170.0.1", type: "A" }
+
+  # Cisco 10-port core
+  - { name: "c10p-01", ip: "10.171.0.1", type: "A" }
+  - { name: "c10p-02", ip: "10.172.0.1", type: "A" }
+  - { name: "c10p-03", ip: "10.173.0.1", type: "A" }
+  - { name: "c10p-04", ip: "10.174.0.1", type: "A" }
+  - { name: "c10p-05", ip: "10.175.0.1", type: "A" }
+  - { name: "c10p-06", ip: "10.176.0.1", type: "A" }
+  - { name: "c10p-07", ip: "10.177.0.1", type: "A" }
+  - { name: "c10p-08", ip: "10.178.0.1", type: "A" }
+  - { name: "c10p-09", ip: "10.179.0.1", type: "A" }
+  - { name: "c10p-10", ip: "10.180.0.1", type: "A" }
+  - { name: "c10p-11", ip: "10.181.0.1", type: "A" }
+  - { name: "c10p-12", ip: "10.182.0.1", type: "A" }
+  - { name: "c10p-13", ip: "10.183.0.1", type: "A" }
+  - { name: "c10p-14", ip: "10.184.0.1", type: "A" }
+  - { name: "c10p-15", ip: "10.185.0.1", type: "A" }
+  - { name: "c10p-16", ip: "10.186.0.1", type: "A" }
+  - { name: "c10p-17", ip: "10.187.0.1", type: "A" }
+  - { name: "c10p-18", ip: "10.188.0.1", type: "A" }
+  - { name: "c10p-19", ip: "10.189.0.1", type: "A" }
+  - { name: "c10p-20", ip: "10.190.0.1", type: "A" }
+  - { name: "c10p-21", ip: "10.191.0.1", type: "A" }
+  - { name: "c10p-22", ip: "10.192.0.1", type: "A" }
+  - { name: "c10p-23", ip: "10.193.0.1", type: "A" }
+  - { name: "c10p-24", ip: "10.194.0.1", type: "A" }
+  - { name: "c10p-25", ip: "10.195.0.1", type: "A" }
+  - { name: "c10p-26", ip: "10.196.0.1", type: "A" }
+  - { name: "c10p-27", ip: "10.197.0.1", type: "A" }
+  - { name: "c10p-28", ip: "10.198.0.1", type: "A" }
+  - { name: "c10p-29", ip: "10.199.0.1", type: "A" }
+  - { name: "c10p-30", ip: "10.200.0.1", type: "A" }
+  - { name: "c10p-31", ip: "10.201.0.1", type: "A" }
+  - { name: "c10p-32", ip: "10.202.0.1", type: "A" }
+  - { name: "c10p-33", ip: "10.203.0.1", type: "A" }
+  - { name: "c10p-34", ip: "10.204.0.1", type: "A" }
+  - { name: "c10p-35", ip: "10.205.0.1", type: "A" }
+  - { name: "c10p-36", ip: "10.206.0.1", type: "A" }
+  - { name: "c10p-37", ip: "10.207.0.1", type: "A" }
+  - { name: "c10p-38", ip: "10.208.0.1", type: "A" }
+  - { name: "c10p-39", ip: "10.209.0.1", type: "A" }
+  - { name: "c10p-40", ip: "10.210.0.1", type: "A" }
+  - { name: "c10p-41", ip: "10.211.0.1", type: "A" }
+  - { name: "c10p-42", ip: "10.212.0.1", type: "A" }
+  - { name: "c10p-43", ip: "10.213.0.1", type: "A" }
+  - { name: "c10p-44", ip: "10.214.0.1", type: "A" }
+  - { name: "c10p-45", ip: "10.215.0.1", type: "A" }
+  - { name: "c10p-46", ip: "10.216.0.1", type: "A" }
+  - { name: "c10p-47", ip: "10.217.0.1", type: "A" }
+  - { name: "c10p-48", ip: "10.218.0.1", type: "A" }
+  - { name: "c10p-49", ip: "10.219.0.1", type: "A" }
+  - { name: "c10p-50", ip: "10.220.0.1", type: "A" }
+
+  # EdgeRouters
+  - { name: "erx-01", ip: "10.221.0.1", type: "A" }
+  - { name: "erx-02", ip: "10.222.0.1", type: "A" }
+  - { name: "erx-03", ip: "10.223.0.1", type: "A" }
+  - { name: "erx-04", ip: "10.224.0.1", type: "A" }
+  - { name: "erx-05", ip: "10.225.0.1", type: "A" }
+  - { name: "erx-06", ip: "10.226.0.1", type: "A" }
+  - { name: "erx-07", ip: "10.227.0.1", type: "A" }
+  - { name: "erx-08", ip: "10.228.0.1", type: "A" }
+  - { name: "erx-09", ip: "10.229.0.1", type: "A" }
+  - { name: "erx-10", ip: "10.230.0.1", type: "A" }
+  - { name: "erx-11", ip: "10.231.0.1", type: "A" }
+  - { name: "erx-12", ip: "10.232.0.1", type: "A" }
+  - { name: "erx-13", ip: "10.233.0.1", type: "A" }
+  - { name: "erx-14", ip: "10.234.0.1", type: "A" }
+  - { name: "erx-15", ip: "10.235.0.1", type: "A" }
+  - { name: "erx-16", ip: "10.236.0.1", type: "A" }
+  - { name: "erx-17", ip: "10.237.0.1", type: "A" }
+  - { name: "erx-18", ip: "10.238.0.1", type: "A" }
+  - { name: "erx-19", ip: "10.239.0.1", type: "A" }
+  - { name: "erx-20", ip: "10.240.0.1", type: "A" }
+  - { name: "erx-21", ip: "10.241.0.1", type: "A" }
+  - { name: "erx-22", ip: "10.242.0.1", type: "A" }
+  - { name: "erx-23", ip: "10.243.0.1", type: "A" }
+  - { name: "erx-24", ip: "10.244.0.1", type: "A" }
+  - { name: "erx-25", ip: "10.245.0.1", type: "A" }
 
   # PVE
   - { name: "quorum", ip: "10.101.21.40", type: "A" }
@@ -178,7 +232,6 @@ magevent_net_hosts:
   - { name: "synology", ip: "10.101.21.156", type: "A" }
   - { name: "synrepo", ip: "10.101.21.156", type: "A" }
 
-
   # IPMI
   - { name: "dell-omsa", ip: "192.168.100.110", type: "A" }
   - { name: "quorum-idrac", ip: "192.168.100.111", type: "A" }
@@ -187,6 +240,8 @@ magevent_net_hosts:
   - { name: "vampire-idrac", ip: "192.168.100.114", type: "A" }
 
   # External IPs, CNAMEs, etc.
+  - { name: "magtv-graphics", ip: "10.101.22.144", type: "A" }
+  - { name: "ripaks", ip: "3.227.246.32", type: "A" }
   - { name: "fixit", ip: "52.45.46.140", type: "A" }
   - { name: "fixit", ip: "2600:1f18:423b:a500:76bf:d287:e6f9:2306", type: "AAAA" }
   - { name: "streaming", ip: "streaming-456449487.us-east-1.elb.amazonaws.com.", type: "CNAME" }
@@ -194,5 +249,5 @@ magevent_net_hosts:
   - { name: "coldbrew", ip: "hydrophobic-pheasant-7qpulrttf80t5n3leh0etcff.herokudns.com.", type: "CNAME" }
   - { name: "schedule", ip: "schedule.magevent.net.s3-website-us-east-1.amazonaws.com.", type: "CNAME" }
   - { name: "food", ip: "143.198.29.84", type: "A" }
-  - { name: "apt-mirror", ip: "d1oyui1gsktpjk.cloudfront.net.", type: "CNAME"}
+  - { name: "apt-mirror", ip: "d1oyui1gsktpjk.cloudfront.net.", type: "CNAME" }
   - { name: "snipe", ip: "pacific-endive-8stlz9pl72a8tne5ty4fe1wm.herokudns.com.", type: "CNAME" }
