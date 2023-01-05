@@ -7,6 +7,20 @@
     group: root
     mode: 0644
 
+- name: Create cron script folder
+  ansible.builtin.file:
+    path: /opt/laptops
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Update Ansible cron script
+  ansible.builtin.git:
+    repo: https://github.com/magfest/laptops
+    dest: /opt/laptops/repo
+    version: main
+
 - name: Disable Firefox autofill
   ansible.builtin.copy:
     src: "{{ item.src }}"
