@@ -34,6 +34,11 @@ TEMPLATE_DEFAULTS = {
         "phone_types": ["Yealink T20", "Yealink T20P", "Yealink T22P", "Yealink T26P", "Yealink T28P", "Yealink T38G"],
         "http_path": "/yealink-t2x/<mac>.cfg"
     },
+    "outbound.xml": {
+      "type": "full_config",
+      "src_path": "twilio_outbound.xml",
+      "http_path": "/twilio_outbound.xml"
+    },
     "asterisk.extensions.phones": {
         "type": "full_config",
         "src_path": "ast_extensions_phones.jinja",
@@ -62,14 +67,30 @@ TEMPLATE_DEFAULTS = {
 }
 
 CONFIG_DEFAULTS = {
-    "airtable": { "base_id": None, "api_key": None},
+    "airtable": { "base_id": None, "api_key": None },
+    "baserow": {
+        "url": None,
+        "base_id": None,
+        "api_key": None,
+        "table_ids": {
+            "Phones": "847",
+            "Phone Extensions": "857",
+            "Rooms": "844",
+            "Departments": "843"
+        }
+    },
+    "twilio": {
+        "account_sid": None,
+        "auth_token": None
+    },
+    "backend": "airtable",
     "asterisk": {
         "reload_command": "systemctl reload asterisk",
         "reload_url": None
     },
     "templates": TEMPLATE_DEFAULTS,
     "user_data": "/var/voip-provision/users.json",
-    "airtable_cache": "/var/voip-provision/cache.json",
+    "backend_cache": "/var/voip-provision/cache.json",
     "template_dir": "/etc/voip-provision/templates",
     "firmware_dir": "/etc/voip-provision/firmware",
     "http": {
@@ -162,9 +183,7 @@ class VoipProvisioner:
 
         return self.get_user_data_local()
 
-    @TtlCache(10)
-    def get_airtable(self):
-        log.info("Fetching records from airtable")
+    def _get_airtable(self):
         base_id = self.config.get("airtable", {}).get("base_id")
         api_key = self.config.get("airtable", {}).get("api_key")
 
@@ -184,38 +203,101 @@ class VoipProvisioner:
         departments = list(at.iterate("Departments"))
 
         log.info("Loaded %d phones, %d extensions, %d rooms, and %d departments from airtable", len(phones), len(extensions), len(rooms), len(departments))
+        return {"phones": phones, "extensions": extensions, "rooms": rooms, "departments": departments}
 
-        all_data = {"phones": phones, "extensions": extensions, "rooms": rooms, "departments": departments}
+    def _get_baserow_table_id(self, table):
+        return self.config.get("baserow", {}).get("table_ids")[table]
+
+    def _get_baserow_table(self, url, base_id, api_key, table):
+        table_id = self._get_baserow_table_id(table)
+        table_url = url + f"/api/database/rows/table/{table_id}/?user_field_names=true"
+
+        next_url = table_url
+        all_data = []
+
+        while next_url:
+            data = requests.get(
+                next_url,
+                headers={"Authorization": f"Token {api_key}"}
+            ).json()
+
+            for d in data.get("results"):
+                if d.get("Assigned Extension"):
+                    log.info("Source: %s", d)
+                    log.info("Out: %s", self.flatten_fields(d))
+            all_data.extend([{"fields": self.flatten_fields(d)} for d in data.get("results")])
+            next_url = data.get("next")
+
+        return all_data
+
+    def _get_baserow(self):
+        url = self.config.get("baserow", {}).get("url")
+        base_id = self.config.get("baserow", {}).get("base_id")
+        api_key = self.config.get("baserow", {}).get("api_key")
+
+        if url is None:
+            log.error("Config field 'baserow.url' is not set!")
+        if base_id is None:
+            log.error("Config field 'baserow.base_id' is not set!")
+        if api_key is None:
+            log.error("Config field 'baserow.api_key' is not set!")
+
+        if not url or not base_id or not api_key:
+            raise ValueError("Invalid baserow configuration")
+
+        phones = self._get_baserow_table(url, base_id, api_key, "Phones")
+        extensions = self._get_baserow_table(url, base_id, api_key, "Phone Extensions")
+        rooms = self._get_baserow_table(url, base_id, api_key, "Rooms")
+        departments = self._get_baserow_table(url, base_id, api_key, "Departments")
+
+        #log.info("Phones: %s", phones)
+        log.info("Extensions: %s", extensions)
+
+        log.info("Loaded %d phones, %d extensions, %d rooms, and %d departments from baserow", len(phones), len(extensions), len(rooms), len(departments))
+        return {"phones": phones, "extensions": extensions, "rooms": rooms, "departments": departments}
+
+    @TtlCache(10)
+    def get_backend(self):
+        log.info("Fetching records from backend")
+
+        backend = self.config.get("backend")
+        if backend == "airtable":
+            all_data = self._get_airtable()
+        elif backend == "baserow":
+            all_data = self._get_baserow()
+        else:
+            raise ValueError("Invalid backend configured")
+
         self.save_cached_extensions(all_data)
         return all_data
 
     def resolve_record(self, record_id):
-        for record_list in self.get_airtable().values():
+        for record_list in self.get_backend().values():
             for record in record_list:
                 if record.get("id") == record_id:
                     return record
         return None
 
-    def get_airtable_cache_file(self):
-        return self.config.get("airtable_cache", CONFIG_DEFAULTS["airtable_cache"])
+    def get_backend_cache_file(self):
+        return self.config.get("backend_cache", CONFIG_DEFAULTS["backend_cache"])
 
     def get_cached_extensions(self):
-        with open(self.get_airtable_cache_file()) as f:
+        with open(self.get_backend_cache_file()) as f:
             return json.load(f)
 
     def save_cached_extensions(self, extensions):
         if extensions:
-            log.debug("Cached airtable data to file")
-            with open(self.get_airtable_cache_file(), 'w') as f:
+            log.debug("Cached backend data to file")
+            with open(self.get_backend_cache_file(), 'w') as f:
                 json.dump(extensions, f)
         else:
-            log.info("Not caching empty result from airtable")
+            log.info("Not caching empty result from backend")
 
     def get_extensions(self):
         try:
-            return self.get_airtable()
+            return self.get_backend()
         except Exception as e:
-            log.exception("Failed to load data from airtable: %s", e)
+            log.exception("Failed to load data from backend: %s", e)
             log.warning("Continuing with last cached response")
             return self.get_cached_extensions()
 
@@ -236,6 +318,35 @@ class VoipProvisioner:
     def resolved(self, seq):
         for obj_id in seq:
             yield self.resolve_record(obj_id)
+
+    def flatten_fields(self, obj):
+        try:
+            result = {}
+            for k, v in obj.items():
+                try:
+                    if v.get("id"):
+                        result[k] = v.get("value")
+                    else:
+                        result[k] = self.flatten_fields(v)
+                except:
+                    result[k] = self.flatten_fields(v)
+            return result
+        except:
+            if isinstance(obj, str):
+                return obj
+            try:
+                result = []
+                for v in obj:
+                    try:
+                        if v.get("id"):
+                            result.append(v.get("value"))
+                        else:
+                            result.append(v)
+                    except:
+                        result.append(v)
+                return result
+            except:
+                return obj
 
     def reload_asterisk(self):
         ast_config = self.config.get("asterisk", CONFIG_DEFAULTS["asterisk"])
@@ -277,7 +388,7 @@ class VoipProvisioner:
                 new_data = self.get_extensions()
 
                 if new_data != last_update:
-                    log.info("Airtable change detected, re-syncing templates")
+                    log.info("Data change detected, re-syncing templates")
                     self.resync()
                     last_update = new_data
                 else:
@@ -336,12 +447,30 @@ class VoipProvisioner:
 
         self.reload_asterisk()
 
+    def using_twilio_creds(self):
+        return bool(self.resolve_config().get("twilio", {}).get("auth_token"))
+
+    def get_twilio_client(self):
+        from twilio.rest import Client
+
+        account_sid = self.resolve_config().get("twilio", {}).get("account_sid")
+        auth_token = self.resolve_config().get("twilio", {}).get("auth_token")
+
+        if not account_sid or not auth_token:
+            raise ValueError("Twilio not configured")
+
+        return Client(account_sid, auth_token)
+
     def gen_new_creds(self, phone_mac, ext, ext_info):
         conf = self.resolve_config().get("sync")
         if conf.get("enable") and conf.get("primary_host"):
             return requests.get(conf.get("primary_host") + "/sync/new_credential/" + phone_mac.lower(), auth=self.get_sync_auth()).json()
         else:
-            return {"username": gen_username(ext, phone_mac), "password": gen_password(), "extension": ext, "desc": ext_info.get("Caller ID") or ext_info.get("Name") or ext_info.get("Extension")}
+            if self.using_twilio_creds():
+                username = gen_twilio_username(ext, ext_info)
+            else:
+                username = gen_username(ext, phone_mac)
+            return {"username": username, "password": gen_password(), "extension": ext, "desc": ext_info.get("Caller ID") or ext_info.get("Name") or ext_info.get("Extension")}
 
     # Local method only!!
     def new_credential(self, mac):
@@ -349,7 +478,7 @@ class VoipProvisioner:
         log.debug("Generated new cred: %s", res)
         return res
 
-    def get_credentials(self, phone_mac, new_only=False):
+    def get_credentials_local(self, phone_mac, new_only=False):
         # find the phone's assigned extension if any
         log.debug("Retrieving credentials for phone with mac %s", phone_mac)
         phone = self.find_phone_by_mac(phone_mac)
@@ -379,6 +508,23 @@ class VoipProvisioner:
             else:
                 log.info("Generating new credentials for phone: %s (MAC %s) at extension %s", phone["fields"].get("ID"), phone_mac, ext)
                 new_cred = self.gen_new_creds(phone_mac, ext, ext_info)
+
+                # sync new creds to twilio if needed
+                if self.using_twilio_creds():
+                    # Save the config in twilio
+                    client = self.get_twilio_client()
+
+                    list_id = self.resolve_config().get("twilio", {}).get("credential_list_id")
+
+                    if not list_id:
+                        raise ValueError("Invalid credential_list_id for twilio")
+
+                    credential = client.sip.credential_lists(list_id).credentials.create(
+                        username=new_cred["username"],
+                        password=new_cred["password"],
+                    )
+                    log.info("Generated twilio credential: %s", credential.sid)
+
                 log.debug("New generated cred: %s", new_cred)
                 phone_creds.append(new_cred)
                 added.append(ext)
@@ -397,6 +543,11 @@ class VoipProvisioner:
             return added[0]
         else:
             return phone_creds
+
+    def get_credentials(self, phone_mac, new_only=False):
+        result = self.get_credentials_local(phone_mac, new_only)
+
+        return result
 
     def is_extension_active(self, extension):
         # TODO
@@ -491,15 +642,18 @@ class VoipProvisioner:
         # and then by name, or
         return sorted(phonebook, key=lambda ext: (ext.get("sort_order"), ext.get("label")))
 
-    def render_phone_mac_config(self, mac, template_name=None, stream=False):
+    def render_phone_mac_config(self, mac, template_name=None, stream=False, params=None):
         # get the phone's type
         # then find the right template
+        phone_type = None
+
         if template_name is None:
             log.debug("Searching for correct template for phone with mac %s", mac)
             phone = self.find_phone_by_mac(mac)
             if not phone:
                 raise FileNotFoundError("File not found")
-            matching_templates = [template for name, template in TEMPLATE_DEFAULTS.items() if phone.get("Type") in template.get("phone_types", [])]
+            phone_type = phone.get("Type")
+            matching_templates = [template for name, template in TEMPLATE_DEFAULTS.items() if phone_type in template.get("phone_types", [])]
             log.debug("Matching templates: %s", matching_templates)
 
             if len(matching_templates) != 1:
@@ -509,11 +663,15 @@ class VoipProvisioner:
             template_name = next(matching_templates)
         else:
             log.debug("Template specified: %s", template_name)
+            phone = self.find_phone_by_mac(mac)
+            if phone:
+                phone_type = phone.get("Type")
 
         #{ credentials: [{username, password, desc}], extensions: [{extension, label}] }
         template_parameters = {
             "credentials": self.get_credentials(mac),
-            "extensions": self.get_phonebook()
+            "extensions": self.get_phonebook(),
+            "type": phone_type,
         }
 
         log.debug("Rendering template %s with data: %s", template_name, template_parameters)
@@ -523,16 +681,24 @@ class VoipProvisioner:
         else:
             return self.jinja.get_template(template_name).render(**template_parameters)
 
-    def render_asterisk_template(self, template_name, stream=False):
+    def render_asterisk_template(self, template_name, stream=False, params=None):
         log.debug("Rendering template %s with data: %s", template_name, self.get_configured_credentials())
 
         if stream:
-            return self.jinja.get_template(template_name).stream(**self.get_configured_credentials())
+            return self.jinja.get_template(template_name).stream(**self.get_configured_credentials(), _params=params or {})
         else:
-            return self.jinja.get_template(template_name).render(**self.get_configured_credentials())
+            return self.jinja.get_template(template_name).render(**self.get_configured_credentials(), _params=params or {})
 
 def gen_username(exten, mac):
     return exten + "-" + mac[-6:]
+
+def gen_twilio_username(ext, ext_info):
+    if ext_info.get("incoming_number"):
+        return "+" + ext_info.get("incoming_number")
+    elif ext_info.get("label"):
+        return "".join((chr.lower() for chr in ext_info.get("label") if chr in (string.ascii_letters + string.digits)))
+    else:
+        return ext
 
 def gen_password(length=16):
     return ''.join([random.choice(string.ascii_letters + string.digits) for _ in range(length)])
@@ -587,9 +753,10 @@ JINJA_GLOBALS = {
     "format_sip_username_list": format_sip_username_list
 }
 
+
 def make_view_func(provisioner, target, template_name):
     def view_func(*args, **kwargs):
-        return target(*args, **kwargs, template_name=template_name)
+        return target(*args, **kwargs, template_name=template_name, params=request.args)
 
     view_func.__name__ = template_name.replace(".", "")
 
